@@ -1,0 +1,16 @@
+{
+  "name": "rave/rpg-initiative",
+  "description": "This block helps track and organize player initiative scores.",
+  "type": "wordpress-plugin",
+  "authors": [
+    {
+      "name": "R A Van Epps",
+      "email": "rave@ravanepps.com"
+    }
+  ],
+  "require": {
+  },
+  "require-dev": {
+    "webdevstudios/php-coding-standards": "^1.0"
+  }
+}
