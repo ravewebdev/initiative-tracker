@@ -8,17 +8,13 @@ const {
     i18n: {
         __,
     },
-    components: {
-        PanelBody,
-        PanelRow,
-    }
 } = wp;
 
 /**
  * Components
  */
 import CharacterList from './components/CharacterList';
-import AddCharacterButton from './components/AddCharacterButton';
+import CharacterPanel from './components/CharacterPanel';
 
 const Edit = ( props ) => {
     const {
@@ -41,15 +37,18 @@ const Edit = ( props ) => {
 
     return [
         <InspectorControls>
-            <PanelBody title={ __( 'Players', 'rave-rpg-initiative' ) }>
-                <PanelRow>
-                    <AddCharacterButton
-                        type='players'
-                        buttonText={ __( 'Player' ) }
-                        addCharacter={ addCharacter }
-                    />
-                </PanelRow>
-            </PanelBody>
+            <CharacterPanel
+                type='players'
+                title={ __( 'Players', 'rave-rpg-initiative' ) }
+                buttonText={ __( 'Player', 'rave-rpg-initiative' ) }
+                addCharacter={ addCharacter }
+            />
+            <CharacterPanel
+                type='npcs'
+                title={ __( 'NPCs', 'rave-rpg-initiative' ) }
+                buttonText={ __( 'NPC', 'rave-rpg-initiative' ) }
+                addCharacter={ addCharacter }
+            />
         </InspectorControls>,
         <div className={ className }>
             {/*{console.log( 'players', players )}*/}
