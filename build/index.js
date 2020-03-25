@@ -86,21 +86,38 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayLikeToArray.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
 /*!******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
   \******************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
 
 function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  }
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
 }
 
 module.exports = _arrayWithoutHoles;
@@ -141,7 +158,7 @@ module.exports = _defineProperty;
 /***/ (function(module, exports) {
 
 function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
 }
 
 module.exports = _iterableToArray;
@@ -156,7 +173,7 @@ module.exports = _iterableToArray;
 /***/ (function(module, exports) {
 
 function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 module.exports = _nonIterableSpread;
@@ -174,20 +191,58 @@ var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_m
 
 var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
 
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
 var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
 
 function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
 }
 
 module.exports = _toConsumableArray;
 
 /***/ }),
 
-/***/ "./src/components/AddCharacterButton.js":
-/*!**********************************************!*\
-  !*** ./src/components/AddCharacterButton.js ***!
-  \**********************************************/
+/***/ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(n);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
+
+/***/ }),
+
+/***/ "./src/block/index.js":
+/*!****************************!*\
+  !*** ./src/block/index.js ***!
+  \****************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _initiative_tracker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./initiative-tracker */ "./src/block/initiative-tracker/index.js");
+
+
+/***/ }),
+
+/***/ "./src/block/initiative-tracker/components/AddCharacterButton.js":
+/*!***********************************************************************!*\
+  !*** ./src/block/initiative-tracker/components/AddCharacterButton.js ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -195,26 +250,20 @@ module.exports = _toConsumableArray;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 
-var __ = wp.i18n.__;
 
 /**
- * Button to add a new character.
- *
- * @author Rebekah Van Epps <rave@ravanepps.com>
- * @since  2020-03-19
- *
- * @param  {Object}    props Properties passed from parent.
- * @return {WPElement}       Element to render.
+ * WP dependencies
  */
+var _wp = wp,
+    __ = _wp.i18n.__,
+    Button = _wp.components.Button;
 
 var AddCharacterButton = function AddCharacterButton(props) {
   var type = props.type,
       buttonText = props.buttonText,
       addCharacter = props.addCharacter;
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Button, {
     className: "is-button is-primary",
     isPrimary: true,
     onClick: function onClick() {
@@ -227,10 +276,10 @@ var AddCharacterButton = function AddCharacterButton(props) {
 
 /***/ }),
 
-/***/ "./src/components/Character.js":
-/*!*************************************!*\
-  !*** ./src/components/Character.js ***!
-  \*************************************/
+/***/ "./src/block/initiative-tracker/components/Character.js":
+/*!**************************************************************!*\
+  !*** ./src/block/initiative-tracker/components/Character.js ***!
+  \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -239,16 +288,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 
-var __ = wp.i18n.__;
+
 /**
- * Individual character with data inputs and delete button.
- *
- * @author Rebekah Van Epps <rave@ravanepps.com>
- * @since  2020-02-28
- *
- * @param  {Object}    props Properties passed from parent.
- * @return {WPElement}       Element to render.
+ * WP dependencies
  */
+var _wp = wp,
+    __ = _wp.i18n.__;
 
 var Character = function Character(props) {
   // console.log( 'props', props )
@@ -259,10 +304,10 @@ var Character = function Character(props) {
 
 /***/ }),
 
-/***/ "./src/components/CharacterList.js":
-/*!*****************************************!*\
-  !*** ./src/components/CharacterList.js ***!
-  \*****************************************/
+/***/ "./src/block/initiative-tracker/components/CharacterList.js":
+/*!******************************************************************!*\
+  !*** ./src/block/initiative-tracker/components/CharacterList.js ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -270,20 +315,18 @@ var Character = function Character(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Character */ "./src/components/Character.js");
+/* harmony import */ var _Character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Character */ "./src/block/initiative-tracker/components/Character.js");
 
-var __ = wp.i18n.__;
-var Component = wp.element.Component;
 
 /**
- * List characters and section title.
- *
- * @author Rebekah Van Epps <rave@ravanepps.com>
- * @since  2020-02-28
- *
- * @param  {Object}    props Properties passed from parent.
- * @return {WPElement}       Element to render.
+ * WP dependencies
  */
+// const {} = wp;
+
+/**
+ * Components
+ */
+
 
 var CharacterList = function CharacterList(props) {
   var title = props.title,
@@ -302,11 +345,56 @@ var CharacterList = function CharacterList(props) {
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! no exports provided */
+/***/ "./src/block/initiative-tracker/components/CharacterPanel.js":
+/*!*******************************************************************!*\
+  !*** ./src/block/initiative-tracker/components/CharacterPanel.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _AddCharacterButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddCharacterButton */ "./src/block/initiative-tracker/components/AddCharacterButton.js");
+
+
+/**
+* WordPress dependencies.
+*/
+var _wp = wp,
+    _wp$components = _wp.components,
+    PanelBody = _wp$components.PanelBody,
+    PanelRow = _wp$components.PanelRow;
+/**
+ * Components
+ */
+
+
+
+var CharacterPanel = function CharacterPanel(props) {
+  var type = props.type,
+      title = props.title,
+      buttonText = props.buttonText,
+      addCharacter = props.addCharacter;
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelBody, {
+    title: title
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelRow, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_AddCharacterButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    type: type,
+    buttonText: buttonText,
+    addCharacter: addCharacter
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CharacterPanel);
+
+/***/ }),
+
+/***/ "./src/block/initiative-tracker/edit.js":
+/*!**********************************************!*\
+  !*** ./src/block/initiative-tracker/edit.js ***!
+  \**********************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -317,88 +405,105 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_CharacterList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/CharacterList */ "./src/components/CharacterList.js");
-/* harmony import */ var _components_AddCharacterButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/AddCharacterButton */ "./src/components/AddCharacterButton.js");
+/* harmony import */ var _components_CharacterList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/CharacterList */ "./src/block/initiative-tracker/components/CharacterList.js");
+/* harmony import */ var _components_CharacterPanel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/CharacterPanel */ "./src/block/initiative-tracker/components/CharacterPanel.js");
 
 
 
 
 /**
- * Registers a new block provided a unique name and an object defining its behavior.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
+ * WP dependencies
  */
+var _wp = wp,
+    InspectorControls = _wp.blockEditor.InspectorControls,
+    __ = _wp.i18n.__;
+/**
+ * Components
+ */
+
+
+
+
+var Edit = function Edit(props) {
+  var _props$attributes = props.attributes,
+      players = _props$attributes.players,
+      npcs = _props$attributes.npcs,
+      className = props.className,
+      setAttributes = props.setAttributes; // Add new character.
+
+  var addCharacter = function addCharacter(type) {
+    // console.log( type );
+    // console.log( ...[ type ] );
+    setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(props.attributes[type]), [{}])));
+  };
+
+  return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(InspectorControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterPanel__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    type: "players",
+    title: __('Players', 'rave-rpg-initiative'),
+    buttonText: __('Player', 'rave-rpg-initiative'),
+    addCharacter: addCharacter
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterPanel__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    type: "npcs",
+    title: __('NPCs', 'rave-rpg-initiative'),
+    buttonText: __('NPC', 'rave-rpg-initiative'),
+    addCharacter: addCharacter
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
+    className: className
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: __('Players', 'rave-rpg-initiative'),
+    className: "character-list--players",
+    characters: players
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: __('NPCs', 'rave-rpg-initiative'),
+    className: "character-list--npcs",
+    characters: npcs
+  }))];
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Edit);
+
+/***/ }),
+
+/***/ "./src/block/initiative-tracker/index.js":
+/*!***********************************************!*\
+  !*** ./src/block/initiative-tracker/index.js ***!
+  \***********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit */ "./src/block/initiative-tracker/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./save */ "./src/block/initiative-tracker/save.js");
+/**
+* BLOCK: Initiative Tracker
+*
+* Register Initiative Tracker
+*/
+
 
 /**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
+* WordPress dependencies.
+*/
 
-
-/**
- * Import dependencies.
- */
-
-
-
-/**
- * Import components.
- */
-
-
-
-/**
- * Every block starts by registering a new block type definition.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
- */
-
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__["registerBlockType"])('rave-rpg/initiative-tracker', {
-  /**
-   * This is the display title for your block, which can be translated with `i18n` functions.
-   * The block inserter will show this name.
-   */
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('TTRPG Initiative Helper', 'rave-rpg-initiative'),
-
-  /**
-   * This is a short description for your block, can be translated with `i18n` functions.
-   * It will be shown in the Block Tab in the Settings Sidebar.
-   */
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('This block helps track and organize player initiative scores.', 'rave-rpg-initiative'),
-
-  /**
-   * Blocks are grouped into categories to help users browse and discover them.
-   * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
-   */
-  category: 'widgets',
-
-  /**
-   * An icon property should be specified to make it easier to identify a block.
-   * These can be any of WordPress’ Dashicons, or a custom svg element.
-   */
+var _wp = wp,
+    __ = _wp.i18n.__,
+    registerBlockType = _wp.blocks.registerBlockType;
+registerBlockType('rave/rpg-initiative-tracker', {
+  title: __('TTRPG Initiative Helper', 'rpg-initiative'),
+  description: __('This block helps track and organize player initiative scores.', 'rave-rpg-initiative'),
   icon: 'list-view',
-
-  /**
-   * Optional block extended support features.
-   */
+  category: 'widgets',
+  keywords: [__('richtext', 'rpg-initiative')],
   supports: {
-    // Removes support for an HTML mode.
     html: false
   },
-
-  /**
-   * Block attributes.
-   */
   attributes: {
+    // content: {
+    //     type: 'array',
+    //     source: 'children',
+    //     selector: 'p',
+    // },
     players: {
       type: 'array',
       default: []
@@ -408,96 +513,51 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__["registerBlockType"])('rav
       default: []
     }
   },
-
-  /**
-   * The edit function describes the structure of your block in the context of the editor.
-   * This represents what the editor will render when the block is used.
-   *
-   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
-   *
-   * @param {Object} [props] Properties passed from the editor.
-   *
-   * @return {WPElement} Element to render.
-   */
-  edit: function edit(props) {
-    var _props$attributes = props.attributes,
-        players = _props$attributes.players,
-        npcs = _props$attributes.npcs,
-        className = props.className,
-        setAttributes = props.setAttributes;
-
-    var addCharacter = function addCharacter(type) {
-      setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(props.attributes[type]), [{}])));
-    };
-
-    return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["PanelBody"], {
-      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Players', 'rave-rpg-initiative')
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_AddCharacterButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      type: "players",
-      buttonText: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Player'),
-      addCharacter: addCharacter
-    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_AddCharacterButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      type: "npcs",
-      buttonText: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('NPC'),
-      addCharacter: addCharacter
-    })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
-      className: className
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Players', 'rave-rpg-initiative'),
-      className: "character-list--players",
-      characters: players
-    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('NPCs', 'rave-rpg-initiative'),
-      className: "character-list--npcs",
-      characters: npcs
-    }))];
-  },
-
-  /**
-   * The save function defines the way in which the different attributes should be combined
-   * into the final markup, which is then serialized by the block editor into `post_content`.
-   *
-   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
-   *
-   * @return {WPElement} Element to render.
-   */
-  save: function save() {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('TTRPG Initiative Helper – hello from the saved content!', 'rave-rpg-initiative'));
-  }
+  edit: _edit__WEBPACK_IMPORTED_MODULE_0__["default"],
+  save: _save__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 
 /***/ }),
 
-/***/ "@wordpress/block-editor":
+/***/ "./src/block/initiative-tracker/save.js":
 /*!**********************************************!*\
-  !*** external {"this":["wp","blockEditor"]} ***!
+  !*** ./src/block/initiative-tracker/save.js ***!
   \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-(function() { module.exports = this["wp"]["blockEditor"]; }());
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+* WP dependencies
+*/
+var _wp = wp,
+    __ = _wp.i18n.__;
+
+var Save = function Save(props) {
+  var className = props.className;
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, __('TTRPG Initiative Helper – hello from the saved content!', 'rave-rpg-initiative'));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Save);
 
 /***/ }),
 
-/***/ "@wordpress/blocks":
-/*!*****************************************!*\
-  !*** external {"this":["wp","blocks"]} ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-(function() { module.exports = this["wp"]["blocks"]; }());
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _block__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./block */ "./src/block/index.js");
 
-/***/ }),
-
-/***/ "@wordpress/components":
-/*!*********************************************!*\
-  !*** external {"this":["wp","components"]} ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["components"]; }());
 
 /***/ }),
 
@@ -509,17 +569,6 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__["registerBlockType"])('rav
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["element"]; }());
-
-/***/ }),
-
-/***/ "@wordpress/i18n":
-/*!***************************************!*\
-  !*** external {"this":["wp","i18n"]} ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["i18n"]; }());
 
 /***/ })
 
