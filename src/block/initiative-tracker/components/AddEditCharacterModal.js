@@ -43,6 +43,11 @@ const AddEditCharacterModal = ( props ) => {
 					title="Add New"
 					onRequestClose={ toggle }
 				>
+					<AddEditCharacterForm
+						type={ type}
+						addCharacter={ addCharacter }
+						toggle={ toggle }
+					/>
 				</Modal>
 			) }
 		</>
