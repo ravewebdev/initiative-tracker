@@ -7,6 +7,7 @@
  * Components
  */
 import Character from './Character';
+import AddEditCharacterModal from './AddEditCharacterModal';
 
 const CharacterList = ( props ) => {
 	const {
@@ -27,6 +28,8 @@ const CharacterList = ( props ) => {
 					) ) }
 				</ul>
 			) }
+
+			<AddEditCharacterModal type={ type } addCharacter={ addCharacter } />
 		</div>
 	);
 }
