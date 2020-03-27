@@ -58,11 +58,13 @@ const Edit = ( props ) => {
             <CharacterList
                 title={ playerLabelPlural }
                 characters={ players }
+                addCharacter={ addCharacter }
                 type="player"
             />
             <CharacterList
                 title={ npcLabelPlural }
                 characters={ npcs }
+                addCharacter={ addCharacter }
                 type="npc"
             />
         </div>

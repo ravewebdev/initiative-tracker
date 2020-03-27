@@ -13,6 +13,7 @@ const CharacterList = ( props ) => {
 		title,
 		characters,
 		type,
+		addCharacter,
 	} = props;
 	
 	return (
