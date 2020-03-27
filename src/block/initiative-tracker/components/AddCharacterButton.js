@@ -22,7 +22,7 @@ const AddCharacterButton = ( props ) => {
 			className="is-button is-primary"
 			isPrimary
 			onClick={ () => {
-				addCharacter( type )
+				addCharacter( type, {} )
 			} }
 		>
 			{ `+ Add ${buttonText}` }

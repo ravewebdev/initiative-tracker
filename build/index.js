@@ -267,7 +267,7 @@ var AddCharacterButton = function AddCharacterButton(props) {
     className: "is-button is-primary",
     isPrimary: true,
     onClick: function onClick() {
-      addCharacter(type);
+      addCharacter(type, {});
     }
   }, "+ Add ".concat(buttonText));
 };
@@ -431,10 +431,8 @@ var Edit = function Edit(props) {
       className = props.className,
       setAttributes = props.setAttributes; // Add new character.
 
-  var addCharacter = function addCharacter(type) {
-    // console.log( type );
-    // console.log( ...[ type ] );
-    setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(props.attributes[type]), [{}])));
+  var addCharacter = function addCharacter(type, character) {
+    setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(props.attributes[type]), [character])));
   };
 
   return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(InspectorControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterPanel__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -499,11 +497,6 @@ registerBlockType('rave/rpg-initiative-tracker', {
     html: false
   },
   attributes: {
-    // content: {
-    //     type: 'array',
-    //     source: 'children',
-    //     selector: 'p',
-    // },
     players: {
       type: 'array',
       default: []

@@ -27,11 +27,9 @@ const Edit = ( props ) => {
     } = props;
 
     // Add new character.
-    const addCharacter = ( type ) => {
-        // console.log( type );
-        // console.log( ...[ type ] );
+    const addCharacter = ( type, character ) => {
         setAttributes( {
-            [ type ]: [ ...props.attributes[ type ], {} ]
+            [ type ]: [ ...props.attributes[ type ], character ]
         } );
     };
 
@@ -51,7 +49,6 @@ const Edit = ( props ) => {
             />
         </InspectorControls>,
         <div className={ className }>
-            {/*{console.log( 'players', players )}*/}
             <CharacterList
                 title={ __( 'Players', 'rave-rpg-initiative' ) }
                 className="character-list--players"
