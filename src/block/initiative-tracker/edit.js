@@ -17,6 +17,10 @@ import CharacterList from './components/CharacterList';
 import CharacterPanel from './components/CharacterPanel';
 
 const Edit = ( props ) => {
+    const playerLabel       = __( 'Player', 'rave-rpg-initiative' );
+    const playerLabelPlural = __( 'Players', 'rave-rpg-initiative' );
+    const npcLabel          = __( 'NPC', 'rave-rpg-initiative' );
+    const npcLabelPlural    = __( 'NPCs', 'rave-rpg-initiative' );
     const {
         attributes: {
             players,
@@ -37,27 +41,27 @@ const Edit = ( props ) => {
         <InspectorControls>
             <CharacterPanel
                 type='player'
-                title={ __( 'Players', 'rave-rpg-initiative' ) }
-                buttonText={ __( 'Player', 'rave-rpg-initiative' ) }
+                title={ playerLabelPlural }
+                buttonText={ playerLabel }
                 addCharacter={ addCharacter }
                 characters={ players }
             />
             <CharacterPanel
                 type='npc'
-                title={ __( 'NPCs', 'rave-rpg-initiative' ) }
-                buttonText={ __( 'NPC', 'rave-rpg-initiative' ) }
+                title={ npcLabelPlural }
+                buttonText={ npcLabel }
                 addCharacter={ addCharacter }
                 characters={ npcs }
             />
         </InspectorControls>,
         <div className={ className }>
             <CharacterList
-                title={ __( 'Players', 'rave-rpg-initiative' ) }
+                title={ playerLabelPlural }
                 characters={ players }
                 type="player"
             />
             <CharacterList
-                title={ __( 'NPCs', 'rave-rpg-initiative' ) }
+                title={ npcLabelPlural }
                 characters={ npcs }
                 type="npc"
             />
