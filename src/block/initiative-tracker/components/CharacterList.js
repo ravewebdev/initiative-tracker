@@ -11,18 +11,18 @@ import Character from './Character';
 const CharacterList = ( props ) => {
 	const {
 		title,
-		className,
-		characters
+		characters,
+		type,
 	} = props;
 	
 	return (
-		<div className={ className }>
+		<div className={ `character-list--${type}` }>
 			<h2>{ title }</h2>
 
 			{ characters.length && (
 				<ul>
 					{ characters.map( character => (
-						<Character character={ character } />
+						<Character characterName={ character.name } type={ type } />
 					) ) }
 				</ul>
 			) }

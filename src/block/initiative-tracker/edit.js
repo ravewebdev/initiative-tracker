@@ -36,28 +36,30 @@ const Edit = ( props ) => {
     return [
         <InspectorControls>
             <CharacterPanel
-                type='players'
+                type='player'
                 title={ __( 'Players', 'rave-rpg-initiative' ) }
                 buttonText={ __( 'Player', 'rave-rpg-initiative' ) }
                 addCharacter={ addCharacter }
+                characters={ players }
             />
             <CharacterPanel
-                type='npcs'
+                type='npc'
                 title={ __( 'NPCs', 'rave-rpg-initiative' ) }
                 buttonText={ __( 'NPC', 'rave-rpg-initiative' ) }
                 addCharacter={ addCharacter }
+                characters={ npcs }
             />
         </InspectorControls>,
         <div className={ className }>
             <CharacterList
                 title={ __( 'Players', 'rave-rpg-initiative' ) }
-                className="character-list--players"
                 characters={ players }
+                type="player"
             />
             <CharacterList
                 title={ __( 'NPCs', 'rave-rpg-initiative' ) }
-                className="character-list--npcs"
                 characters={ npcs }
+                type="npc"
             />
         </div>
     ];
