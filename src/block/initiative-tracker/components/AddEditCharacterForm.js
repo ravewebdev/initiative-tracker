@@ -19,9 +19,11 @@ export default class AddEditCharacterForm extends Component {
         super( props )
     
         this.state = {
-            name: '',
-            player: '',
+            name: null,
+            player: null,
             initiative: 0,
+            nameIsEmpty: true,
+            playerIsEmpty: true,
         }
     };
 
@@ -30,6 +32,8 @@ export default class AddEditCharacterForm extends Component {
             name,
             player,
             initiative,
+            nameIsEmpty,
+            playerIsEmpty,
         } = this.state;
         const {
             type,
@@ -37,27 +41,34 @@ export default class AddEditCharacterForm extends Component {
             toggle,
             addText,
         } = this.props;
+        const errorClass = 'input-error';
 
         return (
             <>
                 <TextControl
-                    label={ __( 'Character Name', 'rave-rpg-initiative' ) }
+                    label={ __( 'Character Name *', 'rave-rpg-initiative' ) }
                     value={ name }
                     onChange={ ( name ) => {
+                        name = name.trim();
                         this.setState( {
-                            name
-                        } )
+                            name,
+                            nameIsEmpty: ( "" === name )
+                        } );
                     } }
+                    className={ null !== name && nameIsEmpty ? errorClass : '' }
                 />
                 { 'player' === type && (
                     <TextControl
-                        label={ __( 'Player Name', 'rave-rpg-initiative' ) }
+                        label={ __( 'Player Name *', 'rave-rpg-initiative' ) }
                         value={ player }
                         onChange={ ( player ) => {
+                            player = player.trim();
                             this.setState( {
-                                player
-                            } )
+                                player,
+                                playerIsEmpty: ( "" === player )
+                            } );
                         } }
+                        className={ null !== player && playerIsEmpty ? errorClass : '' }
                     />
                 ) }
                 <TextControl
@@ -80,6 +91,7 @@ export default class AddEditCharacterForm extends Component {
                 <Button
                     className="is-button is-primary"
                     isPrimary
+                    disabled={ ( nameIsEmpty || playerIsEmpty ) }
                     onClick={ () => {
                         addCharacter( type, {
                             name,
