@@ -564,9 +564,11 @@ var AddEditCharacterForm = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      name: '',
-      player: '',
-      initiative: 0
+      name: null,
+      player: null,
+      initiative: 0,
+      nameIsEmpty: true,
+      playerIsEmpty: true
     };
     return _this;
   }
@@ -579,28 +581,39 @@ var AddEditCharacterForm = /*#__PURE__*/function (_Component) {
       var _this$state = this.state,
           name = _this$state.name,
           player = _this$state.player,
-          initiative = _this$state.initiative;
+          initiative = _this$state.initiative,
+          nameIsEmpty = _this$state.nameIsEmpty,
+          playerIsEmpty = _this$state.playerIsEmpty;
       var _this$props = this.props,
           type = _this$props.type,
           addCharacter = _this$props.addCharacter,
           toggle = _this$props.toggle,
           addText = _this$props.addText;
+      var errorClass = 'input-error';
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(TextControl, {
-        label: __('Character Name', 'rave-rpg-initiative'),
+        label: __('Character Name *', 'rave-rpg-initiative'),
         value: name,
         onChange: function onChange(name) {
+          name = name.trim();
+
           _this2.setState({
-            name: name
+            name: name,
+            nameIsEmpty: "" === name
           });
-        }
+        },
+        className: null !== name && nameIsEmpty ? errorClass : ''
       }), 'player' === type && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(TextControl, {
-        label: __('Player Name', 'rave-rpg-initiative'),
+        label: __('Player Name *', 'rave-rpg-initiative'),
         value: player,
         onChange: function onChange(player) {
+          player = player.trim();
+
           _this2.setState({
-            player: player
+            player: player,
+            playerIsEmpty: "" === player
           });
-        }
+        },
+        className: null !== player && playerIsEmpty ? errorClass : ''
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(TextControl, {
         label: __('Initiative', 'rave-rpg-initiative'),
         type: "number",
@@ -617,6 +630,7 @@ var AddEditCharacterForm = /*#__PURE__*/function (_Component) {
       }, __('Cancel', 'rave-rpg-initiative')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
         className: "is-button is-primary",
         isPrimary: true,
+        disabled: nameIsEmpty || playerIsEmpty,
         onClick: function onClick() {
           addCharacter(type, {
             name: name,
@@ -739,7 +753,10 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
  */
 var _wp = wp,
     __ = _wp.i18n.__,
-    Component = _wp.element.Component;
+    Component = _wp.element.Component,
+    _wp$components = _wp.components,
+    Dashicon = _wp$components.Dashicon,
+    Button = _wp$components.Button;
 
 var Character = /*#__PURE__*/function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(Character, _Component);
@@ -779,7 +796,15 @@ var Character = /*#__PURE__*/function (_Component) {
         className: "character"
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", {
         className: "character-name"
-      }, characterName));
+      }, characterName), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
+        className: "edit-character"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Dashicon, {
+        icon: "edit"
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
+        className: "delete-character"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Dashicon, {
+        icon: "trash"
+      })));
     }
   }]);
 
@@ -865,7 +890,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 var _wp = wp,
     __ = _wp.i18n.__,
-    RichText = _wp.editor.RichText;
+    RichText = _wp.blockEditor.RichText;
 /**
  * Components
  */
@@ -903,6 +928,7 @@ var Edit = function Edit(props) {
     multiline: "p",
     className: "notes",
     placeholder: __('Enter notes about this combat here...', 'rave-rpg-initiative'),
+    keepPlaceholderOnFocus: true,
     onChange: onChangeNotes,
     value: notes
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
