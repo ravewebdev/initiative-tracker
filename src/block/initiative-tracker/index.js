@@ -30,13 +30,17 @@ registerBlockType( 'rave/rpg-initiative-tracker', {
         html: false,
     },
     attributes: {
+        notes: {
+            type: 'array',
+            default: [],
+        },
         players: {
             type: 'array',
-            default: []
+            default: [],
         },
         npcs: {
             type: 'array',
-            default: []
+            default: [],
         },
     },
     edit,

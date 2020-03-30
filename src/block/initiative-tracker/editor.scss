@@ -1,10 +1,11 @@
-.character-panel {
+.wp-block-rave-rpg-initiative-tracker {
+	padding: 1rem;
 
-	.components-panel__row {
-		flex-direction: column;
-	}
+	.characters {
+		display: flex;
 
-	.character-list {
-		width: 100%;
+		[class^='character-list--'] {
+			flex: 1;
+		}
 	}
 }

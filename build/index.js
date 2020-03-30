@@ -864,7 +864,8 @@ __webpack_require__.r(__webpack_exports__);
  * WP dependencies
  */
 var _wp = wp,
-    __ = _wp.i18n.__;
+    __ = _wp.i18n.__,
+    RichText = _wp.editor.RichText;
 /**
  * Components
  */
@@ -873,10 +874,18 @@ var _wp = wp,
 
 var Edit = function Edit(props) {
   var _props$attributes = props.attributes,
+      notes = _props$attributes.notes,
       players = _props$attributes.players,
       npcs = _props$attributes.npcs,
       className = props.className,
-      setAttributes = props.setAttributes; // Add new character, sort alphabetically.
+      setAttributes = props.setAttributes; // Add combat notes.
+
+  var onChangeNotes = function onChangeNotes(notes) {
+    setAttributes({
+      notes: notes
+    });
+  }; // Add new character, sort alphabetically.
+
 
   var addCharacter = function addCharacter(type, character) {
     type = "".concat(type, "s");
@@ -889,6 +898,15 @@ var Edit = function Edit(props) {
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
     className: className
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h2", null, "Combat Notes"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(RichText, {
+    tagName: "div",
+    multiline: "p",
+    className: "notes",
+    placeholder: __('Enter notes about this combat here...', 'rave-rpg-initiative'),
+    onChange: onChangeNotes,
+    value: notes
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
+    className: "characters"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: __('Players', 'rave-rpg-initiative'),
     characters: players,
@@ -901,7 +919,7 @@ var Edit = function Edit(props) {
     addCharacter: addCharacter,
     type: "npc",
     addText: __('Add NPC', 'rave-rpg-initiative')
-  }));
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Edit);
@@ -943,6 +961,10 @@ registerBlockType('rave/rpg-initiative-tracker', {
     html: false
   },
   attributes: {
+    notes: {
+      type: 'array',
+      default: []
+    },
     players: {
       type: 'array',
       default: []
