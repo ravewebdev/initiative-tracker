@@ -22,11 +22,15 @@ const Edit = ( props ) => {
         setAttributes,
     } = props;
 
-    // Add new character.
+    // Add new character, sort alphabetically.
     const addCharacter = ( type, character ) => {
         type = `${type}s`;
+        const characters = [ ...props.attributes[ type ], character ];
+        characters.sort( function( char1, char2 ) {
+            return char1.name.localeCompare( char2.name );
+        } );
         setAttributes( {
-            [ type ]: [ ...props.attributes[ type ], character ]
+            [ type ]: characters
         } );
     };
 

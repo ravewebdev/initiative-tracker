@@ -876,11 +876,15 @@ var Edit = function Edit(props) {
       players = _props$attributes.players,
       npcs = _props$attributes.npcs,
       className = props.className,
-      setAttributes = props.setAttributes; // Add new character.
+      setAttributes = props.setAttributes; // Add new character, sort alphabetically.
 
   var addCharacter = function addCharacter(type, character) {
     type = "".concat(type, "s");
-    setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(props.attributes[type]), [character])));
+    var characters = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(props.attributes[type]), [character]);
+    characters.sort(function (char1, char2) {
+      return char1.name.localeCompare(char2.name);
+    });
+    setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, characters));
   };
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
