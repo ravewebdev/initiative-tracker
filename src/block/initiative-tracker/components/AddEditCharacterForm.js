@@ -35,6 +35,7 @@ export default class AddEditCharacterForm extends Component {
             type,
             addCharacter,
             toggle,
+            addText,
         } = this.props;
 
         return (
@@ -74,7 +75,7 @@ export default class AddEditCharacterForm extends Component {
                     isSecondary
                     onClick={ toggle }
                 >
-                    Cancel
+                    { __( 'Cancel', 'rave-rpg-initiative' ) }
                 </Button>
                 <Button
                     className="is-button is-primary"
@@ -88,7 +89,7 @@ export default class AddEditCharacterForm extends Component {
                         toggle();
                     } }
                 >
-                    Save
+                    { addText }
                 </Button>
             </>
         );

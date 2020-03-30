@@ -23,6 +23,7 @@ const AddEditCharacterModal = ( props ) => {
 	const {
 		type,
 		addCharacter,
+		addText,
 	} = props;
 	const [ isOpen, setOpen ] = useState( false );
 	const toggle = () => {
@@ -36,17 +37,18 @@ const AddEditCharacterModal = ( props ) => {
 	            isPrimary
 	            onClick={ toggle }
 			>
-				+ Add
+				{ addText }
 			</Button>
 			{ isOpen && (
 				<Modal
-					title="Add New"
+					title={ addText }
 					onRequestClose={ toggle }
 				>
 					<AddEditCharacterForm
 						type={ type}
 						addCharacter={ addCharacter }
 						toggle={ toggle }
+						addText={ addText }
 					/>
 				</Modal>
 			) }

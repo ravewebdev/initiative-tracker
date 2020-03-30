@@ -15,6 +15,7 @@ const CharacterList = ( props ) => {
 		characters,
 		type,
 		addCharacter,
+		addText,
 	} = props;
 	
 	return (
@@ -29,7 +30,7 @@ const CharacterList = ( props ) => {
 				</ul>
 			) }
 
-			<AddEditCharacterModal type={ type } addCharacter={ addCharacter } />
+			<AddEditCharacterModal type={ type } addCharacter={ addCharacter } addText={ addText } />
 		</div>
 	);
 }

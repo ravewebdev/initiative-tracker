@@ -45,7 +45,6 @@ export default class Character extends Component {
 		return (
 			<div className="character">
 				<span className="character-name">{ characterName }</span>
-				<span>{ ` - ( ${type} )` }</span>
 			</div>
 		);
 	}
