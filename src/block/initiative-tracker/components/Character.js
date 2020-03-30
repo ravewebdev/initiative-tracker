@@ -8,6 +8,10 @@ const {
     element: {
         Component,
     },
+    components: {
+		Dashicon,
+        Button,
+	},
 } = wp;
 
 export default class Character extends Component {
@@ -45,6 +49,12 @@ export default class Character extends Component {
 		return (
 			<div className="character">
 				<span className="character-name">{ characterName }</span>
+				<Button className="is-button edit-character">
+					<Dashicon icon="edit" /> { __( 'Edit', 'rave-rpg-initiative' ) }
+				</Button>
+				<Button className="is-button delete-character">
+					<Dashicon icon="trash" /> { __( 'Delete', 'rave-rpg-initiative' ) }
+				</Button>
 			</div>
 		);
 	}
