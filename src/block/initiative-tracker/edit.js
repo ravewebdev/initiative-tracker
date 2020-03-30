@@ -5,7 +5,7 @@ const {
     i18n: {
         __,
     },
-    editor: {
+    blockEditor: {
         RichText,
     }
 } = wp;
