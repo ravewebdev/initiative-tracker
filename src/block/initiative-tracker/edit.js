@@ -45,6 +45,17 @@ const Edit = ( props ) => {
         } );
     };
 
+    // Delete character.
+    const deleteCharacter = ( type, index ) => {
+        type = `${type}s`;
+        const characters = [ ...props.attributes[ type ] ].filter( function( character, charIndex ) {
+            return charIndex !== index;
+        }, index );
+        setAttributes( {
+            [ type ]: characters
+        } );
+    };
+
     return (
         <div className={ className }>
             <h2>Combat Notes</h2>
@@ -62,6 +73,7 @@ const Edit = ( props ) => {
                     title={ __( 'Players', 'rave-rpg-initiative' ) }
                     characters={ players }
                     addCharacter={ addCharacter }
+                    deleteCharacter={ deleteCharacter }
                     type="player"
                     addText={ __( 'Add Player', 'rave-rpg-initiative' ) }
                 />
@@ -69,6 +81,7 @@ const Edit = ( props ) => {
                     title={ __( 'NPCs', 'rave-rpg-initiative' ) }
                     characters={ npcs }
                     addCharacter={ addCharacter }
+                    deleteCharacter={ deleteCharacter }
                     type="npc"
                     addText={ __( 'Add NPC', 'rave-rpg-initiative' ) }
                 />

@@ -15,6 +15,7 @@ const CharacterList = ( props ) => {
 		characters,
 		type,
 		addCharacter,
+		deleteCharacter,
 		addText,
 	} = props;
 	
@@ -24,8 +25,8 @@ const CharacterList = ( props ) => {
 
 			{ characters.length && (
 				<ul>
-					{ characters.map( character => (
-						<Character characterName={ character.name } type={ type } />
+					{ characters.map( ( character, index ) => (
+						<Character characterName={ character.name } type={ type } index={ index } deleteCharacter={ deleteCharacter } />
 					) ) }
 				</ul>
 			) }

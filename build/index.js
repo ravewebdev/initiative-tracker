@@ -735,8 +735,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -753,10 +756,50 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
  */
 var _wp = wp,
     __ = _wp.i18n.__,
-    Component = _wp.element.Component,
+    _wp$element = _wp.element,
+    Component = _wp$element.Component,
+    useState = _wp$element.useState,
     _wp$components = _wp.components,
     Dashicon = _wp$components.Dashicon,
-    Button = _wp$components.Button;
+    Button = _wp$components.Button,
+    Modal = _wp$components.Modal;
+
+var DeleteCharacterModal = function DeleteCharacterModal(props) {
+  var name = props.name,
+      index = props.index,
+      type = props.type,
+      deleteCharacter = props.deleteCharacter;
+
+  var _useState = useState(false),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_5___default()(_useState, 2),
+      isOpen = _useState2[0],
+      setOpen = _useState2[1];
+
+  var toggle = function toggle() {
+    setOpen(isOpen ? false : true);
+  };
+
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
+    className: "delete-character",
+    onClick: toggle
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Dashicon, {
+    icon: "trash"
+  })), isOpen && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Modal, {
+    title: __('Delete Character: ', 'rave-rpg-initiative') + name,
+    onRequestClose: toggle
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("p", null, " ", __('Are you sure you want to delete this character?'), " "), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
+    className: "is-button is-secondary",
+    isSecondary: true,
+    onClick: toggle
+  }, __('Cancel', 'rave-rpg-initiative')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
+    className: "is-button is-primary",
+    isPrimary: true,
+    onClick: function onClick() {
+      deleteCharacter(type, index);
+      toggle();
+    }
+  }, __('Delete Character', 'rave-rpg-initiative'))));
+};
 
 var Character = /*#__PURE__*/function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(Character, _Component);
@@ -782,29 +825,32 @@ var Character = /*#__PURE__*/function (_Component) {
       var _this$props = this.props,
           characterName = _this$props.characterName,
           playerName = _this$props.playerName,
-          type = _this$props.type;
+          type = _this$props.type,
+          index = _this$props.index,
+          deleteCharacter = _this$props.deleteCharacter;
       {
-        editing && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+        editing && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
           className: "edit-character"
-        }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(TextControl, {
+        }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(TextControl, {
           label: __('Character Name', 'rave-rpg-initiative')
-        }), 'player' === type && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(TextControl, {
+        }), 'player' === type && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(TextControl, {
           label: __('Player Name', 'rave-rpg-initiative')
         }));
       }
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
         className: "character"
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", {
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("span", {
         className: "character-name"
-      }, characterName), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
+      }, characterName), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
         className: "edit-character"
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Dashicon, {
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Dashicon, {
         icon: "edit"
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
-        className: "delete-character"
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Dashicon, {
-        icon: "trash"
-      })));
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(DeleteCharacterModal, {
+        index: index,
+        deleteCharacter: deleteCharacter,
+        name: characterName,
+        type: type
+      }));
     }
   }]);
 
@@ -846,13 +892,16 @@ var CharacterList = function CharacterList(props) {
       characters = props.characters,
       type = props.type,
       addCharacter = props.addCharacter,
+      deleteCharacter = props.deleteCharacter,
       addText = props.addText;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "character-list--".concat(type)
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, title), characters.length && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("ul", null, characters.map(function (character) {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, title), characters.length && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("ul", null, characters.map(function (character, index) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_Character__WEBPACK_IMPORTED_MODULE_1__["default"], {
       characterName: character.name,
-      type: type
+      type: type,
+      index: index,
+      deleteCharacter: deleteCharacter
     });
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_AddEditCharacterModal__WEBPACK_IMPORTED_MODULE_2__["default"], {
     type: type,
@@ -919,6 +968,17 @@ var Edit = function Edit(props) {
       return char1.name.localeCompare(char2.name);
     });
     setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, characters));
+  }; // Delete character.
+
+
+  var deleteCharacter = function deleteCharacter(type, index) {
+    type = "".concat(type, "s");
+
+    var characters = _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(props.attributes[type]).filter(function (character, charIndex) {
+      return charIndex !== index;
+    }, index);
+
+    setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, characters));
   };
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
@@ -937,12 +997,14 @@ var Edit = function Edit(props) {
     title: __('Players', 'rave-rpg-initiative'),
     characters: players,
     addCharacter: addCharacter,
+    deleteCharacter: deleteCharacter,
     type: "player",
     addText: __('Add Player', 'rave-rpg-initiative')
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: __('NPCs', 'rave-rpg-initiative'),
     characters: npcs,
     addCharacter: addCharacter,
+    deleteCharacter: deleteCharacter,
     type: "npc",
     addText: __('Add NPC', 'rave-rpg-initiative')
   })));

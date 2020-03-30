@@ -7,12 +7,63 @@ const {
     },
     element: {
         Component,
+    	useState,
     },
     components: {
 		Dashicon,
         Button,
+        Modal,
 	},
 } = wp;
+
+const DeleteCharacterModal = ( props ) => {
+	const {
+		name,
+		index,
+		type,
+		deleteCharacter,
+	} = props;
+	const [ isOpen, setOpen ] = useState( false );
+	const toggle = () => {
+		setOpen( isOpen ? false : true );
+	};
+
+	return (
+		<>
+			<Button
+				className="delete-character"
+	            onClick={ toggle }
+			>
+				<Dashicon icon="trash" />
+			</Button>
+			{ isOpen && (
+				<Modal
+					title={ __( 'Delete Character: ', 'rave-rpg-initiative' ) + name }
+					onRequestClose={ toggle }
+				>
+					<p> { __( 'Are you sure you want to delete this character?' ) } </p>
+					<Button
+	                    className="is-button is-secondary"
+	                    isSecondary
+	                    onClick={ toggle }
+	                >
+	                    { __( 'Cancel', 'rave-rpg-initiative' ) }
+	                </Button>
+	                <Button
+	                    className="is-button is-primary"
+	                    isPrimary
+	                    onClick={ () => {
+	                        deleteCharacter( type, index );
+	                        toggle();
+	                    } }
+	                >
+	                    { __( 'Delete Character', 'rave-rpg-initiative' ) }
+	                </Button>
+				</Modal>
+			) }
+		</>
+	);
+}
 
 export default class Character extends Component {
 	constructor( props ) {
@@ -31,6 +82,8 @@ export default class Character extends Component {
 			characterName,
 			playerName,
 			type,
+			index,
+			deleteCharacter,
 		} = this.props;
 
 		{ editing && (
@@ -52,9 +105,7 @@ export default class Character extends Component {
 				<Button className="edit-character">
 					<Dashicon icon="edit" />
 				</Button>
-				<Button className="delete-character">
-					<Dashicon icon="trash" />
-				</Button>
+				<DeleteCharacterModal index={ index } deleteCharacter={ deleteCharacter } name={ characterName } type={ type } />
 			</div>
 		);
 	}
