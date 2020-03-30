@@ -53,6 +53,7 @@ const Edit = ( props ) => {
                 multiline="p"
                 className="notes"
                 placeholder={ __( 'Enter notes about this combat here...', 'rave-rpg-initiative' ) }
+                keepPlaceholderOnFocus={ true }
                 onChange={ onChangeNotes }
                 value={ notes }
             />
