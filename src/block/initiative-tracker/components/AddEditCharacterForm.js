@@ -79,7 +79,7 @@ export default class AddEditCharacterForm extends Component {
                 <Button
                     className="is-button is-primary"
                     isPrimary
-                    onClick={ ( { name, player, initiative } ) => {
+                    onClick={ () => {
                         addCharacter( type, {
                             name,
                             player,

@@ -32,6 +32,7 @@ const Edit = ( props ) => {
 
     // Add new character.
     const addCharacter = ( type, character ) => {
+        type = `${type}s`;
         setAttributes( {
             [ type ]: [ ...props.attributes[ type ], character ]
         } );
