@@ -2,9 +2,6 @@
  * WP dependencies
  */
 const {
-    blockEditor: {
-        InspectorControls,
-    },
     i18n: {
         __,
     },
@@ -14,7 +11,6 @@ const {
  * Components
  */
 import CharacterList from './components/CharacterList';
-import CharacterPanel from './components/CharacterPanel';
 
 const Edit = ( props ) => {
     const {
