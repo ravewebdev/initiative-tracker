@@ -1,3 +1,5 @@
+$color-error: #a40000;
+
 .wp-block-rave-rpg-initiative-tracker {
 	padding: 1rem;
 
@@ -6,6 +8,17 @@
 
 		[class^='character-list--'] {
 			flex: 1;
+		}
+	}
+
+	.input-error {
+
+		label {
+			color: $color-error;
+		}
+
+		input {
+			border-color: $color-error;
 		}
 	}
 }
