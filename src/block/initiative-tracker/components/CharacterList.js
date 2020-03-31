@@ -1,39 +1,83 @@
 /**
  * WP dependencies
  */
-// const {} = wp;
+const {
+    components: {
+        Button,
+    },
+    element: {
+        Component,
+    },
+} = wp;
 
 /**
  * Components
  */
 import Character from './Character';
-import AddEditCharacterModal from './AddEditCharacterModal';
+import AddEditCharacterForm from './AddEditCharacterForm';
 
-const CharacterList = ( props ) => {
-	const {
-		title,
-		characters,
-		type,
-		addCharacter,
-		deleteCharacter,
-		addText,
-	} = props;
+export default class CharacterList extends Component {
+	constructor( props ) {
+		super( props );
 	
-	return (
-		<div className={ `character-list--${type}` }>
-			<h2>{ title }</h2>
+		this.state = {
+			adding: false,
+		};
+	};
 
-			{ characters.length && (
-				<ul>
-					{ characters.map( ( character, index ) => (
-						<Character characterName={ character.name } type={ type } index={ index } deleteCharacter={ deleteCharacter } />
-					) ) }
-				</ul>
-			) }
+	render() {
+		const {
+			title,
+			characters,
+			type,
+			addCharacter,
+			deleteCharacter,
+			addText,
+		} = this.props;
+		const {
+			adding,
+		} = this.state;
 
-			<AddEditCharacterModal type={ type } addCharacter={ addCharacter } addText={ addText } />
-		</div>
-	);
+		const toggleAdd = () => {
+			this.setState( {
+				adding: ! adding
+			} );
+		};
+		
+		return (
+			<div className={ `character-list--${type}` }>
+				<h2>{ title }</h2>
+
+				{ characters.length && (
+					<ul>
+						{ characters.map( ( character, index ) => (
+							<Character characterName={ character.name } type={ type } index={ index } deleteCharacter={ deleteCharacter } />
+						) ) }
+					</ul>
+				) }
+
+				{ ! adding && (
+					<Button
+			            isPrimary
+			            onClick={ () => {
+			            	this.setState( {
+			            		adding: true
+			            	} );
+			            } }
+					>
+						{ addText }
+					</Button>
+				) }
+
+				{ adding && (
+					<AddEditCharacterForm
+						type={ type}
+						addCharacter={ addCharacter }
+						addText={ addText }
+						toggle={ toggleAdd }
+					/>
+				) }
+			</div>
+		);
+	};
 }
-
-export default CharacterList;
