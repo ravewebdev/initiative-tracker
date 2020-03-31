@@ -27,16 +27,18 @@ export default class CharacterList extends Component {
 
 	render() {
 		const {
+			adding,
+		} = this.state;
+		const {
 			title,
 			characters,
 			type,
 			addCharacter,
+			editCharacter,
 			deleteCharacter,
 			addText,
+			editText,
 		} = this.props;
-		const {
-			adding,
-		} = this.state;
 
 		const toggleAdd = () => {
 			this.setState( {
@@ -51,7 +53,14 @@ export default class CharacterList extends Component {
 				{ characters.length && (
 					<ul>
 						{ characters.map( ( character, index ) => (
-							<Character characterName={ character.name } type={ type } index={ index } deleteCharacter={ deleteCharacter } />
+							<Character
+								character={ character }
+								type={ type }
+								index={ index }
+								editCharacter={ editCharacter }
+								deleteCharacter={ deleteCharacter }
+								editText={ editText }
+							/>
 						) ) }
 					</ul>
 				) }
@@ -72,8 +81,8 @@ export default class CharacterList extends Component {
 				{ adding && (
 					<AddEditCharacterForm
 						type={ type}
-						addCharacter={ addCharacter }
-						addText={ addText }
+						characterFn={ addCharacter }
+						buttonText={ addText }
 						toggle={ toggleAdd }
 					/>
 				) }

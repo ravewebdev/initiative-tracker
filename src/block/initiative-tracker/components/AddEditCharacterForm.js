@@ -24,6 +24,33 @@ export default class AddEditCharacterForm extends Component {
             initiative: 0,
             nameIsEmpty: true,
             playerIsEmpty: true,
+            editing: false,
+            index: null,
+        };
+    };
+
+    componentDidMount() {
+        // Populate existing character values when in edit mode.
+        if ( this.props.hasOwnProperty( 'character' ) ) {
+            const {
+                character: {
+                    name,
+                    player,
+                    initiative,
+                    index,
+                },
+                type,
+            } = this.props;
+
+            this.setState( {
+                nameIsEmpty: false,
+                playerIsEmpty: false,
+                editing: true,
+                name,
+                player,
+                index,
+                initiative
+            } );
         }
     };
 
@@ -34,12 +61,14 @@ export default class AddEditCharacterForm extends Component {
             initiative,
             nameIsEmpty,
             playerIsEmpty,
+            editing,
+            index,
         } = this.state;
         const {
             type,
-            addCharacter,
+            characterFn,
             toggle,
-            addText,
+            buttonText,
         } = this.props;
         const errorClass = 'input-error';
         const isPlayer = 'player' === type;
@@ -91,15 +120,23 @@ export default class AddEditCharacterForm extends Component {
                     isPrimary
                     disabled={ disableSave }
                     onClick={ () => {
-                        addCharacter( type, {
-                            name: name.trim(),
-                            player: ( isPlayer ? player.trim() : '' ),
-                            initiative,
-                        } );
+                        if ( editing ) {
+                            characterFn( type, index, {
+                                name: name.trim(),
+                                player: ( isPlayer ? player.trim() : '' ),
+                                initiative,
+                            } );
+                        } else {
+                            characterFn( type, {
+                                name: name.trim(),
+                                player: ( isPlayer ? player.trim() : '' ),
+                                initiative,
+                            } );
+                        }
                         toggle();
                     } }
                 >
-                    { addText }
+                    { buttonText }
                 </Button>
             </div>
         );

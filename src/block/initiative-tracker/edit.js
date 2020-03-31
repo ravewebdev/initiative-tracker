@@ -33,17 +33,31 @@ const Edit = ( props ) => {
         } );
     };
 
+    const sortCharacters = ( characters ) => {
+        characters.sort( function( char1, char2 ) {
+            return char1.name.localeCompare( char2.name );
+        } );
+        return characters;
+    }
+
     // Add new character, sort alphabetically.
     const addCharacter = ( type, character ) => {
         type = `${type}s`;
         const characters = [ ...props.attributes[ type ], character ];
-        characters.sort( function( char1, char2 ) {
-            return char1.name.localeCompare( char2.name );
-        } );
         setAttributes( {
-            [ type ]: characters
+            [ type ]: sortCharacters( characters )
         } );
     };
+
+    // Edit character.
+    const editCharacter = ( type, index, character ) => {
+        type = `${type}s`;
+        const characters = [ ...props.attributes[ type ] ];
+        characters[ index ] = character;
+        setAttributes( {
+            [ type ]: sortCharacters( characters )
+        } );
+    }
 
     // Delete character.
     const deleteCharacter = ( type, index ) => {
@@ -73,17 +87,21 @@ const Edit = ( props ) => {
                     title={ __( 'Players', 'rave-rpg-initiative' ) }
                     characters={ players }
                     addCharacter={ addCharacter }
+                    editCharacter={ editCharacter }
                     deleteCharacter={ deleteCharacter }
                     type="player"
                     addText={ __( 'Add Player', 'rave-rpg-initiative' ) }
+                    editText={ __( 'Edit Player', 'rave-rpg-initiative' ) }
                 />
                 <CharacterList
                     title={ __( 'NPCs', 'rave-rpg-initiative' ) }
                     characters={ npcs }
                     addCharacter={ addCharacter }
+                    editCharacter={ editCharacter }
                     deleteCharacter={ deleteCharacter }
                     type="npc"
                     addText={ __( 'Add NPC', 'rave-rpg-initiative' ) }
+                    editText={ __( 'Edit NPC', 'rave-rpg-initiative' ) }
                 />
             </div>
         </div>

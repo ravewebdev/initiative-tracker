@@ -568,12 +568,37 @@ var AddEditCharacterForm = /*#__PURE__*/function (_Component) {
       player: null,
       initiative: 0,
       nameIsEmpty: true,
-      playerIsEmpty: true
+      playerIsEmpty: true,
+      editing: false,
+      index: null
     };
     return _this;
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(AddEditCharacterForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // Populate existing character values when in edit mode.
+      if (this.props.hasOwnProperty('character')) {
+        var _this$props = this.props,
+            _this$props$character = _this$props.character,
+            name = _this$props$character.name,
+            player = _this$props$character.player,
+            initiative = _this$props$character.initiative,
+            index = _this$props$character.index,
+            type = _this$props.type;
+        this.setState({
+          nameIsEmpty: false,
+          playerIsEmpty: false,
+          editing: true,
+          name: name,
+          player: player,
+          index: index,
+          initiative: initiative
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -583,12 +608,14 @@ var AddEditCharacterForm = /*#__PURE__*/function (_Component) {
           player = _this$state.player,
           initiative = _this$state.initiative,
           nameIsEmpty = _this$state.nameIsEmpty,
-          playerIsEmpty = _this$state.playerIsEmpty;
-      var _this$props = this.props,
-          type = _this$props.type,
-          addCharacter = _this$props.addCharacter,
-          toggle = _this$props.toggle,
-          addText = _this$props.addText;
+          playerIsEmpty = _this$state.playerIsEmpty,
+          editing = _this$state.editing,
+          index = _this$state.index;
+      var _this$props2 = this.props,
+          type = _this$props2.type,
+          characterFn = _this$props2.characterFn,
+          toggle = _this$props2.toggle,
+          buttonText = _this$props2.buttonText;
       var errorClass = 'input-error';
       var isPlayer = 'player' === type;
       var disableSave = isPlayer && playerIsEmpty || nameIsEmpty;
@@ -628,14 +655,23 @@ var AddEditCharacterForm = /*#__PURE__*/function (_Component) {
         isPrimary: true,
         disabled: disableSave,
         onClick: function onClick() {
-          addCharacter(type, {
-            name: name.trim(),
-            player: isPlayer ? player.trim() : '',
-            initiative: initiative
-          });
+          if (editing) {
+            characterFn(type, index, {
+              name: name.trim(),
+              player: isPlayer ? player.trim() : '',
+              initiative: initiative
+            });
+          } else {
+            characterFn(type, {
+              name: name.trim(),
+              player: isPlayer ? player.trim() : '',
+              initiative: initiative
+            });
+          }
+
           toggle();
         }
-      }, addText));
+      }, buttonText));
     }
   }]);
 
@@ -666,11 +702,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__);
-
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _DeleteCharacterModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./DeleteCharacterModal */ "./src/block/initiative-tracker/components/DeleteCharacterModal.js");
+/* harmony import */ var _AddEditCharacterForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AddEditCharacterForm */ "./src/block/initiative-tracker/components/AddEditCharacterForm.js");
 
 
 
@@ -687,51 +722,16 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
  */
 var _wp = wp,
     __ = _wp.i18n.__,
-    _wp$element = _wp.element,
-    Component = _wp$element.Component,
-    useState = _wp$element.useState,
+    Component = _wp.element.Component,
     _wp$components = _wp.components,
     Dashicon = _wp$components.Dashicon,
-    Button = _wp$components.Button,
-    Modal = _wp$components.Modal;
+    Button = _wp$components.Button;
+/**
+ * Components
+ */
 
-var DeleteCharacterModal = function DeleteCharacterModal(props) {
-  var name = props.name,
-      index = props.index,
-      type = props.type,
-      deleteCharacter = props.deleteCharacter;
 
-  var _useState = useState(false),
-      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_5___default()(_useState, 2),
-      isOpen = _useState2[0],
-      setOpen = _useState2[1];
 
-  var toggle = function toggle() {
-    setOpen(isOpen ? false : true);
-  };
-
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
-    className: "delete-character button-link-delete",
-    onClick: toggle,
-    isDestructive: true
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Dashicon, {
-    icon: "trash"
-  })), isOpen && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Modal, {
-    title: __('Delete Character: ', 'rave-rpg-initiative') + name,
-    onRequestClose: toggle
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("p", null, " ", __('Are you sure you want to delete this character?'), " "), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
-    className: "is-button",
-    isSecondary: true,
-    onClick: toggle
-  }, __('Cancel', 'rave-rpg-initiative')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
-    className: "button-link-delete",
-    isDestructive: true,
-    onClick: function onClick() {
-      deleteCharacter(type, index);
-      toggle();
-    }
-  }, __('Delete Character', 'rave-rpg-initiative'))));
-};
 
 var Character = /*#__PURE__*/function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(Character, _Component);
@@ -753,35 +753,55 @@ var Character = /*#__PURE__*/function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Character, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var editing = this.state.editing;
       var _this$props = this.props,
-          characterName = _this$props.characterName,
-          playerName = _this$props.playerName,
+          _this$props$character = _this$props.character,
+          name = _this$props$character.name,
+          player = _this$props$character.player,
+          initiative = _this$props$character.initiative,
           type = _this$props.type,
           index = _this$props.index,
-          deleteCharacter = _this$props.deleteCharacter;
-      {
-        editing && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
-          className: "edit-character"
-        }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(TextControl, {
-          label: __('Character Name', 'rave-rpg-initiative')
-        }), 'player' === type && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(TextControl, {
-          label: __('Player Name', 'rave-rpg-initiative')
-        }));
+          editCharacter = _this$props.editCharacter,
+          deleteCharacter = _this$props.deleteCharacter,
+          editText = _this$props.editText;
+
+      var toggleEdit = function toggleEdit() {
+        _this2.setState({
+          editing: !editing
+        });
+      };
+
+      if (editing) {
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_AddEditCharacterForm__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          type: type,
+          characterFn: editCharacter,
+          buttonText: editText,
+          toggle: toggleEdit,
+          character: {
+            name: name,
+            player: player,
+            initiative: initiative,
+            index: index
+          }
+        });
       }
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
+
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: "character"
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("span", {
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", {
         className: "character-name"
-      }, characterName), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
+      }, name), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
         className: "edit-character",
-        isTertiary: true
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Dashicon, {
+        isTertiary: true,
+        onClick: toggleEdit
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Dashicon, {
         icon: "edit"
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(DeleteCharacterModal, {
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_DeleteCharacterModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
         index: index,
         deleteCharacter: deleteCharacter,
-        name: characterName,
+        name: name,
         type: type
       }));
     }
@@ -864,14 +884,16 @@ var CharacterList = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      var adding = this.state.adding;
       var _this$props = this.props,
           title = _this$props.title,
           characters = _this$props.characters,
           type = _this$props.type,
           addCharacter = _this$props.addCharacter,
+          editCharacter = _this$props.editCharacter,
           deleteCharacter = _this$props.deleteCharacter,
-          addText = _this$props.addText;
-      var adding = this.state.adding;
+          addText = _this$props.addText,
+          editText = _this$props.editText;
 
       var toggleAdd = function toggleAdd() {
         _this2.setState({
@@ -883,10 +905,12 @@ var CharacterList = /*#__PURE__*/function (_Component) {
         className: "character-list--".concat(type)
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h2", null, title), characters.length && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("ul", null, characters.map(function (character, index) {
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_Character__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          characterName: character.name,
+          character: character,
           type: type,
           index: index,
-          deleteCharacter: deleteCharacter
+          editCharacter: editCharacter,
+          deleteCharacter: deleteCharacter,
+          editText: editText
         });
       })), !adding && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
         isPrimary: true,
@@ -897,8 +921,8 @@ var CharacterList = /*#__PURE__*/function (_Component) {
         }
       }, addText), adding && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_AddEditCharacterForm__WEBPACK_IMPORTED_MODULE_7__["default"], {
         type: type,
-        addCharacter: addCharacter,
-        addText: addText,
+        characterFn: addCharacter,
+        buttonText: addText,
         toggle: toggleAdd
       }));
     }
@@ -908,6 +932,75 @@ var CharacterList = /*#__PURE__*/function (_Component) {
 }(Component);
 
 
+
+/***/ }),
+
+/***/ "./src/block/initiative-tracker/components/DeleteCharacterModal.js":
+/*!*************************************************************************!*\
+  !*** ./src/block/initiative-tracker/components/DeleteCharacterModal.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+/**
+ * WP dependencies
+ */
+var _wp = wp,
+    __ = _wp.i18n.__,
+    useState = _wp.element.useState,
+    _wp$components = _wp.components,
+    Dashicon = _wp$components.Dashicon,
+    Button = _wp$components.Button,
+    Modal = _wp$components.Modal;
+
+var DeleteCharacterModal = function DeleteCharacterModal(props) {
+  var name = props.name,
+      index = props.index,
+      type = props.type,
+      deleteCharacter = props.deleteCharacter;
+
+  var _useState = useState(false),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
+      isOpen = _useState2[0],
+      setOpen = _useState2[1];
+
+  var toggle = function toggle() {
+    setOpen(isOpen ? false : true);
+  };
+
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(Button, {
+    className: "delete-character button-link-delete",
+    onClick: toggle,
+    isDestructive: true
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(Dashicon, {
+    icon: "trash"
+  })), isOpen && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(Modal, {
+    title: __('Delete Character: ', 'rave-rpg-initiative') + name,
+    onRequestClose: toggle
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, " ", __('Are you sure you want to delete this character?'), " "), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(Button, {
+    className: "is-button",
+    isSecondary: true,
+    onClick: toggle
+  }, __('Cancel', 'rave-rpg-initiative')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(Button, {
+    className: "button-link-delete",
+    isDestructive: true,
+    onClick: function onClick() {
+      deleteCharacter(type, index);
+      toggle();
+    }
+  }, __('Delete Character', 'rave-rpg-initiative'))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (DeleteCharacterModal);
 
 /***/ }),
 
@@ -955,16 +1048,30 @@ var Edit = function Edit(props) {
     setAttributes({
       notes: notes
     });
+  };
+
+  var sortCharacters = function sortCharacters(characters) {
+    characters.sort(function (char1, char2) {
+      return char1.name.localeCompare(char2.name);
+    });
+    return characters;
   }; // Add new character, sort alphabetically.
 
 
   var addCharacter = function addCharacter(type, character) {
     type = "".concat(type, "s");
     var characters = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(props.attributes[type]), [character]);
-    characters.sort(function (char1, char2) {
-      return char1.name.localeCompare(char2.name);
-    });
-    setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, characters));
+    setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, sortCharacters(characters)));
+  }; // Edit character.
+
+
+  var editCharacter = function editCharacter(type, index, character) {
+    type = "".concat(type, "s");
+
+    var characters = _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(props.attributes[type]);
+
+    characters[index] = character;
+    setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, type, sortCharacters(characters)));
   }; // Delete character.
 
 
@@ -994,16 +1101,20 @@ var Edit = function Edit(props) {
     title: __('Players', 'rave-rpg-initiative'),
     characters: players,
     addCharacter: addCharacter,
+    editCharacter: editCharacter,
     deleteCharacter: deleteCharacter,
     type: "player",
-    addText: __('Add Player', 'rave-rpg-initiative')
+    addText: __('Add Player', 'rave-rpg-initiative'),
+    editText: __('Edit Player', 'rave-rpg-initiative')
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: __('NPCs', 'rave-rpg-initiative'),
     characters: npcs,
     addCharacter: addCharacter,
+    editCharacter: editCharacter,
     deleteCharacter: deleteCharacter,
     type: "npc",
-    addText: __('Add NPC', 'rave-rpg-initiative')
+    addText: __('Add NPC', 'rave-rpg-initiative'),
+    editText: __('Edit NPC', 'rave-rpg-initiative')
   })));
 };
 
