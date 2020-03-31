@@ -49,10 +49,9 @@ export default class AddEditCharacterForm extends Component {
                     label={ __( 'Character Name *', 'rave-rpg-initiative' ) }
                     value={ name }
                     onChange={ ( name ) => {
-                        name = name.trim();
                         this.setState( {
                             name,
-                            nameIsEmpty: ( "" === name )
+                            nameIsEmpty: ( "" === name.trim() )
                         } );
                     } }
                     className={ null !== name && nameIsEmpty ? errorClass : '' }
@@ -62,10 +61,9 @@ export default class AddEditCharacterForm extends Component {
                         label={ __( 'Player Name *', 'rave-rpg-initiative' ) }
                         value={ player }
                         onChange={ ( player ) => {
-                            player = player.trim();
                             this.setState( {
                                 player,
-                                playerIsEmpty: ( "" === player )
+                                playerIsEmpty: ( "" === player.trim() )
                             } );
                         } }
                         className={ null !== player && playerIsEmpty ? errorClass : '' }
@@ -94,8 +92,8 @@ export default class AddEditCharacterForm extends Component {
                     disabled={ ( nameIsEmpty || playerIsEmpty ) }
                     onClick={ () => {
                         addCharacter( type, {
-                            name,
-                            player,
+                            name.trim(),
+                            player.trim(),
                             initiative,
                         } );
                         toggle();
