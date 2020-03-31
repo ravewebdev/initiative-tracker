@@ -72,10 +72,19 @@ export default class Character extends Component {
 		return (
 			<div className="character">
 				<span className="character-name">{ name }</span>
-				<Button className="edit-character" isTertiary onClick={ toggleEdit }>
+				<Button
+					className="edit-character"
+					isTertiary
+					onClick={ toggleEdit }
+				>
 					<Dashicon icon="edit" />
 				</Button>
-				<DeleteCharacterModal index={ index } deleteCharacter={ deleteCharacter } name={ name } type={ type } />
+				<DeleteCharacterModal
+					index={ index }
+					deleteCharacter={ deleteCharacter }
+					name={ name }
+					type={ type }
+				/>
 			</div>
 		);
 	};
