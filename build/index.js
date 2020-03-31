@@ -1196,7 +1196,12 @@ var _wp = wp,
     __ = _wp.i18n.__;
 
 var Save = function Save(props) {
-  var className = props.className;
+  var _props$attributes = props.attributes,
+      notes = _props$attributes.notes,
+      players = _props$attributes.players,
+      npcs = _props$attributes.npcs,
+      className = props.className;
+  console.log('props', props);
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, __('TTRPG Initiative Helper – hello from the saved content!', 'rave-rpg-initiative'));
 };
 

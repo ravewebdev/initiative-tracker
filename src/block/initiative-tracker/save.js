@@ -9,9 +9,14 @@ const {
 
 const Save = ( props ) => {
     const {
-        // attributes: {},
+        attributes: {
+            notes,
+            players,
+            npcs,
+        },
         className,
     } = props;
+    console.log( 'props', props )
 
     return (
         <p>
