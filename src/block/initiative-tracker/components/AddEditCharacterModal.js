@@ -33,7 +33,6 @@ const AddEditCharacterModal = ( props ) => {
 	return (
 		<>
 			<Button
-				className="is-button is-primary"
 	            isPrimary
 	            onClick={ toggle }
 			>

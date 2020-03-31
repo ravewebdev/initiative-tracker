@@ -42,6 +42,8 @@ export default class AddEditCharacterForm extends Component {
             addText,
         } = this.props;
         const errorClass = 'input-error';
+        const isPlayer = 'player' === type;
+        const disableSave = ( isPlayer && playerIsEmpty ) || nameIsEmpty;
 
         return (
             <>
@@ -56,7 +58,7 @@ export default class AddEditCharacterForm extends Component {
                     } }
                     className={ null !== name && nameIsEmpty ? errorClass : '' }
                 />
-                { 'player' === type && (
+                { isPlayer && (
                     <TextControl
                         label={ __( 'Player Name *', 'rave-rpg-initiative' ) }
                         value={ player }
@@ -80,20 +82,18 @@ export default class AddEditCharacterForm extends Component {
                     } }
                 />
                 <Button
-                    className="is-button is-secondary"
                     isSecondary
                     onClick={ toggle }
                 >
                     { __( 'Cancel', 'rave-rpg-initiative' ) }
                 </Button>
                 <Button
-                    className="is-button is-primary"
                     isPrimary
-                    disabled={ ( nameIsEmpty || playerIsEmpty ) }
+                    disabled={ disableSave }
                     onClick={ () => {
                         addCharacter( type, {
-                            name.trim(),
-                            player.trim(),
+                            name: name.trim(),
+                            player: ( isPlayer ? player.trim() : '' ),
                             initiative,
                         } );
                         toggle();

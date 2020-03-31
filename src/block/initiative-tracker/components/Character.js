@@ -31,8 +31,9 @@ const DeleteCharacterModal = ( props ) => {
 	return (
 		<>
 			<Button
-				className="delete-character"
+				className="delete-character button-link-delete"
 	            onClick={ toggle }
+	            isDestructive
 			>
 				<Dashicon icon="trash" />
 			</Button>
@@ -43,15 +44,15 @@ const DeleteCharacterModal = ( props ) => {
 				>
 					<p> { __( 'Are you sure you want to delete this character?' ) } </p>
 					<Button
-	                    className="is-button is-secondary"
+						className="is-button"
 	                    isSecondary
 	                    onClick={ toggle }
 	                >
 	                    { __( 'Cancel', 'rave-rpg-initiative' ) }
 	                </Button>
 	                <Button
-	                    className="is-button is-primary"
-	                    isPrimary
+	                    className="button-link-delete"
+	                    isDestructive
 	                    onClick={ () => {
 	                        deleteCharacter( type, index );
 	                        toggle();
@@ -102,7 +103,7 @@ export default class Character extends Component {
 		return (
 			<div className="character">
 				<span className="character-name">{ characterName }</span>
-				<Button className="edit-character">
+				<Button className="edit-character" isTertiary>
 					<Dashicon icon="edit" />
 				</Button>
 				<DeleteCharacterModal index={ index } deleteCharacter={ deleteCharacter } name={ characterName } type={ type } />

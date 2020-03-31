@@ -514,9 +514,135 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./src/block/initiative-tracker/components/AddEditCharacterForm.js ***!
   \*************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/src/block/initiative-tracker/components/AddEditCharacterForm.js: Unexpected token, expected \",\" (95:32)\n\n\u001b[0m \u001b[90m 93 | \u001b[39m                    onClick\u001b[33m=\u001b[39m{ () \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 94 | \u001b[39m                        addCharacter( type\u001b[33m,\u001b[39m {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 95 | \u001b[39m                            name\u001b[33m.\u001b[39mtrim()\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 96 | \u001b[39m                            player\u001b[33m.\u001b[39mtrim()\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 97 | \u001b[39m                            initiative\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 98 | \u001b[39m                        } )\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:742:17)\n    at Object.raiseWithData (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.raise (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:729:17)\n    at Object.unexpected (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:8757:16)\n    at Object.expect (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:8743:28)\n    at Object.parseObj (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:10365:14)\n    at Object.parseExprAtom (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9995:28)\n    at Object.parseExprAtom (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:4614:20)\n    at Object.parseExprSubscripts (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9602:23)\n    at Object.parseMaybeUnary (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9582:21)\n    at Object.parseExprOps (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9452:23)\n    at Object.parseMaybeConditional (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9425:23)\n    at Object.parseMaybeAssign (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9380:21)\n    at Object.parseExprListItem (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:10718:18)\n    at Object.parseCallExpressionArguments (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9790:22)\n    at Object.parseSubscript (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9696:31)\n    at Object.parseSubscripts (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9625:19)\n    at Object.parseExprSubscripts (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9608:17)\n    at Object.parseMaybeUnary (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9582:21)\n    at Object.parseExprOps (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9452:23)\n    at Object.parseMaybeConditional (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9425:23)\n    at Object.parseMaybeAssign (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9380:21)\n    at Object.parseExpression (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:9332:23)\n    at Object.parseStatementContent (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:11210:23)\n    at Object.parseStatement (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:11081:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:11656:25)\n    at Object.parseBlockBody (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:11642:10)\n    at Object.parseBlock (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:11626:10)\n    at Object.parseFunctionBody (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:10634:24)\n    at Object.parseArrowExpression (/Users/sigyn/Sites/RAVE/RPG/rpg/wp-content/plugins/rpg-initiative/node_modules/@babel/parser/lib/index.js:10603:10)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddEditCharacterForm; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+
+function _createSuper(Derived) { return function () { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+/**
+ * WP dependencies
+ */
+var _wp = wp,
+    __ = _wp.i18n.__,
+    _wp$components = _wp.components,
+    TextControl = _wp$components.TextControl,
+    Button = _wp$components.Button,
+    Component = _wp.element.Component;
+
+var AddEditCharacterForm = /*#__PURE__*/function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(AddEditCharacterForm, _Component);
+
+  var _super = _createSuper(AddEditCharacterForm);
+
+  function AddEditCharacterForm(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, AddEditCharacterForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      name: null,
+      player: null,
+      initiative: 0,
+      nameIsEmpty: true,
+      playerIsEmpty: true
+    };
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(AddEditCharacterForm, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$state = this.state,
+          name = _this$state.name,
+          player = _this$state.player,
+          initiative = _this$state.initiative,
+          nameIsEmpty = _this$state.nameIsEmpty,
+          playerIsEmpty = _this$state.playerIsEmpty;
+      var _this$props = this.props,
+          type = _this$props.type,
+          addCharacter = _this$props.addCharacter,
+          toggle = _this$props.toggle,
+          addText = _this$props.addText;
+      var errorClass = 'input-error';
+      var isPlayer = 'player' === type;
+      var disableSave = isPlayer && playerIsEmpty || nameIsEmpty;
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(TextControl, {
+        label: __('Character Name *', 'rave-rpg-initiative'),
+        value: name,
+        onChange: function onChange(name) {
+          _this2.setState({
+            name: name,
+            nameIsEmpty: "" === name.trim()
+          });
+        },
+        className: null !== name && nameIsEmpty ? errorClass : ''
+      }), isPlayer && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(TextControl, {
+        label: __('Player Name *', 'rave-rpg-initiative'),
+        value: player,
+        onChange: function onChange(player) {
+          _this2.setState({
+            player: player,
+            playerIsEmpty: "" === player.trim()
+          });
+        },
+        className: null !== player && playerIsEmpty ? errorClass : ''
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(TextControl, {
+        label: __('Initiative', 'rave-rpg-initiative'),
+        type: "number",
+        value: initiative,
+        onChange: function onChange(initiative) {
+          _this2.setState({
+            initiative: initiative
+          });
+        }
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
+        isSecondary: true,
+        onClick: toggle
+      }, __('Cancel', 'rave-rpg-initiative')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
+        isPrimary: true,
+        disabled: disableSave,
+        onClick: function onClick() {
+          addCharacter(type, {
+            name: name.trim(),
+            player: isPlayer ? player.trim() : '',
+            initiative: initiative
+          });
+          toggle();
+        }
+      }, addText));
+    }
+  }]);
+
+  return AddEditCharacterForm;
+}(Component);
+
+
 
 /***/ }),
 
@@ -567,7 +693,6 @@ var AddEditCharacterModal = function AddEditCharacterModal(props) {
   };
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(Button, {
-    className: "is-button is-primary",
     isPrimary: true,
     onClick: toggle
   }, addText), isOpen && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(Modal, {
@@ -650,20 +775,21 @@ var DeleteCharacterModal = function DeleteCharacterModal(props) {
   };
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
-    className: "delete-character",
-    onClick: toggle
+    className: "delete-character button-link-delete",
+    onClick: toggle,
+    isDestructive: true
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Dashicon, {
     icon: "trash"
   })), isOpen && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Modal, {
     title: __('Delete Character: ', 'rave-rpg-initiative') + name,
     onRequestClose: toggle
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("p", null, " ", __('Are you sure you want to delete this character?'), " "), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
-    className: "is-button is-secondary",
+    className: "is-button",
     isSecondary: true,
     onClick: toggle
   }, __('Cancel', 'rave-rpg-initiative')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
-    className: "is-button is-primary",
-    isPrimary: true,
+    className: "button-link-delete",
+    isDestructive: true,
     onClick: function onClick() {
       deleteCharacter(type, index);
       toggle();
@@ -712,7 +838,8 @@ var Character = /*#__PURE__*/function (_Component) {
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("span", {
         className: "character-name"
       }, characterName), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Button, {
-        className: "edit-character"
+        className: "edit-character",
+        isTertiary: true
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(Dashicon, {
         icon: "edit"
       })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(DeleteCharacterModal, {
