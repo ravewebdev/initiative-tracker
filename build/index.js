@@ -765,7 +765,8 @@ var Character = /*#__PURE__*/function (_Component) {
           index = _this$props.index,
           editCharacter = _this$props.editCharacter,
           deleteCharacter = _this$props.deleteCharacter,
-          editText = _this$props.editText;
+          editText = _this$props.editText,
+          active = _this$props.active;
 
       var toggleEdit = function toggleEdit() {
         _this2.setState({
@@ -791,8 +792,12 @@ var Character = /*#__PURE__*/function (_Component) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: "character"
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", {
-        className: "character-name"
-      }, name), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
+        className: "name"
+      }, name), !active && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", {
+        className: "player"
+      }, " ( ".concat('' === player ? 'NPC' : player, " ) ")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", {
+        className: "initiative"
+      }, " - ".concat(initiative)), active && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
         className: "edit-character",
         isTertiary: true,
         onClick: toggleEdit
@@ -803,7 +808,7 @@ var Character = /*#__PURE__*/function (_Component) {
         deleteCharacter: deleteCharacter,
         name: name,
         type: type
-      }));
+      })));
     }
   }]);
 
@@ -893,38 +898,50 @@ var CharacterList = /*#__PURE__*/function (_Component) {
           editCharacter = _this$props.editCharacter,
           deleteCharacter = _this$props.deleteCharacter,
           addText = _this$props.addText,
-          editText = _this$props.editText;
+          editText = _this$props.editText,
+          active = _this$props.active;
 
       var toggleAdd = function toggleAdd() {
         _this2.setState({
           adding: !adding
         });
-      };
+      }; // Sort characters by initiative if combined list is displayed.
+
+
+      if (!active) {
+        characters.sort(function (char1, char2) {
+          return char1.initiative > char2.initiative ? -1 : 1;
+        });
+      }
 
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: "character-list--".concat(type)
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h2", null, title), characters.length && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("ul", null, characters.map(function (character, index) {
-        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_Character__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        return active ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_Character__WEBPACK_IMPORTED_MODULE_6__["default"], {
           character: character,
           type: type,
           index: index,
           editCharacter: editCharacter,
           deleteCharacter: deleteCharacter,
-          editText: editText
+          editText: editText,
+          active: active
+        }) : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_Character__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          character: character,
+          active: active
         });
-      })), !adding && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
+      })), active && (adding ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_AddEditCharacterForm__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        type: type,
+        characterFn: addCharacter,
+        buttonText: addText,
+        toggle: toggleAdd
+      }) : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
         isPrimary: true,
         onClick: function onClick() {
           _this2.setState({
             adding: true
           });
         }
-      }, addText), adding && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_AddEditCharacterForm__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        type: type,
-        characterFn: addCharacter,
-        buttonText: addText,
-        toggle: toggleAdd
-      }));
+      }, addText)));
     }
   }]);
 
@@ -1042,7 +1059,8 @@ var Edit = function Edit(props) {
       players = _props$attributes.players,
       npcs = _props$attributes.npcs,
       className = props.className,
-      setAttributes = props.setAttributes; // Add combat notes.
+      setAttributes = props.setAttributes,
+      isSelected = props.isSelected; // Add combat notes.
 
   var onChangeNotes = function onChangeNotes(notes) {
     setAttributes({
@@ -1097,7 +1115,7 @@ var Edit = function Edit(props) {
     value: notes
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
     className: "characters"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, isSelected && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: __('Players', 'rave-rpg-initiative'),
     characters: players,
     addCharacter: addCharacter,
@@ -1105,7 +1123,8 @@ var Edit = function Edit(props) {
     deleteCharacter: deleteCharacter,
     type: "player",
     addText: __('Add Player', 'rave-rpg-initiative'),
-    editText: __('Edit Player', 'rave-rpg-initiative')
+    editText: __('Edit Player', 'rave-rpg-initiative'),
+    active: isSelected
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: __('NPCs', 'rave-rpg-initiative'),
     characters: npcs,
@@ -1114,7 +1133,12 @@ var Edit = function Edit(props) {
     deleteCharacter: deleteCharacter,
     type: "npc",
     addText: __('Add NPC', 'rave-rpg-initiative'),
-    editText: __('Edit NPC', 'rave-rpg-initiative')
+    editText: __('Edit NPC', 'rave-rpg-initiative'),
+    active: isSelected
+  })), !isSelected && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_CharacterList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: __('Characters', 'rave-rpg-initiative'),
+    characters: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(players), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(npcs)),
+    active: isSelected
   })));
 };
 

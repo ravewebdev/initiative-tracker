@@ -38,6 +38,7 @@ export default class CharacterList extends Component {
 			deleteCharacter,
 			addText,
 			editText,
+			active,
 		} = this.props;
 
 		const toggleAdd = () => {
@@ -45,6 +46,13 @@ export default class CharacterList extends Component {
 				adding: ! adding
 			} );
 		};
+
+		// Sort characters by initiative if combined list is displayed.
+		if ( ! active ) {
+			characters.sort( function( char1, char2 ) {
+				return ( char1.initiative > char2.initiative ? -1 : 1 );
+			} );
+		}
 		
 		return (
 			<div className={ `character-list--${type}` }>
@@ -53,38 +61,42 @@ export default class CharacterList extends Component {
 				{ characters.length && (
 					<ul>
 						{ characters.map( ( character, index ) => (
-							<Character
-								character={ character }
-								type={ type }
-								index={ index }
-								editCharacter={ editCharacter }
-								deleteCharacter={ deleteCharacter }
-								editText={ editText }
-							/>
+							active ?
+								<Character
+									character={ character }
+									type={ type }
+									index={ index }
+									editCharacter={ editCharacter }
+									deleteCharacter={ deleteCharacter }
+									editText={ editText }
+									active={ active }
+								/> :
+								<Character
+									character={ character }
+									active={ active }
+								/>
 						) ) }
 					</ul>
 				) }
 
-				{ ! adding && (
-					<Button
-			            isPrimary
-			            onClick={ () => {
-			            	this.setState( {
-			            		adding: true
-			            	} );
-			            } }
-					>
-						{ addText }
-					</Button>
-				) }
-
-				{ adding && (
-					<AddEditCharacterForm
-						type={ type}
-						characterFn={ addCharacter }
-						buttonText={ addText }
-						toggle={ toggleAdd }
-					/>
+				{ active && (
+					adding ?
+						<AddEditCharacterForm
+							type={ type}
+							characterFn={ addCharacter }
+							buttonText={ addText }
+							toggle={ toggleAdd }
+						/> :
+						<Button
+				            isPrimary
+				            onClick={ () => {
+				            	this.setState( {
+				            		adding: true
+				            	} );
+				            } }
+						>
+							{ addText }
+						</Button>
 				) }
 			</div>
 		);

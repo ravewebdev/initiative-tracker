@@ -44,6 +44,7 @@ export default class Character extends Component {
 			editCharacter,
 			deleteCharacter,
 			editText,
+			active,
 		} = this.props;
 
 		const toggleEdit = () => {
@@ -71,20 +72,31 @@ export default class Character extends Component {
 
 		return (
 			<div className="character">
-				<span className="character-name">{ name }</span>
-				<Button
-					className="edit-character"
-					isTertiary
-					onClick={ toggleEdit }
-				>
-					<Dashicon icon="edit" />
-				</Button>
-				<DeleteCharacterModal
-					index={ index }
-					deleteCharacter={ deleteCharacter }
-					name={ name }
-					type={ type }
-				/>
+				<span className="name">{ name }</span>
+
+				{ ! active && (
+					<span className="player">{ ` ( ${ '' === player ? 'NPC' : player } ) `}</span>
+				) }
+
+				<span className="initiative">{ ` - ${initiative}` }</span>
+
+				{ active && (
+					<>
+						<Button
+							className="edit-character"
+							isTertiary
+							onClick={ toggleEdit }
+						>
+							<Dashicon icon="edit" />
+						</Button>
+						<DeleteCharacterModal
+							index={ index }
+							deleteCharacter={ deleteCharacter }
+							name={ name }
+							type={ type }
+						/>
+					</>
+				) }
 			</div>
 		);
 	};
