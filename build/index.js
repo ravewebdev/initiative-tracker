@@ -915,7 +915,7 @@ var CharacterList = /*#__PURE__*/function (_Component) {
       }
 
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
-        className: "character-list--".concat(type)
+        className: "character-list".concat(typeof type === 'undefined' ? '' : "--".concat(type))
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h2", null, title), characters.length && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("ul", null, characters.map(function (character, index) {
         return active ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_Character__WEBPACK_IMPORTED_MODULE_6__["default"], {
           character: character,

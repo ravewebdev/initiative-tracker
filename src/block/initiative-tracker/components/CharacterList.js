@@ -55,7 +55,7 @@ export default class CharacterList extends Component {
 		}
 		
 		return (
-			<div className={ `character-list--${type}` }>
+			<div className={ `character-list${ typeof type === 'undefined' ? '' : `--${type}` }` }>
 				<h2>{ title }</h2>
 
 				{ characters.length && (
