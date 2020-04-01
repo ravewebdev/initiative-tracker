@@ -1,4 +1,5 @@
 $color-error: #a40000;
+$color-form: #e6e6e6;
 
 .wp-block-rave-rpg-initiative-tracker {
 	padding: 1rem;
@@ -12,14 +13,20 @@ $color-error: #a40000;
 		}
 	}
 
-	.input-error {
+	.edit-character-form {
+		background: $color-form;
+		margin: 0.5rem 0;
+		padding: 0.5rem;
 
-		label {
-			color: $color-error;
-		}
+		.input-error {
 
-		input {
-			border-color: $color-error;
+			label {
+				color: $color-error;
+			}
+
+			input {
+				border-color: $color-error;
+			}
 		}
 	}
 }

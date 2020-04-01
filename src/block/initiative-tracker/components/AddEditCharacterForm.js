@@ -75,7 +75,7 @@ export default class AddEditCharacterForm extends Component {
         const disableSave = ( isPlayer && playerIsEmpty ) || nameIsEmpty;
 
         return (
-            <div>
+            <div className="edit-character-form">
                 <TextControl
                     label={ __( 'Character Name *', 'rave-rpg-initiative' ) }
                     value={ name }
