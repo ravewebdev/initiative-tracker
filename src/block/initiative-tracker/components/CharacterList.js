@@ -58,7 +58,7 @@ export default class CharacterList extends Component {
 			<div className={ `character-list${ typeof type === 'undefined' ? '' : `--${type}` }` }>
 				<h2>{ title }</h2>
 
-				{ characters.length && (
+				{ characters.length > 0 && (
 					<ul>
 						{ characters.map( ( character, index ) => (
 							active ?
