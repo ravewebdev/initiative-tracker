@@ -71,7 +71,7 @@ export default class Character extends Component {
 		}
 
 		return (
-			<div className="character">
+			<li className="character">
 				<span className="name">{ name }</span>
 
 				{ ! active && (
@@ -97,7 +97,7 @@ export default class Character extends Component {
 						/>
 					</>
 				) }
-			</div>
+			</li>
 		);
 	};
 }
