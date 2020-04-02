@@ -73,7 +73,7 @@ const Edit = ( props ) => {
 
     return (
         <div className={ className }>
-            <h2>Combat Notes</h2>
+            <h2>{ __( 'Combat Notes', 'rave-rpg-initiative' ) }</h2>
             <RichText
                 tagName="div"
                 multiline="p"
