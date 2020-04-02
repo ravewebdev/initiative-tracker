@@ -12,4 +12,11 @@
 			padding-bottom: 0;
 		}
 	}
+
+	.character {
+
+		&.current {
+			list-style-type: disclosure-closed;
+		}
+	}
 }
