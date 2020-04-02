@@ -7,8 +7,12 @@ $color-form: #e6e6e6;
 	.characters {
 		display: flex;
 
-		[class^='character-list--'] {
+		[class^='character-list'] {
 			flex: 1;
+		}
+
+		ul {
+			list-style-position: inside;
 			padding: 0.5rem;
 		}
 	}
