@@ -81,7 +81,10 @@ function register_block() {
 		wp_enqueue_script(
 			'rpg-initiative-frontend-script',
 			plugins_url( $frontend_script, __FILE__ ),
-			$asset_file['dependencies'],
+			array_merge( [
+				'wp-i18n',
+				'components',
+			], $asset_file['dependencies'] ),
 			$asset_file['version'],
 			true
 		);
