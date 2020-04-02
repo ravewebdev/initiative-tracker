@@ -81,10 +81,7 @@ function register_block() {
 		wp_enqueue_script(
 			'rpg-initiative-frontend-script',
 			plugins_url( $frontend_script, __FILE__ ),
-			array_merge( [
-				'wp-i18n',
-				'components',
-			], $asset_file['dependencies'] ),
+			$asset_file['dependencies'],
 			$asset_file['version'],
 			true
 		);
@@ -135,21 +132,24 @@ usort( $characters, function( $char1, $char2 ) {
 					<h2><?php esc_html_e( 'Characters', 'rave-rpg-initiative' ); ?></h2>
 					<ul>
 						<?php
-						array_map( function( $character ) {
+						array_map( function( $character, $index ) {
 							$name       = $character['name'] ?? '';
 							$player     = $character['player'] ?? '';
 							$player     = '' === $player ? 'NPC' : $player;
 							$initiative = $character['initiative'] ?? '';
 							?>
-							<li>
+							<li class="character <?php echo esc_attr( 0 === $index ? 'current' : '' ); ?>">
 								<span class="name"><?php echo esc_html__( $name ); ?></span>
 								<span class="player"><?php echo esc_html__( "( {$player} )" ); ?></span>
 								<span class="initiative"><?php echo esc_html__( " - {$initiative}" ); ?></span>
 							</li>
 							<?php
-						}, $characters );
+						}, $characters, array_keys( $characters ) );
 						?>
 					</ul>
+					<button type="button" class="next-character">
+						<?php esc_html_e( '&raquo; Next Character', 'rave-rpg-initiative' ); ?>
+					</button>
 				</div>
 			</div>
 		<?php endif; ?>
