@@ -77,7 +77,7 @@ function register_block() {
 	) );
 
 	// Register frontend script.
-	if ( file_exists( plugin_dir_path( __FILE__ ) . $frontend_script ) ) {
+	if ( ! is_admin() && file_exists( plugin_dir_path( __FILE__ ) . $frontend_script ) ) {
 		wp_enqueue_script(
 			'rpg-initiative-frontend-script',
 			plugins_url( $frontend_script, __FILE__ ),
@@ -89,7 +89,16 @@ function register_block() {
 }
 add_action( 'init', __NAMESPACE__ . '\register_block' );
 
-function render_block( $attributes ) {
+/**
+ * Render initiative tracker block on frontend.
+ *
+ * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+ * @since  2020-04-02
+ *
+ * @param  array $attributes Block attributes.
+ * @return string            Block HTML to render.
+ */
+function render_block( array $attributes ) : string {
 	$players    = $attributes['players'] ?? [];
 	$npcs       = $attributes['npcs'] ?? [];
 	$notes      = $attributes['notes'] ?? '';
