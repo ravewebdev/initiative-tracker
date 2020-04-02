@@ -619,7 +619,9 @@ var AddEditCharacterForm = /*#__PURE__*/function (_Component) {
       var errorClass = 'input-error';
       var isPlayer = 'player' === type;
       var disableSave = isPlayer && playerIsEmpty || nameIsEmpty;
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(TextControl, {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+        className: "edit-character-form"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(TextControl, {
         label: __('Character Name *', 'rave-rpg-initiative'),
         value: name,
         onChange: function onChange(name) {
@@ -789,7 +791,7 @@ var Character = /*#__PURE__*/function (_Component) {
         });
       }
 
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("li", {
         className: "character"
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", {
         className: "name"
@@ -916,7 +918,7 @@ var CharacterList = /*#__PURE__*/function (_Component) {
 
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: "character-list".concat(typeof type === 'undefined' ? '' : "--".concat(type))
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h2", null, title), characters.length && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("ul", null, characters.map(function (character, index) {
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h2", null, title), characters.length > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("ul", null, characters.map(function (character, index) {
         return active ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_Character__WEBPACK_IMPORTED_MODULE_6__["default"], {
           character: character,
           type: type,
@@ -1105,7 +1107,7 @@ var Edit = function Edit(props) {
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
     className: className
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h2", null, "Combat Notes"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(RichText, {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h2", null, __('Combat Notes', 'rave-rpg-initiative')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(RichText, {
     tagName: "div",
     multiline: "p",
     className: "notes",
@@ -1182,8 +1184,7 @@ registerBlockType('rave/rpg-initiative-tracker', {
   },
   attributes: {
     notes: {
-      type: 'array',
-      default: []
+      type: 'string'
     },
     players: {
       type: 'array',
@@ -1209,24 +1210,8 @@ registerBlockType('rave/rpg-initiative-tracker', {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-
-
-/**
-* WP dependencies
-*/
-var _wp = wp,
-    __ = _wp.i18n.__;
-
 var Save = function Save(props) {
-  var _props$attributes = props.attributes,
-      notes = _props$attributes.notes,
-      players = _props$attributes.players,
-      npcs = _props$attributes.npcs,
-      className = props.className;
-  console.log('props', props);
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, __('TTRPG Initiative Helper – hello from the saved content!', 'rave-rpg-initiative'));
+  return null;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Save);
