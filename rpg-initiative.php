@@ -121,7 +121,10 @@ usort( $characters, function( $char1, $char2 ) {
 	ob_start();
 	?>
 
-	<div class="<?php echo esc_attr( $class ); ?>">
+	<div
+		class="<?php echo esc_attr( $class ); ?>"
+		data-characters="<?php echo esc_attr( json_encode( $characters ) ); ?>"
+	>
 		<h2><?php esc_html_e( 'Combat Notes', 'rave-rpg-initiative' ); ?></h2>
 		<div class="notes">
 			<?php echo wp_kses_post( $notes ); ?>
