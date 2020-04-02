@@ -69,10 +69,11 @@ function register_block() {
 	}
 
 	// Register block with WordPress.
-	register_block_type( 'rave/rich-text-demo', array(
-		'editor_script' => 'rpg-initiative-editor-script',
-		'editor_style'  => 'rpg-initiative-editor-style',
-		'style'         => 'rpg-initiative-style',
+	register_block_type( 'rave/rpg-initiative-tracker', array(
+		'editor_script'   => 'rpg-initiative-editor-script',
+		'editor_style'    => 'rpg-initiative-editor-style',
+		'style'           => 'rpg-initiative-style',
+		'render_callback' => __NAMESPACE__ . '\render_block',
 	) );
 
 	// Register frontend script.
@@ -87,3 +88,58 @@ function register_block() {
 	}
 }
 add_action( 'init', __NAMESPACE__ . '\register_block' );
+
+function render_block( $attributes ) {
+	$players    = $attributes['players'] ?? [];
+	$npcs       = $attributes['npcs'] ?? [];
+	$notes      = $attributes['notes'] ?? '';
+	$class      = $attributes['className'] ?? '';
+	$characters = array_merge( $players, $npcs );
+usort( $characters, function( $char1, $char2 ) {
+		$compare = strnatcmp( $char1['initiative'], $char2['initiative'] );
+		$compare *= -1; // Invert order.
+
+		if ( 0 !== $compare ) {
+			return $compare;
+		}
+
+		return strnatcmp( $char1['name'], $char2['name'] );
+	} );
+
+	ob_start();
+	?>
+
+	<div class="<?php echo esc_attr( $class ); ?>">
+		<h2><?php esc_html_e( 'Combat Notes', 'rave-rpg-initiative' ); ?></h2>
+		<div class="notes">
+			<?php echo wp_kses_post( $notes ); ?>
+		</div>
+		<?php if ( sizeof( $characters ) > 0 ) : ?>
+			<div class="characters">
+				<div class="character-list">
+					<h2><?php esc_html_e( 'Characters', 'rave-rpg-initiative' ); ?></h2>
+					<ul>
+						<?php
+						array_map( function( $character ) {
+							$name       = $character['name'] ?? '';
+							$player     = $character['player'] ?? '';
+							$player     = '' === $player ? 'NPC' : $player;
+							$initiative = $character['initiative'] ?? '';
+							?>
+							<li>
+								<span class="name"><?php echo esc_html__( $name ); ?></span>
+								<span class="player"><?php echo esc_html__( "( {$player} )" ); ?></span>
+								<span class="initiative"><?php echo esc_html__( " - {$initiative}" ); ?></span>
+							</li>
+							<?php
+						}, $characters );
+						?>
+					</ul>
+				</div>
+			</div>
+		<?php endif; ?>
+	</div>
+
+	<?php
+	return ob_get_clean();
+}
