@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:     TTRPG Initiative Tracker
- * Description:     This block helps track character initiative scores in combat.
+ * Description:     A block plugin for tracking character initiative scores in Table-Top Role-Playing Games.
  * Version:         0.1.0
  * Author:          R A Van Epps
  * Author URI:      https://ravanepps.com
