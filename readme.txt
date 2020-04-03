@@ -1,4 +1,4 @@
-=== TTRPG Initiative Tracker Block ===
+=== Initiative Tracker ===
 Contributors: ravewebdev
 Author URI: https://ravewebdev.com/
 Tags: gutenberg, blocks, rpg, role-playing game, combat tracker
