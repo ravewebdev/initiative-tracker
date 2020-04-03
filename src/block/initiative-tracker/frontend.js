@@ -1,4 +1,4 @@
-const trackerClass = '.wp-block-rave-rpg-initiative-tracker';
+const trackerClass = '.wp-block-rave-initiative-tracker';
 const trackers     = document.querySelectorAll(
 	trackerClass
 );

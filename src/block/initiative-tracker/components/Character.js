@@ -2,9 +2,6 @@
  * WP dependencies
  */
 const {
-    i18n: {
-        __,
-    },
     element: {
         Component,
     },

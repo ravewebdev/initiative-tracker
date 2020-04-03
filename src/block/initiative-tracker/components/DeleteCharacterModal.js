@@ -38,7 +38,7 @@ const DeleteCharacterModal = ( props ) => {
 			</Button>
 			{ isOpen && (
 				<Modal
-					title={ __( 'Delete Character: ', 'rave-rpg-initiative' ) + name }
+					title={ __( 'Delete Character: ', 'initiative-tracker' ) + name }
 					onRequestClose={ toggle }
 				>
 					<p> { __( 'Are you sure you want to delete this character?' ) } </p>
@@ -47,7 +47,7 @@ const DeleteCharacterModal = ( props ) => {
 	                    isSecondary
 	                    onClick={ toggle }
 	                >
-	                    { __( 'Cancel', 'rave-rpg-initiative' ) }
+	                    { __( 'Cancel', 'initiative-tracker' ) }
 	                </Button>
 	                <Button
 	                    className="button-link-delete"
@@ -57,7 +57,7 @@ const DeleteCharacterModal = ( props ) => {
 	                        toggle();
 	                    } }
 	                >
-	                    { __( 'Delete Character', 'rave-rpg-initiative' ) }
+	                    { __( 'Delete Character', 'initiative-tracker' ) }
 	                </Button>
 				</Modal>
 			) }

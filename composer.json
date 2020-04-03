@@ -1,5 +1,5 @@
 {
-  "name": "rave/rpg-initiative",
+  "name": "rave/initiative-tracker",
   "description": "This block helps track and organize player initiative scores.",
   "type": "wordpress-plugin",
   "authors": [

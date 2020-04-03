@@ -18,13 +18,13 @@ const {
     },
 } = wp;
 
-registerBlockType( 'rave/rpg-initiative-tracker', {
-    title: __( 'Initiative Tracker', 'rpg-initiative' ),
-    description: __( 'This block helps track and organize character initiative scores.', 'rave-rpg-initiative' ),
+registerBlockType( 'rave/initiative-tracker', {
+    title: __( 'Initiative Tracker', 'initiative-tracker' ),
+    description: __( 'This block helps track and organize character initiative scores.', 'initiative-tracker' ),
     icon: 'list-view',
     category: 'widgets',
     keywords: [
-        __( 'richtext', 'rpg-initiative' ),
+        __( 'richtext', 'initiative-tracker' ),
     ],
     supports: {
         html: false,

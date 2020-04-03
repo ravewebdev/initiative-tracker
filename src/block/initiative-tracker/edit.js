@@ -73,12 +73,12 @@ const Edit = ( props ) => {
 
     return (
         <div className={ className }>
-            <h2>{ __( 'Combat Notes', 'rave-rpg-initiative' ) }</h2>
+            <h2>{ __( 'Combat Notes', 'initiative-tracker' ) }</h2>
             <RichText
                 tagName="div"
                 multiline="p"
                 className="notes"
-                placeholder={ __( 'Enter notes about this combat here...', 'rave-rpg-initiative' ) }
+                placeholder={ __( 'Enter notes about this combat here...', 'initiative-tracker' ) }
                 keepPlaceholderOnFocus={ true }
                 onChange={ onChangeNotes }
                 value={ notes }
@@ -87,32 +87,32 @@ const Edit = ( props ) => {
                 { isSelected && (
                     <>
                         <CharacterList
-                            title={ __( 'Players', 'rave-rpg-initiative' ) }
+                            title={ __( 'Players', 'initiative-tracker' ) }
                             characters={ players }
                             addCharacter={ addCharacter }
                             editCharacter={ editCharacter }
                             deleteCharacter={ deleteCharacter }
                             type="player"
-                            addText={ __( 'Add Player', 'rave-rpg-initiative' ) }
-                            editText={ __( 'Edit Player', 'rave-rpg-initiative' ) }
+                            addText={ __( 'Add Player', 'initiative-tracker' ) }
+                            editText={ __( 'Edit Player', 'initiative-tracker' ) }
                             active={ isSelected }
                         />
                         <CharacterList
-                            title={ __( 'NPCs', 'rave-rpg-initiative' ) }
+                            title={ __( 'NPCs', 'initiative-tracker' ) }
                             characters={ npcs }
                             addCharacter={ addCharacter }
                             editCharacter={ editCharacter }
                             deleteCharacter={ deleteCharacter }
                             type="npc"
-                            addText={ __( 'Add NPC', 'rave-rpg-initiative' ) }
-                            editText={ __( 'Edit NPC', 'rave-rpg-initiative' ) }
+                            addText={ __( 'Add NPC', 'initiative-tracker' ) }
+                            editText={ __( 'Edit NPC', 'initiative-tracker' ) }
                             active={ isSelected }
                         />
                     </>
                 ) }
                 { ! isSelected && (
                     <CharacterList
-                        title={ __( 'Characters', 'rave-rpg-initiative' ) }
+                        title={ __( 'Characters', 'initiative-tracker' ) }
                         characters={ [
                             ...players,
                             ...npcs,

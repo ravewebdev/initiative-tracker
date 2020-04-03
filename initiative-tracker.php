@@ -2,17 +2,17 @@
 /**
  * Plugin Name:     Initiative Tracker
  * Description:     A block plugin for tracking character initiative scores in Table-Top Role-Playing Games.
- * Version:         0.1.0
+ * Version:         1.0.0
  * Author:          R A Van Epps
  * Author URI:      https://ravanepps.com
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     rave-rpg-initiative
+ * Text Domain:     initiative-tracker
  *
- * @package Rave\RpgInitiative
+ * @package Rave\InitiativeTracker
  */
 
-namespace Rave\RpgInitiative;
+namespace Rave\InitiativeTracker;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -33,7 +33,7 @@ function register_block() {
 
 	// Verify we have an editor script.
 	if ( ! file_exists( plugin_dir_path( __FILE__ ) . $editor_script ) ) {
-		wp_die( esc_html__( 'Whoops! You need to run `npm run build` for the Rave Rpg Initiative Plugin first.', 'rave-rpg-initiative' ) );
+		wp_die( esc_html__( 'Whoops! You need to run `npm run build` for the Initiative Tracker Plugin first.', 'initiative-tracker' ) );
 	}
 
 	// Autoload dependencies and version.
@@ -41,7 +41,7 @@ function register_block() {
 
 	// Register editor script.
 	wp_register_script(
-		'rpg-initiative-editor-script',
+		'initiative-tracker-editor-script',
 		plugins_url( $editor_script, __FILE__ ),
 		$asset_file['dependencies'],
 		$asset_file['version'],
@@ -51,7 +51,7 @@ function register_block() {
 	// Register editor style.
 	if ( file_exists( plugin_dir_path( __FILE__ ) . $editor_style ) ) {
 		wp_register_style(
-			'rpg-initiative-editor-style',
+			'initiative-tracker-editor-style',
 			plugins_url( $editor_style, __FILE__ ),
 			[ 'wp-edit-blocks' ],
 			filemtime( plugin_dir_path( __FILE__ ) . $editor_style )
@@ -61,7 +61,7 @@ function register_block() {
 	// Register frontend style.
 	if ( file_exists( plugin_dir_path( __FILE__ ) . $frontend_style ) ) {
 		wp_register_style(
-			'rpg-initiative-style',
+			'initiative-tracker-style',
 			plugins_url( $frontend_style, __FILE__ ),
 			[],
 			filemtime( plugin_dir_path( __FILE__ ) . $frontend_style )
@@ -69,17 +69,17 @@ function register_block() {
 	}
 
 	// Register block with WordPress.
-	register_block_type( 'rave/rpg-initiative-tracker', array(
-		'editor_script'   => 'rpg-initiative-editor-script',
-		'editor_style'    => 'rpg-initiative-editor-style',
-		'style'           => 'rpg-initiative-style',
+	register_block_type( 'rave/initiative-tracker', array(
+		'editor_script'   => 'initiative-tracker-editor-script',
+		'editor_style'    => 'initiative-tracker-editor-style',
+		'style'           => 'initiative-tracker-style',
 		'render_callback' => __NAMESPACE__ . '\render_block',
 	) );
 
 	// Register frontend script.
 	if ( ! is_admin() && file_exists( plugin_dir_path( __FILE__ ) . $frontend_script ) ) {
 		wp_enqueue_script(
-			'rpg-initiative-frontend-script',
+			'initiative-tracker-frontend-script',
 			plugins_url( $frontend_script, __FILE__ ),
 			$asset_file['dependencies'],
 			$asset_file['version'],
@@ -122,14 +122,14 @@ usort( $characters, function( $char1, $char2 ) {
 		class="<?php echo esc_attr( $class ); ?>"
 		data-characters="<?php echo esc_attr( json_encode( $characters ) ); ?>"
 	>
-		<h2><?php esc_html_e( 'Combat Notes', 'rave-rpg-initiative' ); ?></h2>
+		<h2><?php esc_html_e( 'Combat Notes', 'initiative-tracker' ); ?></h2>
 		<div class="notes">
 			<?php echo wp_kses_post( $notes ); ?>
 		</div>
 		<?php if ( sizeof( $characters ) > 0 ) : ?>
 			<div class="characters">
 				<div class="character-list">
-					<h2><?php esc_html_e( 'Characters', 'rave-rpg-initiative' ); ?></h2>
+					<h2><?php esc_html_e( 'Characters', 'initiative-tracker' ); ?></h2>
 					<ul>
 						<?php
 						array_map( function( $character, $index ) {
@@ -148,7 +148,7 @@ usort( $characters, function( $char1, $char2 ) {
 						?>
 					</ul>
 					<button type="button" class="next-character">
-						<?php esc_html_e( '&raquo; Next Character', 'rave-rpg-initiative' ); ?>
+						<?php esc_html_e( '&raquo; Next Character', 'initiative-tracker' ); ?>
 					</button>
 				</div>
 			</div>

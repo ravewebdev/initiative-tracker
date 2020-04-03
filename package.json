@@ -1,5 +1,5 @@
 {
-  "name": "rave-rpg-initiative",
+  "name": "initiative-tracker",
   "version": "1.0.0",
   "description": "This block helps track and organize player initiative scores",
   "main": "src/index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ravewebdev/rpg-initiative"
+    "url": "git+https://github.com/ravewebdev/initiative-tracker"
   },
   "keywords": [
     "Gutenberg"
@@ -22,9 +22,9 @@
   "author": "RaveWebDev",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/ravewebdev/rpg-initiative/issues"
+    "url": "https://github.com/ravewebdev/initiative-tracker/issues"
   },
-  "homepage": "https://github.com/ravewebdev/rpg-initiative#readme",
+  "homepage": "https://github.com/ravewebdev/initiative-tracker#readme",
   "dependencies": {},
   "devDependencies": {
     "@webdevstudios/css-coding-standards": "^1.0.0",

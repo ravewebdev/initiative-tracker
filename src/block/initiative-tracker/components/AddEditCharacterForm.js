@@ -77,7 +77,7 @@ export default class AddEditCharacterForm extends Component {
         return (
             <div className="edit-character-form">
                 <TextControl
-                    label={ __( 'Character Name *', 'rave-rpg-initiative' ) }
+                    label={ __( 'Character Name *', 'initiative-tracker' ) }
                     value={ name }
                     onChange={ ( name ) => {
                         this.setState( {
@@ -89,7 +89,7 @@ export default class AddEditCharacterForm extends Component {
                 />
                 { isPlayer && (
                     <TextControl
-                        label={ __( 'Player Name *', 'rave-rpg-initiative' ) }
+                        label={ __( 'Player Name *', 'initiative-tracker' ) }
                         value={ player }
                         onChange={ ( player ) => {
                             this.setState( {
@@ -101,7 +101,7 @@ export default class AddEditCharacterForm extends Component {
                     />
                 ) }
                 <TextControl
-                    label={ __( 'Initiative', 'rave-rpg-initiative' ) }
+                    label={ __( 'Initiative', 'initiative-tracker' ) }
                     type="number"
                     value={ initiative }
                     onChange={ ( initiative ) => {
@@ -114,7 +114,7 @@ export default class AddEditCharacterForm extends Component {
                     isSecondary
                     onClick={ toggle }
                 >
-                    { __( 'Cancel', 'rave-rpg-initiative' ) }
+                    { __( 'Cancel', 'initiative-tracker' ) }
                 </Button>
                 <Button
                     isPrimary
