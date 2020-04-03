@@ -1,6 +1,6 @@
 {
   "name": "rave-rpg-initiative",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "This block helps track and organize player initiative scores",
   "main": "src/index.js",
   "scripts": {
