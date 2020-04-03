@@ -1,6 +1,6 @@
-# RAVE RPG Initiative
+# RAVE RPG Initiative Tracker
 
-This plugin provides a block to help track and organize player initiative scores for Table-Top Role-Playing Games.
+This plugin provides the TTRPG Initiative Tracker block to help track and organize player initiative scores for Table-Top Role-Playing Games.
 
 Built with [WDS Block Starter](https://github.com/WebDevStudios/wds-block-starter).
 

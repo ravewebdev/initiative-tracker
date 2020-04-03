@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name:     TTRPG Initiative Helper
- * Description:     This block helps track and organize player initiative scores.
+ * Plugin Name:     TTRPG Initiative Tracker
+ * Description:     This block helps track character initiative scores in combat.
  * Version:         0.1.0
  * Author:          R A Van Epps
  * Author URI:      https://ravanepps.com
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     rpg-initiative
+ * Text Domain:     rave-rpg-initiative
  *
  * @package Rave\RpgInitiative
  */
@@ -33,7 +33,7 @@ function register_block() {
 
 	// Verify we have an editor script.
 	if ( ! file_exists( plugin_dir_path( __FILE__ ) . $editor_script ) ) {
-		wp_die( esc_html__( 'Whoops! You need to run `npm run build` for the Rave Rpg Initiative Plugin first.', 'rpg-initiative' ) );
+		wp_die( esc_html__( 'Whoops! You need to run `npm run build` for the Rave Rpg Initiative Plugin first.', 'rave-rpg-initiative' ) );
 	}
 
 	// Autoload dependencies and version.
