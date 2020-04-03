@@ -1174,8 +1174,8 @@ var _wp = wp,
     __ = _wp.i18n.__,
     registerBlockType = _wp.blocks.registerBlockType;
 registerBlockType('rave/rpg-initiative-tracker', {
-  title: __('TTRPG Initiative Helper', 'rpg-initiative'),
-  description: __('This block helps track and organize player initiative scores.', 'rave-rpg-initiative'),
+  title: __('Initiative Tracker', 'rpg-initiative'),
+  description: __('This block helps track and organize character initiative scores.', 'rave-rpg-initiative'),
   icon: 'list-view',
   category: 'widgets',
   keywords: [__('richtext', 'rpg-initiative')],
