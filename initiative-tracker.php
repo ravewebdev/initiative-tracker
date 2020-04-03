@@ -102,9 +102,10 @@ function render_block( array $attributes ) : string {
 	$players    = $attributes['players'] ?? [];
 	$npcs       = $attributes['npcs'] ?? [];
 	$notes      = $attributes['notes'] ?? '';
-	$class      = $attributes['className'] ?? '';
+	$class      = 'wp-block-rave-initiative-tracker';
 	$characters = array_merge( $players, $npcs );
-usort( $characters, function( $char1, $char2 ) {
+
+	usort( $characters, function( $char1, $char2 ) {
 		$compare = strnatcmp( $char1['initiative'], $char2['initiative'] );
 		$compare *= -1; // Invert order.
 
@@ -118,10 +119,7 @@ usort( $characters, function( $char1, $char2 ) {
 	ob_start();
 	?>
 
-	<div
-		class="<?php echo esc_attr( $class ); ?>"
-		data-characters="<?php echo esc_attr( json_encode( $characters ) ); ?>"
-	>
+	<div class="<?php echo esc_attr( $class ); ?>">
 		<h2><?php esc_html_e( 'Combat Notes', 'initiative-tracker' ); ?></h2>
 		<div class="notes">
 			<?php echo wp_kses_post( $notes ); ?>
