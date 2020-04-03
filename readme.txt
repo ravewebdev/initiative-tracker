@@ -15,8 +15,8 @@ Initiative Tracker block to track PC and NPC combat initiative in TTRPGs.
 This plugin provides the Initiative Tracker block, which can be used to organize PC (Player Character) and NPC (Non-Player Character) combat initiative scores for Table-Top Role-Playing Games.
 
 == Installation ==
-1. Upload the `rpg-initiative` folder to the `/wp-content/plugins` directory.
-2. Activate the TTRPG Initiative Tracker plugin through the 'Plugins' menu in WordPress.
+1. Upload the `initiative-tracker` folder to the `/wp-content/plugins` directory.
+2. Activate the Initiative Tracker plugin through the 'Plugins' menu in WordPress.
 3. Add the 'Initiative Tracker' block in a post or page.
 4. Populate the Player and NPC lists with character, player, and initiative data.
 5. Save and view your page or post.
@@ -27,7 +27,7 @@ This plugin provides the Initiative Tracker block, which can be used to organize
 When the Initiative Tracker block is active (i.e., selected for editing) in the block editor, characters are divided into Players (PCs) and NPCs and sorted alphabetically in ascending order. Otherwise, both character lists are combined and sorted according to initiative score in descending order.
 
 = How can I report issues or suggest improvements? =
-Feel free to create an issue or PR in the [Github repo here](https://github.com/ravewebdev/rpg-initiative).
+Feel free to create an issue or PR in the [Github repo here](https://github.com/ravewebdev/initiative-tracker).
 
 == Screenshots ==
 
