@@ -3,6 +3,8 @@
 ## Description ##
 This plugin provides the Initiative Tracker block, which can be used to organize PC (Player Character) and NPC (Non-Player Character) combat initiative scores for Table-Top Role-Playing Games.
 
+Built with [WDS Block Starter](https://github.com/WebDevStudios/wds-block-starter) and [@webdevstudios/create-block](https://github.com/WebDevStudios/wds-block-starter).
+
 ## Requirements ##
 
 [Node](https://nodejs.org/en/) (`12.x`). We highly recommend [NVM](https://github.com/nvm-sh/nvm) so you can easily switch between Node versions. You'll also need [Composer](https://getcomposer.org/).
@@ -27,3 +29,4 @@ Build the production version of the plugin
 
 ```bash
 npm run build
+```
