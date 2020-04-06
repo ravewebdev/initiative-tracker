@@ -26,6 +26,9 @@ This plugin provides the Initiative Tracker block, which can be used to organize
 = How are the character lists ordered? =
 When the Initiative Tracker block is active (i.e., selected for editing) in the block editor, characters are divided into Players (PCs) and NPCs and sorted alphabetically in ascending order. Otherwise, both character lists are combined and sorted according to initiative score in descending order.
 
+= How should I use this block? =
+This block is best for Game Masters who have a fairly good plan for the session's combat ahead of time. Prior to the start of the session, create a fresh page or post for the session and add an Initiative Tracker block. Populate the block with the players (PCs), then duplicate the block for as many combats you expect to encounter (this way you don't have to re-enter players for each block). Next, add the different NPCs for each encounter to each block – bonus: pre-roll your NPCs' initiative scores and enter those into the blocks ahead of time. Finally, during gameplay, input the players' initiative scores for the current round of combat, save your page or post, and flip to the frontend to iterate through the active characters.
+
 = How can I report issues or suggest improvements? =
 Feel free to create an issue or PR in the [Github repo here](https://github.com/ravewebdev/initiative-tracker).
 
