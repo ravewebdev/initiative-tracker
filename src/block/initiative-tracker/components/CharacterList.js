@@ -50,7 +50,7 @@ export default class CharacterList extends Component {
 		// Sort characters by initiative if combined list is displayed.
 		if ( ! active ) {
 			characters.sort( function( char1, char2 ) {
-				return ( char1.initiative > char2.initiative ? -1 : 1 );
+				return ( parseInt( char1.initiative ) > parseInt( char2.initiative ) ? -1 : 1 );
 			} );
 		}
 		
