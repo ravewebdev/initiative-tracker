@@ -3,28 +3,27 @@
 ## Description ##
 This plugin provides the Initiative Tracker block, which can be used to organize PC (Player Character) and NPC (Non-Player Character) combat initiative scores for Table-Top Role-Playing Games.
 
-## Installation ##
-1. Upload the `initiative-tracker` folder to the `/wp-content/plugins` directory.
-2. Activate the Initiative Tracker plugin through the 'Plugins' menu in WordPress.
-3. Add the 'Initiative Tracker' block in a post or page.
-4. Populate the Player and NPC lists with character, player, and initiative data.
-5. Save and view your page or post.
-6. Use the 'Next Character' button to iterate through active characters.
+## Requirements ##
 
-## Frequently Asked Questions ##
-### How are the character lists ordered? ###
-When the Initiative Tracker block is active (i.e., selected for editing) in the block editor, characters are divided into Players (PCs) and NPCs and sorted alphabetically in ascending order. Otherwise, both character lists are combined and sorted according to initiative score in descending order.
+[Node](https://nodejs.org/en/) (`12.x`). We highly recommend [NVM](https://github.com/nvm-sh/nvm) so you can easily switch between Node versions. You'll also need [Composer](https://getcomposer.org/).
 
-### How can I report issues or suggest improvements? ###
-Feel free to create an issue or PR in the [Github repo here](https://github.com/ravewebdev/initiative-tracker).
+## Manual Installation ##
 
-## Screenshots ##
-1. Insert Initiative Tracker block.
-2. Add Combat Notes and Characters.
-3. Cycle through active characters on frontend.
+Install dependencies
 
-## Changelog ##
+```bash
+npm install
+```
 
-### 1.0.0 ###
-* Create Initiative Tracker block with character sorting by name and initiative.
-* Create frontend 'current character' pointer and 'next character' button.
+## Development ##
+
+Watch for changes
+
+```bash
+npm start
+```
+
+Build the production version of the plugin
+
+```bash
+npm run build
