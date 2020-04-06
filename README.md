@@ -19,6 +19,9 @@ When the Initiative Tracker block is active (i.e., selected for editing) in the 
 Feel free to create an issue or PR in the [Github repo here](https://github.com/ravewebdev/initiative-tracker).
 
 ## Screenshots ##
+1. Insert Initiative Tracker block.
+2. Add Combat Notes and Characters.
+3. Cycle through active characters on frontend.
 
 ## Changelog ##
 
