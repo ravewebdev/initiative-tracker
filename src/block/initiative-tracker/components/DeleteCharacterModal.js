@@ -42,23 +42,25 @@ const DeleteCharacterModal = ( props ) => {
 					onRequestClose={ toggle }
 				>
 					<p> { __( 'Are you sure you want to delete this character?' ) } </p>
-					<Button
-						className="is-button"
-	                    isSecondary
-	                    onClick={ toggle }
-	                >
-	                    { __( 'Cancel', 'initiative-tracker' ) }
-	                </Button>
-	                <Button
-	                    className="button-link-delete"
-	                    isDestructive
-	                    onClick={ () => {
-	                        deleteCharacter( type, index );
-	                        toggle();
-	                    } }
-	                >
-	                    { __( 'Delete Character', 'initiative-tracker' ) }
-	                </Button>
+					<div className="edit-character-buttons">
+						<Button
+							className="is-button"
+		                    isSecondary
+		                    onClick={ toggle }
+		                >
+		                    { __( 'Cancel', 'initiative-tracker' ) }
+		                </Button>
+		                <Button
+		                    className="button-link-delete"
+		                    isDestructive
+		                    onClick={ () => {
+		                        deleteCharacter( type, index );
+		                        toggle();
+		                    } }
+		                >
+		                    { __( 'Delete Character', 'initiative-tracker' ) }
+		                </Button>
+	                </div>
 				</Modal>
 			) }
 		</>

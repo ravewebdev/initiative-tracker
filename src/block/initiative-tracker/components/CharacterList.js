@@ -87,16 +87,18 @@ export default class CharacterList extends Component {
 							buttonText={ addText }
 							toggle={ toggleAdd }
 						/> :
-						<Button
-				            isPrimary
-				            onClick={ () => {
-				            	this.setState( {
-				            		adding: true
-				            	} );
-				            } }
-						>
-							{ addText }
-						</Button>
+						<div className="edit-character-buttons">
+							<Button
+					            isPrimary
+					            onClick={ () => {
+					            	this.setState( {
+					            		adding: true
+					            	} );
+					            } }
+							>
+								{ addText }
+							</Button>
+						</div>
 				) }
 			</div>
 		);

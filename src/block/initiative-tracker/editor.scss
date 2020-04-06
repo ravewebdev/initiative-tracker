@@ -1,5 +1,5 @@
 $color-error: #a40000;
-$color-form: #e6e6e6;
+$color-border: #999;
 
 .wp-block-rave-initiative-tracker {
 	padding: 1rem;
@@ -18,7 +18,8 @@ $color-form: #e6e6e6;
 	}
 
 	.edit-character-form {
-		background: $color-form;
+		border: 1px solid $color-border;
+		border-radius: 4px;
 		margin: 0.5rem 0;
 		padding: 0.5rem;
 
@@ -33,4 +34,9 @@ $color-form: #e6e6e6;
 			}
 		}
 	}
+}
+
+.edit-character-buttons {
+	display: flex;
+	justify-content: space-evenly;
 }

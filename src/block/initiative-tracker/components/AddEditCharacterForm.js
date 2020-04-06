@@ -110,34 +110,36 @@ export default class AddEditCharacterForm extends Component {
                         } )
                     } }
                 />
-                <Button
-                    isSecondary
-                    onClick={ toggle }
-                >
-                    { __( 'Cancel', 'initiative-tracker' ) }
-                </Button>
-                <Button
-                    isPrimary
-                    disabled={ disableSave }
-                    onClick={ () => {
-                        if ( editing ) {
-                            characterFn( type, index, {
-                                name: name.trim(),
-                                player: ( isPlayer ? player.trim() : '' ),
-                                initiative,
-                            } );
-                        } else {
-                            characterFn( type, {
-                                name: name.trim(),
-                                player: ( isPlayer ? player.trim() : '' ),
-                                initiative,
-                            } );
-                        }
-                        toggle();
-                    } }
-                >
-                    { buttonText }
-                </Button>
+                <div className="edit-character-buttons">
+                    <Button
+                        isSecondary
+                        onClick={ toggle }
+                    >
+                        { __( 'Cancel', 'initiative-tracker' ) }
+                    </Button>
+                    <Button
+                        isPrimary
+                        disabled={ disableSave }
+                        onClick={ () => {
+                            if ( editing ) {
+                                characterFn( type, index, {
+                                    name: name.trim(),
+                                    player: ( isPlayer ? player.trim() : '' ),
+                                    initiative,
+                                } );
+                            } else {
+                                characterFn( type, {
+                                    name: name.trim(),
+                                    player: ( isPlayer ? player.trim() : '' ),
+                                    initiative,
+                                } );
+                            }
+                            toggle();
+                        } }
+                    >
+                        { buttonText }
+                    </Button>
+                </div>
             </div>
         );
     }
