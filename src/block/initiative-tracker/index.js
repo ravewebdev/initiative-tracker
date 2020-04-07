@@ -24,7 +24,7 @@ registerBlockType( 'rave/initiative-tracker', {
     icon: 'list-view',
     category: 'widgets',
     keywords: [
-        __( 'richtext', 'initiative-tracker' ),
+        __( 'initiative tracker', 'initiative-tracker' ),
     ],
     supports: {
         html: false,
