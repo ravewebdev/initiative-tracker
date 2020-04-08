@@ -10,6 +10,7 @@
  * Text Domain:     initiative-tracker
  *
  * @package Rave\InitiativeTracker
+ * @since 0.0.1
  */
 
 namespace Rave\InitiativeTracker;
@@ -106,7 +107,7 @@ function render_block( array $attributes ) : string {
 	$characters = array_merge( $players, $npcs );
 
 	usort( $characters, function( $char1, $char2 ) {
-		$compare = strnatcmp( $char1['initiative'], $char2['initiative'] );
+		$compare  = strnatcmp( $char1['initiative'], $char2['initiative'] );
 		$compare *= -1; // Invert order.
 
 		if ( 0 !== $compare ) {
@@ -124,7 +125,7 @@ function render_block( array $attributes ) : string {
 		<div class="notes">
 			<?php echo wp_kses_post( $notes ); ?>
 		</div>
-		<?php if ( sizeof( $characters ) > 0 ) : ?>
+		<?php if ( count( $characters ) > 0 ) : ?>
 			<div class="characters">
 				<div class="character-list">
 					<h2><?php esc_html_e( 'Characters', 'initiative-tracker' ); ?></h2>
@@ -137,9 +138,9 @@ function render_block( array $attributes ) : string {
 							$initiative = $character['initiative'] ?? '';
 							?>
 							<li class="character <?php echo esc_attr( 0 === $index ? 'current' : '' ); ?>">
-								<span class="name"><?php echo esc_html__( $name ); ?></span>
-								<span class="player"><?php echo esc_html__( "( {$player} )" ); ?></span>
-								<span class="initiative"><?php echo esc_html__( " - {$initiative}" ); ?></span>
+								<span class="name"><?php echo esc_html( $name ); ?></span>
+								<span class="player"><?php echo esc_html( "( {$player} )" ); ?></span>
+								<span class="initiative"><?php echo esc_html( " - {$initiative}" ); ?></span>
 							</li>
 							<?php
 						}, $characters, array_keys( $characters ) );
