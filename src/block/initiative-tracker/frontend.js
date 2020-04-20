@@ -10,8 +10,8 @@ trackers.forEach( ( tracker, index ) => {
 /**
  * Track current character with pointer.
  *
- * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
- * @since  2020-04-02
+ * @author R A Van Epps <rave@ravanepps.com>
+ * @since  1.0.0
  *
  * @param  {DOM element} tracker Tracker DOM element.
  * @return {void}

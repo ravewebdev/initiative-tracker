@@ -93,8 +93,8 @@ add_action( 'init', __NAMESPACE__ . '\register_block' );
 /**
  * Render initiative tracker block on frontend.
  *
- * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
- * @since  2020-04-02
+ * @author R A Van Epps <rave@ravanepps.com>
+ * @since  1.0.0
  *
  * @param  array $attributes Block attributes.
  * @return string            Block HTML to render.

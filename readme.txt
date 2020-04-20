@@ -2,12 +2,12 @@
 Contributors: ravewebdev
 Author URI: https://ravewebdev.com/
 Tags: gutenberg, blocks, rpg, role-playing game, combat tracker
-Requires at least: 5.2.0
+Requires at least: 5.2.
 Tested up to: 5.4.0
 Requires PHP: 7.0.0
-Table tag: 1.0.0
-License: GPL-2.0-or-later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Stable tag: 1.0.0
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Initiative Tracker block to track PC and NPC combat initiative in TTRPGs.
 
