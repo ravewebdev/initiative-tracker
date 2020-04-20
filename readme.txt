@@ -38,6 +38,9 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 3. Cycle through active characters on frontend.
 
 == Changelog ==
+= 1.0.1 =
+* Fixed: Cleaned up doc comments, updated block keywords, addressed linting errors.
+
 = 1.0.0 =
-* Create Initiative Tracker block with character sorting by name and initiative.
-* Create frontend 'current character' pointer and 'next character' button.
+* Added: Create Initiative Tracker block with character sorting by name and initiative.
+* Added: Create frontend 'current character' pointer and 'next character' button.
