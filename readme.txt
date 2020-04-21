@@ -33,9 +33,9 @@ This block is best for Game Masters who have a fairly good plan for the session'
 Feel free to create an issue or PR in the [Github repo here](https://github.com/ravewebdev/initiative-tracker).
 
 == Screenshots ==
-1. Insert Initiative Tracker block.
-2. Add Combat Notes and Characters.
-3. Cycle through active characters on frontend.
+1. Admin Demo 1: Insert Initiative Tracker block.
+2. Admin Demo 2: Add Combat Notes and Characters.
+3. Frontend Demo: Cycle through active characters.
 
 == Changelog ==
 = 1.0.1 =

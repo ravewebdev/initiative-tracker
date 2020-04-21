@@ -26,9 +26,14 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 
 ## Screenshots ##
 
-1. Insert Initiative Tracker block.
-2. Add Combat Notes and Characters.
-3. Cycle through active characters on frontend.
+### Admin Demo 1: Insert Initiative Tracker block ###
+![Admin Demo 1: Insert Initiative Tracker block](assets/screenshot-1.gif)
+
+### Admin Demo 2: Add Combat Notes and Characters ###
+![Admin Demo 2: Add Combat Notes and Characters](assets/screenshot-2.gif)
+
+### Frontend Demo: Cycle through active characters ###
+![Frontend Demo: Cycle through active characters](assets/screenshot-3.gif)
 
 ## Changelog ##
 
