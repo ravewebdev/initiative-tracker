@@ -37,6 +37,9 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 
 ## Changelog ##
 
+### 1.0.2 ###
+* Fixed: Updated "current" character pointer to work across browsers.
+
 ### 1.0.1 ###
 * Fixed: Cleaned up doc comments, updated block keywords, addressed linting errors.
 
