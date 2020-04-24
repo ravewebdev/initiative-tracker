@@ -16,7 +16,16 @@
 	.character {
 
 		&.current {
-			list-style-type: disclosure-closed;
+			list-style-type: none;
+			position: relative;
+
+			&::before {
+				content: '\00BB';
+				font-size: 3rem;
+				left: -2rem;
+				line-height: 2.5rem;
+				position: absolute;
+			}
 		}
 	}
 
