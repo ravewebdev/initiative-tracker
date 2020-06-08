@@ -55,7 +55,6 @@ export default class Character extends Component {
 				<AddEditCharacterForm
 			 		type={ type}
 			 		characterFn={ editCharacter }
-			 		buttonText={ editText }
 			 		toggle={ toggleEdit }
 			 		character={ {
 			 			name,

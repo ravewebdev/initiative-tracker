@@ -84,7 +84,6 @@ export default class CharacterList extends Component {
 						<AddEditCharacterForm
 							type={ type}
 							characterFn={ addCharacter }
-							buttonText={ addText }
 							toggle={ toggleAdd }
 						/> :
 						<div className="edit-character-buttons">

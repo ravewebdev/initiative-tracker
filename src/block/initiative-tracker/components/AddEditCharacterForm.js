@@ -68,7 +68,6 @@ export default class AddEditCharacterForm extends Component {
             type,
             characterFn,
             toggle,
-            buttonText,
         } = this.props;
         const errorClass = 'input-error';
         const isPlayer = 'player' === type;
@@ -137,7 +136,7 @@ export default class AddEditCharacterForm extends Component {
                             toggle();
                         } }
                     >
-                        { buttonText }
+                        { __( 'Save', 'initiative-tracker' ) }
                     </Button>
                 </div>
             </div>
