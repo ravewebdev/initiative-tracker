@@ -74,7 +74,7 @@ export default class Character extends Component {
 					<span className="player">{ ` ( ${ '' === player ? 'NPC' : player } ) `}</span>
 				) }
 
-				<span className="initiative">{ ` - ${initiative}` }</span>
+				<span className="initiative">{ ` - ${ initiative || 0 }` }</span>
 
 				{ active && (
 					<>
