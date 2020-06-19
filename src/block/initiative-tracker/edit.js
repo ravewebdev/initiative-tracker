@@ -25,10 +25,12 @@ import CharacterList from './components/CharacterList';
 const Edit = ( props ) => {
     const {
         attributes: {
+            id,
             notes,
             players,
             npcs,
         },
+        clientId,
         className,
         setAttributes,
         isSelected
@@ -40,6 +42,13 @@ const Edit = ( props ) => {
             notes
         } );
     };
+
+    // Update id attr when clientId changes.
+    if ( clientId !== id ) {
+        setAttributes( {
+            id: clientId
+        } );
+    }
 
     const sortCharacters = ( characters ) => {
         characters.sort( function( char1, char2 ) {
