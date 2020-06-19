@@ -30,6 +30,10 @@ registerBlockType( 'rave/initiative-tracker', {
         html: false,
     },
     attributes: {
+        id: {
+            type: 'string',
+            default: '',
+        },
         notes: {
             type: 'string',
         },
