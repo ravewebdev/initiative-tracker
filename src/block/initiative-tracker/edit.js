@@ -1,6 +1,7 @@
 /**
- * WP dependencies
+ * EDIT: Initiative Tracker Block
  */
+
 const {
     i18n: {
         __,
@@ -10,11 +11,17 @@ const {
     }
 } = wp;
 
-/**
- * Components
- */
 import CharacterList from './components/CharacterList';
 
+/**
+ * Handle edit functionality in the admin.
+ *
+ * @author R A Van Epps <rave@ravanepps.com>
+ * @since  1.0.0
+ *
+ * @param  {Object} props Block props.
+ * @return {ReactElement} Block edit JSX.
+ */
 const Edit = ( props ) => {
     const {
         attributes: {
