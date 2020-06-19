@@ -100,6 +100,7 @@ add_action( 'init', __NAMESPACE__ . '\register_block' );
  * @return string            Block HTML to render.
  */
 function render_block( array $attributes ) : string {
+	$id         = $attributes['id'];
 	$players    = $attributes['players'] ?? [];
 	$npcs       = $attributes['npcs'] ?? [];
 	$notes      = $attributes['notes'] ?? '';
@@ -120,7 +121,10 @@ function render_block( array $attributes ) : string {
 	ob_start();
 	?>
 
-	<div class="<?php echo esc_attr( $class ); ?>">
+	<div
+		class="<?php echo esc_attr( $class ); ?>"
+		data-id="<?php echo esc_attr( $id ); ?>"
+	>
 		<h2><?php esc_html_e( 'Combat Notes', 'initiative-tracker' ); ?></h2>
 		<div class="notes">
 			<?php echo wp_kses_post( $notes ); ?>
