@@ -36,7 +36,14 @@ const Edit = ( props ) => {
         isSelected
     } = props;
 
-    // Add combat notes.
+    /**
+     * Add combat notes.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  1.0.0
+     *
+     * @param  {string} notes Combat notes.
+     */
     const onChangeNotes = ( notes ) => {
         setAttributes( {
             notes
@@ -50,6 +57,14 @@ const Edit = ( props ) => {
         } );
     }
 
+    /**
+     * Sort characters by name.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  1.0.0
+     *
+     * @param  {array} characters Array of characters.
+     */
     const sortCharacters = ( characters ) => {
         characters.sort( function( char1, char2 ) {
             return char1.name.localeCompare( char2.name );
@@ -57,7 +72,15 @@ const Edit = ( props ) => {
         return characters;
     }
 
-    // Add new character, sort alphabetically.
+    /**
+     * Add new character, sort alphabetically.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  1.0.0
+     *
+     * @param  {string} type      Type of character.
+     * @param  {Object} character New character object.
+     */
     const addCharacter = ( type, character ) => {
         type = `${type}s`;
         const characters = [ ...props.attributes[ type ], character ];
@@ -66,7 +89,16 @@ const Edit = ( props ) => {
         } );
     };
 
-    // Edit character.
+    /**
+     * Edit character attributes.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  1.0.0
+     *
+     * @param  {string}  type      Type of character.
+     * @param  {integer} index     Character index.
+     * @param  {Object}  character Character object.
+     */
     const editCharacter = ( type, index, character ) => {
         type = `${type}s`;
         const characters = [ ...props.attributes[ type ] ];
@@ -76,7 +108,15 @@ const Edit = ( props ) => {
         } );
     }
 
-    // Delete character.
+    /**
+     * Delete character.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  1.0.0
+     *
+     * @param  {string}  type  Type of character.
+     * @param  {integer} index Character index.
+     */
     const deleteCharacter = ( type, index ) => {
         type = `${type}s`;
         const characters = [ ...props.attributes[ type ] ].filter( function( character, charIndex ) {
