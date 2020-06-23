@@ -5,7 +5,15 @@
 const trackerClass = 'wp-block-rave-initiative-tracker';
 const trackers     = document.querySelectorAll( `.${trackerClass}` );
 
-trackers.forEach( ( tracker, index ) => {
+/**
+ * Retrieve and re-render initiative tracker blocks.
+ *
+ * @author R A Van Epps <rave@ravanepps.com>
+ * @since  1.0.0
+ *
+ * @param  {Object} tracker Tracker DOM element.
+ */
+trackers.forEach( ( tracker ) => {
 	trackCurrentCharacter( tracker );
 } );
 
