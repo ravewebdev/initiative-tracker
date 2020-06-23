@@ -34,9 +34,6 @@ registerBlockType( 'rave/initiative-tracker', {
             type: 'string',
             default: '',
         },
-        notes: {
-            type: 'string',
-        },
         players: {
             type: 'array',
             default: [],

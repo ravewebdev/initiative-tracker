@@ -22,7 +22,6 @@ function render_block( array $attributes ) : string {
 	$id         = $attributes['id'];
 	$players    = $attributes['players'] ?? [];
 	$npcs       = $attributes['npcs'] ?? [];
-	$notes      = $attributes['notes'] ?? '';
 	$class      = 'wp-block-rave-initiative-tracker';
 	$characters = array_merge( $players, $npcs );
 
@@ -43,14 +42,9 @@ function render_block( array $attributes ) : string {
 	<div
 		class="<?php echo esc_attr( $class ); ?>"
 		data-id="<?php echo esc_attr( $id ); ?>"
-		data-notes="<?php echo esc_attr( $notes ); ?>"
 		data-players="<?php echo esc_attr( wp_json_encode( $players ) ); ?>"
 		data-npcs="<?php echo esc_attr( wp_json_encode( $npcs ) ); ?>"
 	>
-		<h2><?php esc_html_e( 'Combat Notes', 'initiative-tracker' ); ?></h2>
-		<div class="notes">
-			<?php echo wp_kses_post( $notes ); ?>
-		</div>
 		<?php if ( count( $characters ) > 0 ) : ?>
 			<div class="characters">
 				<div class="character-list">

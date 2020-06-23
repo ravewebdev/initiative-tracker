@@ -26,7 +26,6 @@ const Edit = ( props ) => {
     const {
         attributes: {
             id,
-            notes,
             players,
             npcs,
         },
@@ -35,20 +34,6 @@ const Edit = ( props ) => {
         setAttributes,
         isSelected
     } = props;
-
-    /**
-     * Add combat notes.
-     *
-     * @author R A Van Epps <rave@ravanepps.com>
-     * @since  1.0.0
-     *
-     * @param  {string} notes Combat notes.
-     */
-    const onChangeNotes = ( notes ) => {
-        setAttributes( {
-            notes
-        } );
-    };
 
     // Update id attr when clientId changes.
     if ( clientId !== id ) {
@@ -129,16 +114,6 @@ const Edit = ( props ) => {
 
     return (
         <div className={ className }>
-            <h2>{ __( 'Combat Notes', 'initiative-tracker' ) }</h2>
-            <RichText
-                tagName="div"
-                multiline="p"
-                className="notes"
-                placeholder={ __( 'Enter notes about this combat here...', 'initiative-tracker' ) }
-                keepPlaceholderOnFocus={ true }
-                onChange={ onChangeNotes }
-                value={ notes }
-            />
             <div className="characters">
                 { isSelected && (
                     <>
