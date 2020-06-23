@@ -1,7 +1,9 @@
-const trackerClass = '.wp-block-rave-initiative-tracker';
-const trackers     = document.querySelectorAll(
-	trackerClass
-);
+/**
+ * FRONTEND: Initiative Tracker Block
+ */
+
+const trackerClass = 'wp-block-rave-initiative-tracker';
+const trackers     = document.querySelectorAll( `.${trackerClass}` );
 
 trackers.forEach( ( tracker, index ) => {
 	trackCurrentCharacter( tracker );
