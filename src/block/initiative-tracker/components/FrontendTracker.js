@@ -29,6 +29,11 @@ const FrontendTracker = ( props ) => {
 		npcs,
 	} = attributes;
 
+	const characters = [
+        ...players,
+        ...npcs,
+    ];
+
 	// Set initial attribute values from props.
 	useEffect( () => {
 		setAttributes( {
@@ -41,10 +46,7 @@ const FrontendTracker = ( props ) => {
             <div className="characters">
 				<CharacterList
 		            title={ __( 'Characters', 'initiative-tracker' ) }
-		            characters={ [
-		                ...players,
-		                ...npcs,
-		            ] }
+		            characters={ characters }
 		            active={ false }
 		        />
 		        <button type="button" className="next-character">
