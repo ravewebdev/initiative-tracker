@@ -2,12 +2,16 @@
  * WP dependencies
  */
 const {
+	i18n: {
+        __,
+    },
     element: {
         Component,
     },
     components: {
 		Dashicon,
         Button,
+        TextControl,
 	},
 } = wp;
 
@@ -80,11 +84,31 @@ export default class Character extends Component {
 			<li className={ `character ${ isCurrent ? 'current' : '' }` }>
 				<span className="name">{ name }</span>
 
+				&nbsp;
+
 				{ ! active && (
-					<span className="player">{ ` ( ${ '' === player ? 'NPC' : player } ) `}</span>
+					<span className="player">{ `( ${ '' === player ? 'NPC' : player } )`}</span>
 				) }
 
-				<span className="initiative">{ ` - ${ initiative || 0 }` }</span>
+				&nbsp;&mdash;&nbsp;
+
+				{ onFrontend && (
+					<TextControl
+						className="initiative"
+	                    type="number"
+	                    value={ initiative }
+	                    onChange={ ( initiative ) => {
+	                        /*this.setState( {
+	                            initiative
+	                        } )*/
+	                        console.log( 'initiative', initiative );
+	                    } }
+	                />
+				) }
+
+				{ ! onFrontend && (
+					<span className="initiative">{ initiative || 0 }</span>
+				) }
 
 				{ active && (
 					<>
