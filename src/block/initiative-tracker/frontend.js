@@ -1,6 +1,13 @@
 /**
  * FRONTEND: Initiative Tracker Block
  */
+const {
+    element: {
+		render,
+	},
+} = wp;
+
+import FrontendTracker from './components/FrontendTracker';
 
 const trackerClass = 'wp-block-rave-initiative-tracker';
 const trackers     = document.querySelectorAll( `.${trackerClass}` );
@@ -14,6 +21,19 @@ const trackers     = document.querySelectorAll( `.${trackerClass}` );
  * @param  {Object} tracker Tracker DOM element.
  */
 trackers.forEach( ( tracker ) => {
+	const attributes = {
+		block_id: tracker.dataset.id,
+		players: JSON.parse( tracker.dataset.players ),
+		npcs: JSON.parse( tracker.dataset.npcs ),
+	};
+
+	render(
+		<FrontendTracker
+			dataAttributes={ attributes }
+			className={ trackerClass }
+		/>,
+        tracker
+	);
 	trackCurrentCharacter( tracker );
 } );
 
