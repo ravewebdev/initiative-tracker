@@ -75,6 +75,7 @@ export default class CharacterList extends Component {
 								<Character
 									character={ character }
 									index={ index }
+									editCharacter={ editCharacter }
 									active={ active }
 									activeIndex={ activeIndex }
 								/>

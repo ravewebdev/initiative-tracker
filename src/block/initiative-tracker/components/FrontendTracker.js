@@ -44,12 +44,35 @@ const FrontendTracker = ( props ) => {
         ...npcs,
     ];
 
+	/**
+     * Edit character attributes on frontend.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  2.0.0
+     *
+     * @param  {Object} newCharacter Modified character object.
+     * @param  {Object} character    Original character object.
+     */
+    const editCharacter = ( newCharacter, character ) => {
+    	const type = 0 === character.player.trim().length ? 'npcs' : 'players',
+    		newCharacters = [ ...attributes[ type ] ],
+    		index = newCharacters.indexOf( character );
+    	
+    	newCharacters[ index ] = newCharacter;
+
+        setAttributes( {
+        	...attributes,
+            [ type ]: newCharacters,
+        } );
+    }
+
 	return (
 		<div className={ className }>
             <div className="characters">
 				<CharacterList
 		            title={ __( 'Characters', 'initiative-tracker' ) }
 		            characters={ characters }
+		            editCharacter={ editCharacter }
 		            active={ false }
 		            activeIndex={ activeIndex }
 		        />

@@ -34,6 +34,7 @@ export default class Character extends Component {
 		const {
 			editing,
 		} = this.state;
+
 		const {
 			character: {
 				name,
@@ -97,11 +98,12 @@ export default class Character extends Component {
 						className="initiative"
 	                    type="number"
 	                    value={ initiative }
-	                    onChange={ ( initiative ) => {
-	                        /*this.setState( {
-	                            initiative
-	                        } )*/
-	                        console.log( 'initiative', initiative );
+	                    onChange={ ( newInitiative ) => {
+	                    	editCharacter( {
+	                    		name,
+	                    		player,
+	                    		initiative: newInitiative,
+	                    	}, this.props.character );
 	                    } }
 	                />
 				) }
