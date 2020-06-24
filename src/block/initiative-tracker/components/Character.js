@@ -45,7 +45,8 @@ export default class Character extends Component {
 			activeIndex,
 		} = this.props;
 
-		const isCurrent = undefined === activeIndex ? false : ( activeIndex === index );
+		const onFrontend = ( undefined !== activeIndex ),
+			isCurrent = ! onFrontend ? false : ( activeIndex === index );
 
 		/**
 		 * Handle character edits.
@@ -85,22 +86,23 @@ export default class Character extends Component {
 
 				<span className="initiative">{ ` - ${ initiative || 0 }` }</span>
 
+				{ ( active || onFrontend ) && (
+					<Button
+						className="edit-character"
+						isTertiary
+						onClick={ toggleEdit }
+					>
+						<Dashicon icon="edit" />
+					</Button>
+				) }
+
 				{ active && (
-					<>
-						<Button
-							className="edit-character"
-							isTertiary
-							onClick={ toggleEdit }
-						>
-							<Dashicon icon="edit" />
-						</Button>
-						<DeleteCharacterModal
-							index={ index }
-							deleteCharacter={ deleteCharacter }
-							name={ name }
-							type={ type }
-						/>
-					</>
+					<DeleteCharacterModal
+						index={ index }
+						deleteCharacter={ deleteCharacter }
+						name={ name }
+						type={ type }
+					/>
 				) }
 			</li>
 		);
