@@ -86,23 +86,22 @@ export default class Character extends Component {
 
 				<span className="initiative">{ ` - ${ initiative || 0 }` }</span>
 
-				{ ( active || onFrontend ) && (
-					<Button
-						className="edit-character"
-						isTertiary
-						onClick={ toggleEdit }
-					>
-						<Dashicon icon="edit" />
-					</Button>
-				) }
-
 				{ active && (
-					<DeleteCharacterModal
-						index={ index }
-						deleteCharacter={ deleteCharacter }
-						name={ name }
-						type={ type }
-					/>
+					<>
+						<Button
+							className="edit-character"
+							isTertiary
+							onClick={ toggleEdit }
+						>
+							<Dashicon icon="edit" />
+						</Button>
+						<DeleteCharacterModal
+							index={ index }
+							deleteCharacter={ deleteCharacter }
+							name={ name }
+							type={ type }
+						/>
+					</>
 				) }
 			</li>
 		);
