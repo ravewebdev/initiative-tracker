@@ -20,6 +20,7 @@ const FrontendTracker = ( props ) => {
 	} = props;
 
 	const [ attributes, setAttributes ] = useState( {
+		block_id: 0,
 		players: [],
 		npcs: [],
 	} );
@@ -31,17 +32,17 @@ const FrontendTracker = ( props ) => {
 		npcs,
 	} = attributes;
 
-	const characters = [
-        ...players,
-        ...npcs,
-    ];
-
 	// Set initial attribute values from props.
 	useEffect( () => {
 		setAttributes( {
 			...dataAttributes,
 		} );
 	}, [] );
+
+	const characters = [
+        ...players,
+        ...npcs,
+    ];
 
 	return (
 		<div className={ className }>
