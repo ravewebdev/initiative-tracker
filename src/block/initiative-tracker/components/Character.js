@@ -42,7 +42,10 @@ export default class Character extends Component {
 			deleteCharacter,
 			editText,
 			active,
+			activeIndex,
 		} = this.props;
+
+		const isCurrent = undefined === activeIndex ? false : ( activeIndex === index );
 
 		const toggleEdit = () => {
 			this.setState( {
@@ -67,7 +70,7 @@ export default class Character extends Component {
 		}
 
 		return (
-			<li className="character">
+			<li className={ `character ${ isCurrent ? 'current' : '' }` }>
 				<span className="name">{ name }</span>
 
 				{ ! active && (
