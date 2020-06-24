@@ -47,6 +47,12 @@ export default class Character extends Component {
 
 		const isCurrent = undefined === activeIndex ? false : ( activeIndex === index );
 
+		/**
+		 * Handle character edits.
+		 *
+		 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+		 * @since  1.0.0
+		 */
 		const toggleEdit = () => {
 			this.setState( {
 				editing: ! editing
