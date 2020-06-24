@@ -42,6 +42,8 @@ export default class CharacterList extends Component {
 			activeIndex,
 		} = this.props;
 
+		const isAdminActive = active && undefined === activeIndex;
+
 		const toggleAdd = () => {
 			this.setState( {
 				adding: ! adding
@@ -62,7 +64,7 @@ export default class CharacterList extends Component {
 				{ characters.length > 0 && (
 					<ul>
 						{ characters.map( ( character, index ) => (
-							active ?
+							isAdminActive ?
 								<Character
 									character={ character }
 									type={ type }
@@ -83,7 +85,7 @@ export default class CharacterList extends Component {
 					</ul>
 				) }
 
-				{ active && (
+				{ isAdminActive && (
 					adding ?
 						<AddEditCharacterForm
 							type={ type}
