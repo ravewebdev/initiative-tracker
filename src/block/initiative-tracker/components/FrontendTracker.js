@@ -24,6 +24,8 @@ const FrontendTracker = ( props ) => {
 		npcs: [],
 	} );
 
+	const [ activeIndex, setActiveIndex ] = useState( 0 );
+
 	const {
 		players,
 		npcs,
@@ -48,8 +50,17 @@ const FrontendTracker = ( props ) => {
 		            title={ __( 'Characters', 'initiative-tracker' ) }
 		            characters={ characters }
 		            active={ false }
+		            activeIndex={ activeIndex }
 		        />
-		        <button type="button" className="next-character">
+		        <button
+		        	type="button"
+		        	className="next-character"
+		        	onClick={ () => {
+		        		const newIndex = activeIndex + 1;
+
+		        		setActiveIndex( newIndex >= characters.length ? 0 : newIndex );
+		        	} }
+		        >
 					&raquo; { __( 'Next Character', 'initiative-tracker' ) }
 				</button>
             </div>
