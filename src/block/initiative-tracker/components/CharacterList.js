@@ -39,6 +39,7 @@ export default class CharacterList extends Component {
 			addText,
 			editText,
 			active,
+			activeIndex,
 		} = this.props;
 
 		const toggleAdd = () => {
@@ -73,7 +74,9 @@ export default class CharacterList extends Component {
 								/> :
 								<Character
 									character={ character }
+									index={ index }
 									active={ active }
+									activeIndex={ activeIndex }
 								/>
 						) ) }
 					</ul>
