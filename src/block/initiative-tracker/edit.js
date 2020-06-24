@@ -6,9 +6,6 @@ const {
     i18n: {
         __,
     },
-    blockEditor: {
-        RichText,
-    }
 } = wp;
 
 import CharacterList from './components/CharacterList';
