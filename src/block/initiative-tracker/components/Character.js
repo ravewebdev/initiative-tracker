@@ -6,14 +6,14 @@ const {
 	i18n: {
         __,
     },
+    components: {
+        Button,
+		Dashicon,
+        TextControl,
+	},
     element: {
         Component,
     },
-    components: {
-		Dashicon,
-        Button,
-        TextControl,
-	},
 } = wp;
 
 /**
