@@ -7,8 +7,8 @@ const {
         __,
     },
     components: {
-        TextControl,
         Button,
+        TextControl,
     },
     element: {
         Component,
