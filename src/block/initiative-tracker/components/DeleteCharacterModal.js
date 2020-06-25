@@ -6,14 +6,14 @@ const {
     i18n: {
         __,
     },
+    components: {
+        Button,
+		Dashicon,
+        Modal,
+	},
     element: {
     	useState,
     },
-    components: {
-		Dashicon,
-        Button,
-        Modal,
-	},
 } = wp;
 
 /**
