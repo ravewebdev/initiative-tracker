@@ -95,7 +95,7 @@ export default class CharacterList extends Component {
 				{ isAdminActive && (
 					adding ?
 						<AddEditCharacterForm
-							type={ type}
+							type={ type }
 							characterFn={ addCharacter }
 							toggle={ toggleAdd }
 						/> :
