@@ -48,9 +48,11 @@ export default class Character extends Component {
 			editText,
 			active,
 			activeIndex,
+			setActive,
 		} = this.props;
 
-		const onFrontend = ( undefined !== activeIndex ),
+		const onFrontend = undefined !== activeIndex,
+			isAdminActive = active && ! onFrontend,
 			isCurrent = ! onFrontend ? false : ( activeIndex === index );
 
 		/**
@@ -87,7 +89,7 @@ export default class Character extends Component {
 
 				&nbsp;
 
-				{ ! active && (
+				{ ! isAdminActive && (
 					<span className="player">{ `( ${ '' === player ? 'NPC' : player } )`}</span>
 				) }
 
@@ -98,6 +100,12 @@ export default class Character extends Component {
 						className="initiative"
 	                    type="number"
 	                    value={ initiative }
+	                    onFocus={ () => {
+	                    	setActive( true );
+	                    } }
+	                    onBlur={ () => {
+	                    	setActive( false );
+	                    } }
 	                    onChange={ ( newInitiative ) => {
 	                    	editCharacter( {
 	                    		name,
@@ -112,7 +120,7 @@ export default class Character extends Component {
 					<span className="initiative">{ initiative || 0 }</span>
 				) }
 
-				{ active && (
+				{ isAdminActive && (
 					<>
 						<Button
 							className="edit-character"
