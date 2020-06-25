@@ -1,6 +1,7 @@
 /**
- * WP dependencies
+ * Character.
  */
+
 const {
 	i18n: {
         __,
