@@ -1,6 +1,7 @@
 /**
- * WP dependencies
+ * Delete Character modal.
  */
+
 const {
     i18n: {
         __,
@@ -15,6 +16,15 @@ const {
 	},
 } = wp;
 
+/**
+ * Delete Character modal.
+ *
+ * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+ * @since  1.0.0
+ *
+ * @param  {Object} props Component props.
+ * @return {ReactElement} Component render JSX.
+ */
 const DeleteCharacterModal = ( props ) => {
 	const {
 		name,
