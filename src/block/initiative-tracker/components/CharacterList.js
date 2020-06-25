@@ -43,7 +43,8 @@ export default class CharacterList extends Component {
 			setActive,
 		} = this.props;
 
-		const isAdminActive = active && undefined === activeIndex;
+		const onFrontend = undefined !== activeIndex,
+			isAdminActive = active && ! onFrontend;
 
 		const toggleAdd = () => {
 			this.setState( {
@@ -74,6 +75,8 @@ export default class CharacterList extends Component {
 									deleteCharacter={ deleteCharacter }
 									editText={ editText }
 									active={ active }
+									onFrontend={ onFrontend }
+									isAdminActive={ isAdminActive }
 								/> :
 								<Character
 									character={ character }
@@ -82,6 +85,8 @@ export default class CharacterList extends Component {
 									active={ active }
 									activeIndex={ activeIndex }
 									setActive={ setActive }
+									onFrontend={ onFrontend }
+									isAdminActive={ isAdminActive }
 								/>
 						) ) }
 					</ul>

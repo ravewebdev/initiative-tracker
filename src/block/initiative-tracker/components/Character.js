@@ -49,11 +49,11 @@ export default class Character extends Component {
 			active,
 			activeIndex,
 			setActive,
+			onFrontend,
+			isAdminActive,
 		} = this.props;
 
-		const onFrontend = undefined !== activeIndex,
-			isAdminActive = active && ! onFrontend,
-			isCurrent = ! onFrontend ? false : ( activeIndex === index );
+		const isCurrent = ! onFrontend ? false : ( activeIndex === index );
 
 		/**
 		 * Handle character edits.
