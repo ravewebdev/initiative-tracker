@@ -17,6 +17,16 @@ const {
     },
 } = wp;
 
+/**
+ * Add/Edit Character form.
+ *
+ * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+ * @since  1.0.0
+ * @since  2.0.0 Converted to functional component.
+ *
+ * @param  {Object} props Component props.
+ * @return {ReactElement} Component render JSX.
+ */
 const AddEditCharacterForm = ( props ) => {
     const {
         type,
