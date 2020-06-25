@@ -70,7 +70,7 @@ const CharacterList = ( props ) => {
 				<ul>
 					{ characters.map( ( character, index ) => (
 						<Character
-							key={ index }
+							key={ character.key }
 							character={ character }
 							type={ type }
 							index={ index }

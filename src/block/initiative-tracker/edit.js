@@ -65,7 +65,10 @@ const Edit = ( props ) => {
      */
     const addCharacter = ( type, character ) => {
         type = `${type}s`;
+        character.key = Date.now();
+
         const characters = [ ...props.attributes[ type ], character ];
+
         setAttributes( {
             [ type ]: sortCharacters( characters )
         } );
