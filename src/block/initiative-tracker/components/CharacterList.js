@@ -68,6 +68,7 @@ export default class CharacterList extends Component {
 						{ characters.map( ( character, index ) => (
 							isAdminActive ?
 								<Character
+									key={ index }
 									character={ character }
 									type={ type }
 									index={ index }
@@ -79,6 +80,7 @@ export default class CharacterList extends Component {
 									isAdminActive={ isAdminActive }
 								/> :
 								<Character
+									key={ index }
 									character={ character }
 									index={ index }
 									editCharacter={ editCharacter }
