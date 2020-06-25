@@ -40,6 +40,7 @@ export default class CharacterList extends Component {
 			editText,
 			active,
 			activeIndex,
+			setActive,
 		} = this.props;
 
 		const isAdminActive = active && undefined === activeIndex;
@@ -51,7 +52,7 @@ export default class CharacterList extends Component {
 		};
 
 		// Sort characters by initiative if combined list is displayed.
-		if ( ! active ) {
+		if ( ! isAdminActive ) {
 			characters.sort( function( char1, char2 ) {
 				return ( parseInt( char1.initiative ) > parseInt( char2.initiative ) ? -1 : 1 );
 			} );
@@ -80,6 +81,7 @@ export default class CharacterList extends Component {
 									editCharacter={ editCharacter }
 									active={ active }
 									activeIndex={ activeIndex }
+									setActive={ setActive }
 								/>
 						) ) }
 					</ul>
