@@ -107,7 +107,7 @@ const Character = ( props ) => {
                     		name,
                     		player,
                     		initiative: newInitiative,
-                    	}, this.props.character );
+                    	}, props.character );
                     } }
                 />
 			) }
