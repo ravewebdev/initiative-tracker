@@ -12,8 +12,8 @@ const {
     },
     element: {
         Component,
-        useState,
         useEffect,
+        useState,
     },
 } = wp;
 
