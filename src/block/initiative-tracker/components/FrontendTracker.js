@@ -14,6 +14,15 @@ const {
 
 import CharacterList from './CharacterList';
 
+/**
+ * Frontend Initiative Tracker.
+ *
+ * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+ * @since  1.0.0
+ *
+ * @param  {Object} props Component props.
+ * @return {ReactElement} Component render JSX.
+ */
 const FrontendTracker = ( props ) => {
 	const {
 		dataAttributes,
