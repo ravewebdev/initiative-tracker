@@ -79,6 +79,7 @@ const CharacterList = ( props ) => {
 							editText={ editText }
 							active={ active }
 							activeIndex={ activeIndex }
+							setActive={ setActive }
 							onFrontend={ onFrontend }
 							isAdminActive={ isAdminActive }
 						/>
