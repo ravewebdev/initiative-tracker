@@ -19,12 +19,14 @@ const FrontendTracker = ( props ) => {
 		className,
 	} = props;
 
+	// Block attributes.
 	const [ attributes, setAttributes ] = useState( {
 		block_id: 0,
 		players: [],
 		npcs: [],
 	} );
 
+	// Currently active character by index.
 	const [ activeIndex, setActiveIndex ] = useState( 0 );
 
 	const {
