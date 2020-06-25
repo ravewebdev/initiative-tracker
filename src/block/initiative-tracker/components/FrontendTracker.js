@@ -2,6 +2,8 @@
  * Display Initiative Tracker on frontend.
  */
 
+import CharacterList from './CharacterList';
+
 const {
 	i18n: {
         __,
@@ -11,8 +13,6 @@ const {
     	useState,
     }
 } = wp;
-
-import CharacterList from './CharacterList';
 
 /**
  * Frontend Initiative Tracker.

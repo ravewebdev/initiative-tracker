@@ -1,13 +1,14 @@
 /**
  * FRONTEND: Initiative Tracker Block
  */
+
+import FrontendTracker from './components/FrontendTracker';
+
 const {
     element: {
 		render,
 	},
 } = wp;
-
-import FrontendTracker from './components/FrontendTracker';
 
 const trackerClass = 'wp-block-rave-initiative-tracker';
 const trackers     = document.querySelectorAll( `.${trackerClass}` );

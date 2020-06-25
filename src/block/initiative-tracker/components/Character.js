@@ -2,6 +2,9 @@
  * Character.
  */
 
+import DeleteCharacterModal from './DeleteCharacterModal';
+import AddEditCharacterForm from './AddEditCharacterForm';
+
 const {
 	i18n: {
         __,
@@ -16,9 +19,6 @@ const {
         useState,
     },
 } = wp;
-
-import DeleteCharacterModal from './DeleteCharacterModal';
-import AddEditCharacterForm from './AddEditCharacterForm';
 
 /**
  * Single Character.

@@ -2,6 +2,9 @@
  * Character List.
  */
 
+import Character from './Character';
+import AddEditCharacterForm from './AddEditCharacterForm';
+
 const {
     components: {
         Button,
@@ -11,9 +14,6 @@ const {
         useState,
     },
 } = wp;
-
-import Character from './Character';
-import AddEditCharacterForm from './AddEditCharacterForm';
 
 /**
  * Character List.
