@@ -1,6 +1,7 @@
 /**
- * WP dependencies
+ * Character List.
  */
+
 const {
     components: {
         Button,
@@ -10,9 +11,6 @@ const {
     },
 } = wp;
 
-/**
- * Components
- */
 import Character from './Character';
 import AddEditCharacterForm from './AddEditCharacterForm';
 
