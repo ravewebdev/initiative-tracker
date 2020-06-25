@@ -32,7 +32,15 @@ const DeleteCharacterModal = ( props ) => {
 		type,
 		deleteCharacter,
 	} = props;
+
 	const [ isOpen, setOpen ] = useState( false );
+
+	/**
+	 * Toggle display of modal.
+	 *
+	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @since  1.0.0
+	 */
 	const toggle = () => {
 		setOpen( isOpen ? false : true );
 	};
