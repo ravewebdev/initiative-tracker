@@ -104,8 +104,7 @@ const Character = ( props ) => {
                     } }
                     onChange={ ( newInitiative ) => {
                     	editCharacter( {
-                    		name,
-                    		player,
+                    		...props.character,
                     		initiative: newInitiative,
                     	}, props.character );
                     } }
