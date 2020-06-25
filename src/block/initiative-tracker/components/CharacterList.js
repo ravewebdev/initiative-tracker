@@ -69,30 +69,19 @@ const CharacterList = ( props ) => {
 			{ characters.length > 0 && (
 				<ul>
 					{ characters.map( ( character, index ) => (
-						isAdminActive ?
-							<Character
-								key={ index }
-								character={ character }
-								type={ type }
-								index={ index }
-								editCharacter={ editCharacter }
-								deleteCharacter={ deleteCharacter }
-								editText={ editText }
-								active={ active }
-								onFrontend={ onFrontend }
-								isAdminActive={ isAdminActive }
-							/> :
-							<Character
-								key={ index }
-								character={ character }
-								index={ index }
-								editCharacter={ editCharacter }
-								active={ active }
-								activeIndex={ activeIndex }
-								setActive={ setActive }
-								onFrontend={ onFrontend }
-								isAdminActive={ isAdminActive }
-							/>
+						<Character
+							key={ index }
+							character={ character }
+							type={ type }
+							index={ index }
+							editCharacter={ editCharacter }
+							deleteCharacter={ deleteCharacter }
+							editText={ editText }
+							active={ active }
+							activeIndex={ activeIndex }
+							onFrontend={ onFrontend }
+							isAdminActive={ isAdminActive }
+						/>
 					) ) }
 				</ul>
 			) }
