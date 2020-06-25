@@ -34,6 +34,9 @@ const FrontendTracker = ( props ) => {
 		npcs,
 	} = attributes;
 
+	// Whether actively editing a character.
+	const [ active, setActive ] = useState( false );
+
 	// Set initial attribute values from props.
 	useEffect( () => {
 		setAttributes( {
@@ -75,7 +78,8 @@ const FrontendTracker = ( props ) => {
 		            title={ __( 'Characters', 'initiative-tracker' ) }
 		            characters={ characters }
 		            editCharacter={ editCharacter }
-		            active={ false }
+		            setActive={ setActive }
+		            active={ active }
 		            activeIndex={ activeIndex }
 		        />
 		        <button
