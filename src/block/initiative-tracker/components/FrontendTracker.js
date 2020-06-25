@@ -1,13 +1,14 @@
 /**
  * Display Initiative Tracker on frontend.
  */
+
 const {
 	i18n: {
         __,
     },
     element: {
-    	useState,
     	useEffect,
+    	useState,
     }
 } = wp;
 
