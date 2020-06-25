@@ -55,7 +55,7 @@ const Character = ( props ) => {
 	const isCurrent = ! onFrontend ? false : ( activeIndex === index );
 
 	/**
-	 * Handle character edits.
+	 * Toggle editing state.
 	 *
 	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
 	 * @since  1.0.0
