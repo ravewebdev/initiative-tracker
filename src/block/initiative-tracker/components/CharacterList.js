@@ -8,111 +8,116 @@ const {
     },
     element: {
         Component,
+        useEffect,
+        useState,
     },
 } = wp;
 
 import Character from './Character';
 import AddEditCharacterForm from './AddEditCharacterForm';
 
-export default class CharacterList extends Component {
-	constructor( props ) {
-		super( props );
-	
-		this.state = {
-			adding: false,
-		};
+/**
+ * Character List.
+ *
+ * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+ * @since  1.0.0
+ * @since  2.0.0 Converted to functional component.
+ *
+ * @param  {Object} props Component props.
+ * @return {ReactElement} Component render JSX.
+ */
+const CharacterList = ( props ) => {
+	const {
+		title,
+		characters,
+		type,
+		addCharacter,
+		editCharacter,
+		deleteCharacter,
+		addText,
+		editText,
+		active,
+		activeIndex,
+		setActive,
+	} = props;
+
+	const [ isAdding, setIsAdding ] = useState( false );
+
+	const onFrontend = undefined !== activeIndex,
+		isAdminActive = active && ! onFrontend;
+
+	/**
+	 * Toggle adding state.
+	 *
+	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @since  1.0.0
+	 */
+	const toggleAdd = () => {
+		setIsAdding( ! isAdding );
 	};
 
-	render() {
-		const {
-			adding,
-		} = this.state;
-		const {
-			title,
-			characters,
-			type,
-			addCharacter,
-			editCharacter,
-			deleteCharacter,
-			addText,
-			editText,
-			active,
-			activeIndex,
-			setActive,
-		} = this.props;
+	// Sort characters by initiative if combined list is displayed.
+	if ( ! isAdminActive ) {
+		characters.sort( function( char1, char2 ) {
+			return ( parseInt( char1.initiative ) > parseInt( char2.initiative ) ? -1 : 1 );
+		} );
+	}
 
-		const onFrontend = undefined !== activeIndex,
-			isAdminActive = active && ! onFrontend;
+	return (
+		<div className={ `character-list${ typeof type === 'undefined' ? '' : `--${type}` }` }>
+			<h2>{ title }</h2>
 
-		const toggleAdd = () => {
-			this.setState( {
-				adding: ! adding
-			} );
-		};
+			{ characters.length > 0 && (
+				<ul>
+					{ characters.map( ( character, index ) => (
+						isAdminActive ?
+							<Character
+								key={ index }
+								character={ character }
+								type={ type }
+								index={ index }
+								editCharacter={ editCharacter }
+								deleteCharacter={ deleteCharacter }
+								editText={ editText }
+								active={ active }
+								onFrontend={ onFrontend }
+								isAdminActive={ isAdminActive }
+							/> :
+							<Character
+								key={ index }
+								character={ character }
+								index={ index }
+								editCharacter={ editCharacter }
+								active={ active }
+								activeIndex={ activeIndex }
+								setActive={ setActive }
+								onFrontend={ onFrontend }
+								isAdminActive={ isAdminActive }
+							/>
+					) ) }
+				</ul>
+			) }
 
-		// Sort characters by initiative if combined list is displayed.
-		if ( ! isAdminActive ) {
-			characters.sort( function( char1, char2 ) {
-				return ( parseInt( char1.initiative ) > parseInt( char2.initiative ) ? -1 : 1 );
-			} );
-		}
-		
-		return (
-			<div className={ `character-list${ typeof type === 'undefined' ? '' : `--${type}` }` }>
-				<h2>{ title }</h2>
+			{ isAdminActive && (
+				isAdding ?
+					<AddEditCharacterForm
+						type={ type }
+						characterFn={ addCharacter }
+						toggle={ toggleAdd }
+					/> :
+					<div className="edit-character-buttons">
+						<Button
+				            isPrimary
+				            onClick={ () => {
+				            	toggleAdd();
+				            } }
+						>
+							{ addText }
+						</Button>
+					</div>
+			) }
+		</div>
+	);
+};
 
-				{ characters.length > 0 && (
-					<ul>
-						{ characters.map( ( character, index ) => (
-							isAdminActive ?
-								<Character
-									key={ index }
-									character={ character }
-									type={ type }
-									index={ index }
-									editCharacter={ editCharacter }
-									deleteCharacter={ deleteCharacter }
-									editText={ editText }
-									active={ active }
-									onFrontend={ onFrontend }
-									isAdminActive={ isAdminActive }
-								/> :
-								<Character
-									key={ index }
-									character={ character }
-									index={ index }
-									editCharacter={ editCharacter }
-									active={ active }
-									activeIndex={ activeIndex }
-									setActive={ setActive }
-									onFrontend={ onFrontend }
-									isAdminActive={ isAdminActive }
-								/>
-						) ) }
-					</ul>
-				) }
-
-				{ isAdminActive && (
-					adding ?
-						<AddEditCharacterForm
-							type={ type }
-							characterFn={ addCharacter }
-							toggle={ toggleAdd }
-						/> :
-						<div className="edit-character-buttons">
-							<Button
-					            isPrimary
-					            onClick={ () => {
-					            	this.setState( {
-					            		adding: true
-					            	} );
-					            } }
-							>
-								{ addText }
-							</Button>
-						</div>
-				) }
-			</div>
-		);
-	};
-}
+export default CharacterList;
