@@ -1,6 +1,7 @@
 /**
- * WP dependencies
+ * Add/Edit Character Form.
  */
+
 const {
     i18n: {
         __,
