@@ -6,9 +6,6 @@ import Character from './Character';
 import AddEditCharacterForm from './AddEditCharacterForm';
 
 const {
-    components: {
-        Button,
-    },
     element: {
         useState,
     },
@@ -29,7 +26,7 @@ const CharacterList = ( props ) => {
 		title,
 		characters,
 		type,
-		editCharacter,
+		editCharacter = null,
 		deleteCharacter,
 		addText,
 		editText,

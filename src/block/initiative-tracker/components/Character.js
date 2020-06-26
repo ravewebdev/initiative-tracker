@@ -2,16 +2,11 @@
  * Character.
  */
 
-import DeleteCharacterModal from './DeleteCharacterModal';
-import AddEditCharacterForm from './AddEditCharacterForm';
-
 const {
 	i18n: {
         __,
     },
     components: {
-        Button,
-		Dashicon,
         TextControl,
 	},
     element: {
@@ -61,16 +56,20 @@ const Character = ( props ) => {
 		setIsEditing( ! isEditing );
 	};
 
+	/**
+	 * Display AddEditCharacterForm if in admin.
+	 *
+	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @since  2.0.0
+	 *
+	 * @return {JSX|null} JSX to edit Character if in admin, null otherwise.
+	 */
+	const maybeEditCharacter = () => (
+		null !== editCharacter ? editCharacter( type, isEditing, toggleEdit, props.character, index ) : null
+	);
+
 	if ( isEditing ) {
-		return (
-			<AddEditCharacterForm
-		 		type={ type}
-		 		characterFn={ editCharacter }
-		 		toggle={ toggleEdit }
-		 		character={ { ...props.character } }
-		 		index={ index }
-		 	/>
-		);
+		return maybeEditCharacter;
 	}
 
 	return (
@@ -110,23 +109,7 @@ const Character = ( props ) => {
 				<span className="initiative">{ initiative || 0 }</span>
 			) }
 
-			{ isAdminActive && (
-				<>
-					<Button
-						className="edit-character"
-						isTertiary
-						onClick={ toggleEdit }
-					>
-						<Dashicon icon="edit" />
-					</Button>
-					<DeleteCharacterModal
-						index={ index }
-						deleteCharacter={ deleteCharacter }
-						name={ name }
-						type={ type }
-					/>
-				</>
-			) }
+			{ maybeEditCharacter() }
 		</li>
 	);
 };

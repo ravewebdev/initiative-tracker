@@ -4,6 +4,7 @@
 
 import AddEditCharacterForm from './components/AddEditCharacterForm';
 import CharacterList from './components/CharacterList';
+import DeleteCharacterModal from './components/DeleteCharacterModal';
 import { sortCharacters } from './util';
 
 const {
@@ -12,6 +13,7 @@ const {
     },
     components: {
         Button,
+        Dashicon,
     },
     element: {
         useState,
@@ -142,26 +144,52 @@ const Edit = ( props ) => {
             type,
             characterFn,
             toggleFn,
+            isActive,
+            character = null,
+            index = 0,
         } = fnProps;
 
-        if ( 'add' === action ) {
+        const formProps = {
+            type,
+            characterFn,
+            toggle: () => toggleFn( type ),
+        };
+
+        if ( 'edit' === action ) {
+            formProps.character = character;
+            formProps.index = index;
+        }
+
+        if ( isActive ) {
             return (
-                isAdding[ type ] ?
-                    <AddEditCharacterForm
-                        type={ type }
-                        characterFn={ characterFn }
-                        toggle={ () => toggleFn( type ) }
-                    /> :
+                <AddEditCharacterForm { ...formProps }/>
+            );
+        } else {
+            return (
+                'add' === action ?
                     <div className="edit-character-buttons">
                         <Button
                             isPrimary
-                            onClick={ () => {
-                                toggleFn( type );
-                            } }
+                            onClick={ () => toggleFn( type ) }
                         >
                             { __( 'Add Player', 'initiative-tracker' ) }
                         </Button>
-                    </div>
+                    </div> :
+                    <>
+                        <Button
+                            className="edit-character"
+                            isTertiary
+                            onClick={ () => toggleFn( type ) }
+                        >
+                            <Dashicon icon="edit" />
+                        </Button>
+                        <DeleteCharacterModal
+                            index={ index }
+                            deleteCharacter={ deleteCharacter }
+                            name={ character.name }
+                            type={ type }
+                        />
+                    </>
             );
         }
     };
@@ -180,7 +208,32 @@ const Edit = ( props ) => {
             type,
             characterFn: addCharacter,
             toggleFn: toggleAdding,
+            isActive: isAdding[ type ],
         } )
+    );
+
+    /**
+     * Display Edit version of AddEditCharacterForm.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     *
+     * @param  {string}   type      Type of Character list being displayed.
+     * @param  {boolean}  isEditing Whether currently in editing mode.
+     * @param  {function} toggleFn  Toggle function.
+     * @param  {Object}   character Character object.
+     * @param  {integer}  index     Character index.
+     * @return {ReactElement}       JSX to display.
+     */
+    const displayEditForm = ( type, isEditing, toggleFn, character, index ) => (
+        displayAddEditForm( {
+            type,
+            characterFn: editCharacter,
+            toggleFn,
+            isActive: isEditing,
+            character,
+            index,
+        }, 'edit' )
     );
 
     return (
@@ -191,7 +244,7 @@ const Edit = ( props ) => {
                         <CharacterList
                             title={ __( 'Players', 'initiative-tracker' ) }
                             characters={ players }
-                            editCharacter={ editCharacter }
+                            editCharacter={ displayEditForm }
                             deleteCharacter={ deleteCharacter }
                             type="player"
                             addText={ __( 'Add Player', 'initiative-tracker' ) }
@@ -203,7 +256,7 @@ const Edit = ( props ) => {
                         <CharacterList
                             title={ __( 'NPCs', 'initiative-tracker' ) }
                             characters={ npcs }
-                            editCharacter={ editCharacter }
+                            editCharacter={ displayEditForm }
                             deleteCharacter={ deleteCharacter }
                             type="npc"
                             addText={ __( 'Add NPC', 'initiative-tracker' ) }
