@@ -114,7 +114,7 @@ const AddEditCharacterForm = ( props ) => {
             <div className="edit-character-buttons">
                 <Button
                     isSecondary
-                    onClick={ toggle }
+                    onClick={ () => toggle( type ) }
                 >
                     { __( 'Cancel', 'initiative-tracker' ) }
                 </Button>
@@ -134,7 +134,7 @@ const AddEditCharacterForm = ( props ) => {
                         } else {
                             characterFn( type, tmpCharacter );
                         }
-                        toggle();
+                        toggle( type );
                     } }
                 >
                     { __( 'Save', 'initiative-tracker' ) }

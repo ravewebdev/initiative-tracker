@@ -37,22 +37,11 @@ const CharacterList = ( props ) => {
 		active,
 		activeIndex,
 		setActive,
+		children,
 	} = props;
-
-	const [ isAdding, setIsAdding ] = useState( false );
 
 	const onFrontend = undefined !== activeIndex,
 		isAdminActive = active && ! onFrontend;
-
-	/**
-	 * Toggle adding state.
-	 *
-	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
-	 * @since  1.0.0
-	 */
-	const toggleAdd = () => {
-		setIsAdding( ! isAdding );
-	};
 
 	return (
 		<div className={ `character-list${ typeof type === 'undefined' ? '' : `--${type}` }` }>
@@ -78,24 +67,7 @@ const CharacterList = ( props ) => {
 				</ul>
 			) }
 
-			{ isAdminActive && (
-				isAdding ?
-					<AddEditCharacterForm
-						type={ type }
-						characterFn={ addCharacter }
-						toggle={ toggleAdd }
-					/> :
-					<div className="edit-character-buttons">
-						<Button
-				            isPrimary
-				            onClick={ () => {
-				            	toggleAdd();
-				            } }
-						>
-							{ addText }
-						</Button>
-					</div>
-			) }
+			{ children }
 		</div>
 	);
 };

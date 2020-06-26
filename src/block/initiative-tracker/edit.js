@@ -2,12 +2,19 @@
  * EDIT: Initiative Tracker Block
  */
 
+import AddEditCharacterForm from './components/AddEditCharacterForm';
 import CharacterList from './components/CharacterList';
 import { sortCharacters } from './util';
 
 const {
     i18n: {
         __,
+    },
+    components: {
+        Button,
+    },
+    element: {
+        useState,
     },
 } = wp;
 
@@ -39,6 +46,28 @@ const Edit = ( props ) => {
             id: clientId
         } );
     }
+
+    // Handle adding character state.
+    const [ isAdding, setIsAdding ] = useState( {
+        player: false,
+        npc: false,
+    } );
+
+    /**
+     * Toggle adding state.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  1.0.0
+     * @since  2.0.0 Added type param.
+     *
+     * @param  {string} type Type of character.
+     */
+    const toggleAdding = ( type ) => {
+        setIsAdding( {
+            ...isAdding,
+            [ type ]: ! isAdding[ type ],
+        } );
+    };
 
     /**
      * Add new character, sort alphabetically.
@@ -98,6 +127,62 @@ const Edit = ( props ) => {
         } );
     };
 
+    /**
+     * Display AddEditCharacterForm component.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     *
+     * @param  {Object} fnProps Props to pass to componenent.
+     * @param  {string} action  Version of form to display.
+     * @return {ReactElement}   JSX to display.
+     */
+    const displayAddEditForm = ( fnProps, action = 'add' ) => {
+        const {
+            type,
+            characterFn,
+            toggleFn,
+        } = fnProps;
+
+        if ( 'add' === action ) {
+            return (
+                isAdding[ type ] ?
+                    <AddEditCharacterForm
+                        type={ type }
+                        characterFn={ characterFn }
+                        toggle={ () => toggleFn( type ) }
+                    /> :
+                    <div className="edit-character-buttons">
+                        <Button
+                            isPrimary
+                            onClick={ () => {
+                                toggleFn( type );
+                            } }
+                        >
+                            { __( 'Add Player', 'initiative-tracker' ) }
+                        </Button>
+                    </div>
+            );
+        }
+    };
+
+    /**
+     * Display Add version of AddEditCharacterForm.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     *
+     * @param  {string} type  Type of Character list being displayed.
+     * @return {ReactElement} JSX to display.
+     */
+    const displayAddForm = ( type ) => (
+        displayAddEditForm( {
+            type,
+            characterFn: addCharacter,
+            toggleFn: toggleAdding,
+        } )
+    );
+
     return (
         <div className={ className }>
             <div className="characters">
@@ -113,7 +198,9 @@ const Edit = ( props ) => {
                             addText={ __( 'Add Player', 'initiative-tracker' ) }
                             editText={ __( 'Edit Player', 'initiative-tracker' ) }
                             active={ isSelected }
-                        />
+                        >
+                            { displayAddForm( 'player' ) }
+                        </CharacterList>
                         <CharacterList
                             title={ __( 'NPCs', 'initiative-tracker' ) }
                             characters={ npcs }
@@ -124,7 +211,9 @@ const Edit = ( props ) => {
                             addText={ __( 'Add NPC', 'initiative-tracker' ) }
                             editText={ __( 'Edit NPC', 'initiative-tracker' ) }
                             active={ isSelected }
-                        />
+                        >
+                            { displayAddForm( 'npc' ) }
+                        </CharacterList>
                     </>
                 ) }
                 { ! isSelected && (
