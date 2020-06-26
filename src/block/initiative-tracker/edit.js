@@ -9,6 +9,7 @@ const {
 } = wp;
 
 import CharacterList from './components/CharacterList';
+import { sortCharacters } from './util';
 
 /**
  * Handle edit functionality in the admin.
@@ -37,21 +38,6 @@ const Edit = ( props ) => {
         setAttributes( {
             id: clientId
         } );
-    }
-
-    /**
-     * Sort characters by name.
-     *
-     * @author R A Van Epps <rave@ravanepps.com>
-     * @since  1.0.0
-     *
-     * @param  {array} characters Array of characters.
-     */
-    const sortCharacters = ( characters ) => {
-        characters.sort( function( char1, char2 ) {
-            return char1.name.localeCompare( char2.name );
-        } );
-        return characters;
     }
 
     /**
@@ -144,10 +130,10 @@ const Edit = ( props ) => {
                 { ! isSelected && (
                     <CharacterList
                         title={ __( 'Characters', 'initiative-tracker' ) }
-                        characters={ [
+                        characters={ sortCharacters( [
                             ...players,
                             ...npcs,
-                        ] }
+                        ], false ) }
                         active={ isSelected }
                     />
                 ) }
