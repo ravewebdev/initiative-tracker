@@ -69,12 +69,8 @@ const Character = ( props ) => {
 		 		type={ type}
 		 		characterFn={ editCharacter }
 		 		toggle={ toggleEdit }
-		 		character={ {
-		 			name,
-		 			player,
-		 			initiative,
-		 			index,
-		 		} }
+		 		character={ { ...props.character } }
+		 		index={ index }
 		 	/>
 		);
 	}

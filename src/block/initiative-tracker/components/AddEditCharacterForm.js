@@ -33,6 +33,7 @@ const AddEditCharacterForm = ( props ) => {
         characterFn,
         toggle,
         character,
+        index,
     } = props;
 
     const [ state, setState ] = useState( {
@@ -42,7 +43,6 @@ const AddEditCharacterForm = ( props ) => {
         nameIsEmpty: true,
         playerIsEmpty: true,
         editing: false,
-        index: null,
     } );
 
     // Set initial state values.
@@ -67,7 +67,6 @@ const AddEditCharacterForm = ( props ) => {
         nameIsEmpty,
         playerIsEmpty,
         editing,
-        index,
     } = state;
 
     const errorClass = 'input-error',
@@ -126,12 +125,14 @@ const AddEditCharacterForm = ( props ) => {
                     onClick={ () => {
                         if ( editing ) {
                             characterFn( type, index, {
+                                ...character,
                                 name: name.trim(),
                                 player: ( isPlayer ? player.trim() : '' ),
                                 initiative,
                             } );
                         } else {
                             characterFn( type, {
+                                ...character,
                                 name: name.trim(),
                                 player: ( isPlayer ? player.trim() : '' ),
                                 initiative,
