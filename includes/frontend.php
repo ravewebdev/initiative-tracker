@@ -54,13 +54,14 @@ function render_block( array $attributes ) : string {
 						array_map( function( $character, $index ) {
 							$name       = $character['name'] ?? '';
 							$player     = $character['player'] ?? '';
-							$player     = '' === $player ? 'NPC' : $player;
 							$initiative = $character['initiative'] ?: 0;
 							?>
 							<li class="character <?php echo esc_attr( 0 === $index ? 'current' : '' ); ?>">
 								<span class="name"><?php echo esc_html( $name ); ?></span>
-								<span class="player"><?php echo esc_html( "( {$player} )" ); ?></span>
-								<span class="initiative"><?php echo esc_html( " - {$initiative}" ); ?></span>
+								<?php if ( ! empty( $player ) ) : ?>
+									<span class="player"><?php echo esc_html( "( {$player} )" ); ?></span>
+								<?php endif; ?>
+								<span class="initiative"><?php echo esc_html( " &mdash; {$initiative}" ); ?></span>
 							</li>
 							<?php
 						}, $characters, array_keys( $characters ) );
