@@ -85,6 +85,7 @@ const AddEditCharacterForm = ( props ) => {
                     } );
                 } }
                 className={ null !== name && nameIsEmpty ? errorClass : '' }
+                autoFocus={ true }
             />
             { isPlayer && (
                 <TextControl
