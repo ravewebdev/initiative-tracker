@@ -123,20 +123,17 @@ const AddEditCharacterForm = ( props ) => {
                     isPrimary
                     disabled={ disableSave }
                     onClick={ () => {
+                        const tmpCharacter = {
+                            ...character,
+                            name: name.trim(),
+                            player: ( isPlayer ? player.trim() : '' ),
+                            initiative,
+                        };
+
                         if ( editing ) {
-                            characterFn( type, index, {
-                                ...character,
-                                name: name.trim(),
-                                player: ( isPlayer ? player.trim() : '' ),
-                                initiative,
-                            } );
+                            characterFn( type, index, tmpCharacter );
                         } else {
-                            characterFn( type, {
-                                ...character,
-                                name: name.trim(),
-                                player: ( isPlayer ? player.trim() : '' ),
-                                initiative,
-                            } );
+                            characterFn( type, tmpCharacter );
                         }
                         toggle();
                     } }
