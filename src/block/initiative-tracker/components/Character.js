@@ -66,7 +66,7 @@ const Character = ( props ) => {
 	);
 
 	if ( isEditing ) {
-		return maybeEditCharacter;
+		return maybeEditCharacter();
 	}
 
 	return (
