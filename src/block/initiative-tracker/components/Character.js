@@ -77,10 +77,11 @@ const Character = ( props ) => {
 		<li className={ `character ${ isCurrent ? 'current' : '' }` }>
 			<span className="name">{ name }</span>
 
-			&nbsp;
-
-			{ ! isAdminActive && (
-				<span className="player">{ `( ${ '' === player ? 'NPC' : player } )`}</span>
+			{ '' !== player && (
+				<>
+					&nbsp;
+					<span className="player">{ `( ${ player } )`}</span>
+				</>
 			) }
 
 			&nbsp;&mdash;&nbsp;
