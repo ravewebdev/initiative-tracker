@@ -135,6 +135,7 @@ const AddEditCharacterForm = ( props ) => {
                         } else {
                             characterFn( type, tmpCharacter );
                         }
+
                         toggle( type );
                     } }
                 >
