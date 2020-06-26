@@ -31,8 +31,8 @@ const AddEditCharacterForm = ( props ) => {
         type,
         characterFn,
         toggle,
-        character,
-        index,
+        character = null,
+        index = null,
     } = props;
 
     const [ state, setState ] = useState( {
@@ -46,7 +46,7 @@ const AddEditCharacterForm = ( props ) => {
 
     // Set initial state values.
     useEffect( () => {
-        if ( undefined === character ) {
+        if ( null === character ) {
             return;
         }
 

@@ -32,10 +32,10 @@ const CharacterList = ( props ) => {
 		children = null,
 	} = props;
 
-	const onFrontend = undefined !== activeIndex;
+	const onFrontend = null !== activeIndex;
 
 	return (
-		<div className={ `character-list${ typeof type === 'undefined' ? '' : `--${type}` }` }>
+		<div className={ `character-list${ null === type ? '' : `--${type}` }` }>
 			<h2>{ title }</h2>
 
 			{ characters.length > 0 && (
