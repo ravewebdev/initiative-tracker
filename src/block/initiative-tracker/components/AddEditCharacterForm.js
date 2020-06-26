@@ -82,6 +82,23 @@ const AddEditCharacterForm = ( props ) => {
         toggle( type );
     };
 
+    /**
+     * Handle potentially submitting form on enter.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     *
+     * @param  {Object} event Key press event.
+     * @return {void}
+     */
+    const maybeSubmitForm = ( event ) => {
+        if ( 'Enter' !== event.key ) {
+            return;
+        }
+
+        submitForm();
+    };
+
     const {
         name,
         player,
@@ -109,6 +126,7 @@ const AddEditCharacterForm = ( props ) => {
                 } }
                 className={ null !== name && nameIsEmpty ? errorClass : '' }
                 autoFocus={ true }
+                onKeyPress={ maybeSubmitForm }
             />
             { isPlayer && (
                 <TextControl
@@ -122,6 +140,7 @@ const AddEditCharacterForm = ( props ) => {
                         } );
                     } }
                     className={ null !== player && playerIsEmpty ? errorClass : '' }
+                    onKeyPress={ maybeSubmitForm }
                 />
             ) }
             <TextControl
@@ -134,6 +153,7 @@ const AddEditCharacterForm = ( props ) => {
                         initiative,
                     } );
                 } }
+                onKeyPress={ maybeSubmitForm }
             />
             <div className="edit-character-buttons">
                 <Button
