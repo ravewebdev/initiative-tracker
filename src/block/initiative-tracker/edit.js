@@ -2,14 +2,14 @@
  * EDIT: Initiative Tracker Block
  */
 
+import CharacterList from './components/CharacterList';
+import { sortCharacters } from './util';
+
 const {
     i18n: {
         __,
     },
 } = wp;
-
-import CharacterList from './components/CharacterList';
-import { sortCharacters } from './util';
 
 /**
  * Handle edit functionality in the admin.
