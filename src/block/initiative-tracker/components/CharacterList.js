@@ -27,17 +27,12 @@ const CharacterList = ( props ) => {
 		characters,
 		type,
 		editCharacter = null,
-		deleteCharacter,
-		addText,
-		editText,
-		active,
 		activeIndex,
 		setActive,
 		children,
 	} = props;
 
-	const onFrontend = undefined !== activeIndex,
-		isAdminActive = active && ! onFrontend;
+	const onFrontend = undefined !== activeIndex;
 
 	return (
 		<div className={ `character-list${ typeof type === 'undefined' ? '' : `--${type}` }` }>
@@ -52,12 +47,9 @@ const CharacterList = ( props ) => {
 							type={ type }
 							index={ index }
 							editCharacter={ editCharacter }
-							deleteCharacter={ deleteCharacter }
-							editText={ editText }
 							activeIndex={ activeIndex }
 							setActive={ setActive }
 							onFrontend={ onFrontend }
-							isAdminActive={ isAdminActive }
 						/>
 					) ) }
 				</ul>

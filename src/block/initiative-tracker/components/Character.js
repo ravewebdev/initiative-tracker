@@ -34,12 +34,9 @@ const Character = ( props ) => {
 		type,
 		index,
 		editCharacter,
-		deleteCharacter,
-		editText,
 		activeIndex,
 		setActive,
 		onFrontend,
-		isAdminActive,
 	} = props;
 
 	const [ isEditing, setIsEditing ] = useState( false );

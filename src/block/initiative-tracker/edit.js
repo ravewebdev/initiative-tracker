@@ -245,11 +245,7 @@ const Edit = ( props ) => {
                             title={ __( 'Players', 'initiative-tracker' ) }
                             characters={ players }
                             editCharacter={ displayEditForm }
-                            deleteCharacter={ deleteCharacter }
                             type="player"
-                            addText={ __( 'Add Player', 'initiative-tracker' ) }
-                            editText={ __( 'Edit Player', 'initiative-tracker' ) }
-                            active={ isSelected }
                         >
                             { displayAddForm( 'player' ) }
                         </CharacterList>
@@ -257,11 +253,7 @@ const Edit = ( props ) => {
                             title={ __( 'NPCs', 'initiative-tracker' ) }
                             characters={ npcs }
                             editCharacter={ displayEditForm }
-                            deleteCharacter={ deleteCharacter }
                             type="npc"
-                            addText={ __( 'Add NPC', 'initiative-tracker' ) }
-                            editText={ __( 'Edit NPC', 'initiative-tracker' ) }
-                            active={ isSelected }
                         >
                             { displayAddForm( 'npc' ) }
                         </CharacterList>
@@ -274,7 +266,6 @@ const Edit = ( props ) => {
                             ...players,
                             ...npcs,
                         ], false ) }
-                        active={ isSelected }
                     />
                 ) }
             </div>
