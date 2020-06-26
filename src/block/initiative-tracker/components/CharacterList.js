@@ -55,13 +55,6 @@ const CharacterList = ( props ) => {
 		setIsAdding( ! isAdding );
 	};
 
-	// Sort characters by initiative if combined list is displayed.
-	if ( ! isAdminActive ) {
-		characters.sort( function( char1, char2 ) {
-			return ( parseInt( char1.initiative ) > parseInt( char2.initiative ) ? -1 : 1 );
-		} );
-	}
-
 	return (
 		<div className={ `character-list${ typeof type === 'undefined' ? '' : `--${type}` }` }>
 			<h2>{ title }</h2>

@@ -3,6 +3,7 @@
  */
 
 import CharacterList from './CharacterList';
+import { sortCharacters } from '../util';
 
 const {
 	i18n: {
@@ -54,10 +55,10 @@ const FrontendTracker = ( props ) => {
 		} );
 	}, [] );
 
-	const characters = [
+	const characters = sortCharacters( [
         ...players,
         ...npcs,
-    ];
+    ], false );
 
 	/**
      * Edit character attributes on frontend.
