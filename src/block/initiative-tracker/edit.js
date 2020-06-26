@@ -146,7 +146,7 @@ const Edit = ( props ) => {
             toggleFn,
             isActive,
             character = null,
-            index = 0,
+            index = null,
         } = fnProps;
 
         const formProps = {
