@@ -70,7 +70,6 @@ const CharacterList = ( props ) => {
 							editCharacter={ editCharacter }
 							deleteCharacter={ deleteCharacter }
 							editText={ editText }
-							active={ active }
 							activeIndex={ activeIndex }
 							setActive={ setActive }
 							onFrontend={ onFrontend }

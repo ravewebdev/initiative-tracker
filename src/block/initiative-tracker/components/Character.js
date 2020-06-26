@@ -42,7 +42,6 @@ const Character = ( props ) => {
 		editCharacter,
 		deleteCharacter,
 		editText,
-		active,
 		activeIndex,
 		setActive,
 		onFrontend,
