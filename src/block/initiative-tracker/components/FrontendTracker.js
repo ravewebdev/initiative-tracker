@@ -88,7 +88,7 @@ const FrontendTracker = ( props ) => {
 				<CharacterList
 		            title={ __( 'Characters', 'initiative-tracker' ) }
 		            characters={ characters }
-		            editCharacter={ editCharacter }
+		            // editCharacter={ editCharacter }
 		            setActive={ setActive }
 		            active={ active }
 		            activeIndex={ activeIndex }
