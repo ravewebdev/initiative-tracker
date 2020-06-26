@@ -29,7 +29,6 @@ const CharacterList = ( props ) => {
 		title,
 		characters,
 		type,
-		addCharacter,
 		editCharacter,
 		deleteCharacter,
 		addText,

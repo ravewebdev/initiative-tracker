@@ -191,7 +191,6 @@ const Edit = ( props ) => {
                         <CharacterList
                             title={ __( 'Players', 'initiative-tracker' ) }
                             characters={ players }
-                            addCharacter={ addCharacter }
                             editCharacter={ editCharacter }
                             deleteCharacter={ deleteCharacter }
                             type="player"
@@ -204,7 +203,6 @@ const Edit = ( props ) => {
                         <CharacterList
                             title={ __( 'NPCs', 'initiative-tracker' ) }
                             characters={ npcs }
-                            addCharacter={ addCharacter }
                             editCharacter={ editCharacter }
                             deleteCharacter={ deleteCharacter }
                             type="npc"
