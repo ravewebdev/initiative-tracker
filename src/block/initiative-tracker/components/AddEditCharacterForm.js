@@ -59,6 +59,29 @@ const AddEditCharacterForm = ( props ) => {
         } );
     }, [] );
 
+    /**
+     * Submit form to add/update Character.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     */
+    const submitForm = () => {
+        const tmpCharacter = {
+            ...character,
+            name: name.trim(),
+            player: ( isPlayer ? player.trim() : '' ),
+            initiative,
+        };
+
+        if ( editing ) {
+            characterFn( type, index, tmpCharacter );
+        } else {
+            characterFn( type, tmpCharacter );
+        }
+
+        toggle( type );
+    };
+
     const {
         name,
         player,
@@ -122,22 +145,7 @@ const AddEditCharacterForm = ( props ) => {
                 <Button
                     isPrimary
                     disabled={ disableSave }
-                    onClick={ () => {
-                        const tmpCharacter = {
-                            ...character,
-                            name: name.trim(),
-                            player: ( isPlayer ? player.trim() : '' ),
-                            initiative,
-                        };
-
-                        if ( editing ) {
-                            characterFn( type, index, tmpCharacter );
-                        } else {
-                            characterFn( type, tmpCharacter );
-                        }
-
-                        toggle( type );
-                    } }
+                    onClick={ submitForm }
                 >
                     { __( 'Save', 'initiative-tracker' ) }
                 </Button>
