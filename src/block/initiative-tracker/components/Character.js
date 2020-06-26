@@ -15,7 +15,6 @@ const {
         TextControl,
 	},
     element: {
-        Component,
         useState,
     },
 } = wp;

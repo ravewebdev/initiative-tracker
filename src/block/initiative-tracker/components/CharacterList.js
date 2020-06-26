@@ -10,7 +10,6 @@ const {
         Button,
     },
     element: {
-        Component,
         useState,
     },
 } = wp;

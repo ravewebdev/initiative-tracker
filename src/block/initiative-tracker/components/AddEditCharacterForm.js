@@ -11,7 +11,6 @@ const {
         TextControl,
     },
     element: {
-        Component,
         useEffect,
         useState,
     },
