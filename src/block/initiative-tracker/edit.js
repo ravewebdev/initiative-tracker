@@ -29,7 +29,7 @@ const Edit = ( props ) => {
         clientId,
         className,
         setAttributes,
-        isSelected
+        isSelected,
     } = props;
 
     // Update id attr when clientId changes.
