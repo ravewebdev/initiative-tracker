@@ -36,7 +36,7 @@ const Character = ( props ) => {
 		editCharacter,
 		activeIndex,
 		setActive,
-		onFrontend,
+		onFrontend = false,
 	} = props;
 
 	const [ isEditing, setIsEditing ] = useState( false );

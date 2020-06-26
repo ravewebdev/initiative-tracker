@@ -25,11 +25,11 @@ const CharacterList = ( props ) => {
 	const {
 		title,
 		characters,
-		type,
+		type = null,
 		editCharacter = null,
-		activeIndex,
-		setActive,
-		children,
+		activeIndex = null,
+		setActive = null,
+		children = null,
 	} = props;
 
 	const onFrontend = undefined !== activeIndex;
