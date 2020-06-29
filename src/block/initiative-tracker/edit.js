@@ -15,9 +15,6 @@ const {
         Button,
         Dashicon,
     },
-    element: {
-        useState,
-    },
 } = wp;
 
 /**
@@ -48,28 +45,6 @@ const Edit = ( props ) => {
             id: clientId
         } );
     }
-
-    // Handle adding character state.
-    const [ isAdding, setIsAdding ] = useState( {
-        player: false,
-        npc: false,
-    } );
-
-    /**
-     * Toggle adding state.
-     *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
-     * @since  1.0.0
-     * @since  2.0.0 Added type param.
-     *
-     * @param  {string} type Type of character.
-     */
-    const toggleAdding = ( type ) => {
-        setIsAdding( {
-            ...isAdding,
-            [ type ]: ! isAdding[ type ],
-        } );
-    };
 
     /**
      * Add new character, sort alphabetically.
@@ -202,15 +177,17 @@ const Edit = ( props ) => {
      * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
      * @since  2.0.0
      *
-     * @param  {string} type  Type of Character list being displayed.
-     * @return {ReactElement} JSX to display.
+     * @param  {string}   type     Type of Character list being displayed.
+     * @param  {boolean}  isAdding Whether currently in editing mode.
+     * @param  {function} toggleFn Toggle function.
+     * @return {ReactElement}      JSX to display.
      */
-    const displayAddForm = ( type ) => (
+    const displayAddForm = ( type, isAdding, toggleFn ) => (
         displayAddEditForm( {
             type,
             characterFn: addCharacter,
-            toggleFn: toggleAdding,
-            isActive: isAdding[ type ],
+            toggleFn: toggleFn,
+            isActive: isAdding,
         } )
     );
 
@@ -246,19 +223,17 @@ const Edit = ( props ) => {
                         <CharacterList
                             title={ __( 'Players', 'initiative-tracker' ) }
                             characters={ players }
+                            addCharacter={ displayAddForm }
                             editCharacter={ displayEditForm }
                             type="player"
-                        >
-                            { displayAddForm( 'player' ) }
-                        </CharacterList>
+                        />
                         <CharacterList
                             title={ __( 'NPCs', 'initiative-tracker' ) }
                             characters={ npcs }
+                            addCharacter={ displayAddForm }
                             editCharacter={ displayEditForm }
                             type="npc"
-                        >
-                            { displayAddForm( 'npc' ) }
-                        </CharacterList>
+                        />
                     </>
                 ) }
                 { ! isSelected && (

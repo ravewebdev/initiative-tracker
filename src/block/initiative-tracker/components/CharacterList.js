@@ -26,11 +26,35 @@ const CharacterList = ( props ) => {
 		title,
 		characters,
 		type = null,
+		addCharacter = null,
 		editCharacter = null,
 		activeIndex = null,
 		setActive = null,
-		children = null,
 	} = props;
+
+	const [ isAdding, setIsAdding ] = useState( false );
+
+	/**
+	 * Toggle adding state.
+	 *
+	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @since  1.0.0
+	 */
+	const toggleAdd = () => {
+		setIsAdding( ! isAdding );
+	};
+
+	/**
+	 * Display AddEditCharacterForm if in admin.
+	 *
+	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @since  2.0.0
+	 *
+	 * @return {JSX|null} JSX to edit Character if in admin, null otherwise.
+	 */
+	const maybeAddCharacter = () => (
+		null !== addCharacter ? addCharacter( type, isAdding, toggleAdd ) : null
+	);
 
 	const onFrontend = null !== activeIndex;
 
@@ -55,7 +79,7 @@ const CharacterList = ( props ) => {
 				</ul>
 			) }
 
-			{ children }
+			{ maybeAddCharacter() }
 		</div>
 	);
 };
