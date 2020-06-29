@@ -50,7 +50,7 @@ const CharacterList = ( props ) => {
 	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
 	 * @since  2.0.0
 	 *
-	 * @return {JSX|null} JSX to edit Character if in admin, null otherwise.
+	 * @return {ReactElement} JSX to add Character if in admin.
 	 */
 	const maybeAddCharacter = () => (
 		null !== addCharacter ? addCharacter( type, isAdding, toggleAdd ) : null
