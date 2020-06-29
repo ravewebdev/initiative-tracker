@@ -155,6 +155,7 @@ const AddEditCharacterForm = ( props ) => {
                     } );
                 } }
                 onKeyPress={ maybeSubmitForm }
+                min="0"
             />
             <div className="edit-character-buttons">
                 <Button
