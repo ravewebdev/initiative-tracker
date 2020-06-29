@@ -175,7 +175,7 @@ const Edit = ( props ) => {
                             { __( 'Add Player', 'initiative-tracker' ) }
                         </Button>
                     </div> :
-                    <>
+                    <div className="edit-character-buttons">
                         <Button
                             className="edit-character"
                             isTertiary
@@ -189,7 +189,7 @@ const Edit = ( props ) => {
                             name={ character.name }
                             type={ type }
                         />
-                    </>
+                    </div>
             );
         }
     };
