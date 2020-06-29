@@ -52,7 +52,7 @@ const DeleteCharacterModal = ( props ) => {
 	            onClick={ toggle }
 	            isDestructive
 			>
-				<Dashicon icon="trash" />
+				<Dashicon icon="trash" /> { __( 'Delete', 'initiative-tracker' ) }
 			</Button>
 			{ isOpen && (
 				<Modal

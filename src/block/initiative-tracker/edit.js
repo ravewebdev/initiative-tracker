@@ -166,30 +166,32 @@ const Edit = ( props ) => {
             );
         } else {
             return (
-                'add' === action ?
-                    <div className="edit-character-buttons">
+                <div className="edit-character-buttons">
+                    { 'add' === action ? (
                         <Button
                             isPrimary
                             onClick={ () => toggleFn( type ) }
                         >
                             { __( 'Add Player', 'initiative-tracker' ) }
                         </Button>
-                    </div> :
-                    <div className="edit-character-buttons">
-                        <Button
-                            className="edit-character"
-                            isTertiary
-                            onClick={ () => toggleFn( type ) }
-                        >
-                            <Dashicon icon="edit" />
-                        </Button>
-                        <DeleteCharacterModal
-                            index={ index }
-                            deleteCharacter={ deleteCharacter }
-                            name={ character.name }
-                            type={ type }
-                        />
-                    </div>
+                    ) : (
+                        <>
+                            <Button
+                                className="edit-character"
+                                isTertiary
+                                onClick={ () => toggleFn( type ) }
+                            >
+                                <Dashicon icon="edit" /> { __( 'Edit', 'initiative-tracker' ) }
+                            </Button>
+                            <DeleteCharacterModal
+                                index={ index }
+                                deleteCharacter={ deleteCharacter }
+                                name={ character.name }
+                                type={ type }
+                            />
+                        </>
+                    ) }
+                </div>
             );
         }
     };
