@@ -66,11 +66,12 @@ const AddEditCharacterForm = ( props ) => {
      * @since  2.0.0
      */
     const submitForm = () => {
+        const regexDigits = /^[\d]+$/;
         const tmpCharacter = {
             ...character,
             name: name.trim(),
             player: ( isPlayer ? player.trim() : '' ),
-            initiative,
+            initiative: regexDigits.test( initiative ) ? initiative : 0,
         };
 
         if ( editing ) {
@@ -150,7 +151,7 @@ const AddEditCharacterForm = ( props ) => {
                 onChange={ ( initiative ) => {
                     setState( {
                         ...state,
-                        initiative,
+                        initiative: initiative,
                     } );
                 } }
                 onKeyPress={ maybeSubmitForm }
