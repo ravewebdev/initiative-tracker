@@ -46,10 +46,13 @@
 		margin: 0.5rem 0;
 	}
 
-	.fe-edit-character {
-		display: block;
-		font-size: smaller;
-		margin: 1rem;
+	.fe-edit-character-buttons {
+
+		.char-link {
+			display: inline-block;
+			font-size: smaller;
+			margin: 1rem 2rem 1rem 0;
+		}
 
 		svg {
 			display: inline-block;
