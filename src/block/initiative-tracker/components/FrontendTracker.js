@@ -191,7 +191,6 @@ const FrontendTracker = ( props ) => {
 		            title={ __( 'Characters', 'initiative-tracker' ) }
 		            characters={ characters }
 		            editCharacter={ displayEditForm }
-		            active={ active }
 		            activeIndex={ activeIndex }
 		        >
 		        	<div className="fe-edit-character-buttons">
