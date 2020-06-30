@@ -127,6 +127,7 @@ const FrontendTracker = ( props ) => {
 	            		initiative,
 	            	}, character );
 	            } }
+	            min="0"
 	        />
 		);
     };
