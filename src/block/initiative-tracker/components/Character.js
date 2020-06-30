@@ -62,12 +62,30 @@ const Character = ( props ) => {
 	 * @return {ReactElement} JSX to edit Character if in admin.
 	 */
 	const maybeEditCharacter = () => (
-		null !== editCharacter ? editCharacter( type, isEditing, toggleEdit, props.character, index ) : null
+		( ! onFrontend && null !== editCharacter ) ? editCharacter( type, isEditing, toggleEdit, props.character, index ) : null
 	);
 
 	if ( isEditing ) {
 		return maybeEditCharacter();
 	}
+
+	/**
+	 * Display Initiative inputs if editing on frontend.
+	 *
+	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @since  2.0.0
+	 *
+	 * @return {ReactElement} JSX for read-only or editable initiative score.
+	 */
+	const displayInitiative = () => {
+		let initiativeDisplay = null;
+
+		if ( onFrontend && null !== editCharacter ) {
+			initiativeDisplay = editCharacter( props.character );
+		}
+
+		return initiativeDisplay || <span className="initiative">{ initiative || 0 }</span>;
+	};
 
 	return (
 		<li className={ `character ${ isCurrent ? 'current' : '' }` }>
@@ -82,29 +100,7 @@ const Character = ( props ) => {
 
 			&nbsp;&mdash;&nbsp;
 
-			{ onFrontend && (
-				<TextControl
-					className="initiative"
-                    type="number"
-                    value={ initiative }
-                    onFocus={ () => {
-                    	setActive( true );
-                    } }
-                    onBlur={ () => {
-                    	setActive( false );
-                    } }
-                    onChange={ ( newInitiative ) => {
-                    	editCharacter( {
-                    		...props.character,
-                    		initiative: newInitiative,
-                    	}, props.character );
-                    } }
-                />
-			) }
-
-			{ ! onFrontend && (
-				<span className="initiative">{ initiative || 0 }</span>
-			) }
+			{ displayInitiative() }
 
 			{ maybeEditCharacter() }
 		</li>

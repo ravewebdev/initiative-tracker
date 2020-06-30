@@ -13,6 +13,7 @@ const {
     },
     components: {
         Dashicon,
+        TextControl,
     },
     element: {
     	useEffect,
@@ -49,6 +50,9 @@ const FrontendTracker = ( props ) => {
 
 	// Currently active character by index.
 	const [ activeIndex, setActiveIndex ] = useState( 0 );
+
+	// Whether actively editing initiative.
+	const [ isEditing, setIsEditing ] = useState( false );
 
 	// Whether actively editing a character.
 	const [ active, setActive ] = useState( false );
@@ -87,13 +91,34 @@ const FrontendTracker = ( props ) => {
         } );
     }
 
+    const displayEditForm = ( character ) => {
+    	if ( ! isEditing ) {
+    		return null;
+    	}
+
+    	return (
+	    	<TextControl
+				className="initiative"
+	            type="number"
+	            value={ character.initiative }
+	            onChange={ ( initiative ) => {
+	            	console.log( 'initiative', initiative );
+	            	/*editCharacter( {
+	            		...props.character,
+	            		initiative,
+	            	}, props.character );*/
+	            } }
+	        />
+		);
+    };
+
 	return (
 		<div className={ className }>
             <div className="characters">
 				<CharacterList
 		            title={ __( 'Characters', 'initiative-tracker' ) }
 		            characters={ characters }
-		            // editCharacter={ editCharacter }
+		            editCharacter={ displayEditForm }
 		            setActive={ setActive }
 		            active={ active }
 		            activeIndex={ activeIndex }
@@ -103,6 +128,7 @@ const FrontendTracker = ( props ) => {
 	                    className="fe-edit-character"
 	                    onClick={ ( event ) => {
 	                    	event.preventDefault();
+	                    	setIsEditing( true );
 	                    } }
 	                >
 	                    <Dashicon icon="edit" /> { __( 'Edit Initiative', 'initiative-tracker' ) }
