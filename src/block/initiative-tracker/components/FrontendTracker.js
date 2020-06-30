@@ -165,6 +165,7 @@ const FrontendTracker = ( props ) => {
 	                className={ linkClass }
 	                onClick={ ( event ) => {
 	                	event.preventDefault();
+	                	resetAttributes();
 	                	setIsEditing( false );
 	                } }
 	            >
