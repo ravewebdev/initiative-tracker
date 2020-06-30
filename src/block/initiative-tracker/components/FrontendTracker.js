@@ -64,7 +64,10 @@ const FrontendTracker = ( props ) => {
 		} );
 	}, [] );
 
-	const characters = sortCharacters( [
+	const characters = isEditing ? [
+		...sortCharacters( players ),
+		...sortCharacters( npcs ),
+	] : sortCharacters( [
         ...players,
         ...npcs,
     ], false );
