@@ -2,6 +2,8 @@
  * Display Initiative Tracker on frontend.
  */
 
+/* global initTracker */
+
 import CharacterList from './CharacterList';
 import { sortCharacters } from '../util';
 
