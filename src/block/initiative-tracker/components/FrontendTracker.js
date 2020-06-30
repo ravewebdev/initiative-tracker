@@ -91,6 +91,15 @@ const FrontendTracker = ( props ) => {
         } );
     }
 
+    /**
+     * Display input to edit Initiative.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     *
+     * @param  {Object} character Character object.
+     * @return {?ReactElement}    Text input JSX.
+     */
     const displayEditForm = ( character ) => {
     	if ( ! isEditing ) {
     		return null;
