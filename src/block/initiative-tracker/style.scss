@@ -45,4 +45,16 @@
 	.next-character {
 		margin: 0.5rem 0;
 	}
+
+	.fe-edit-character {
+		display: block;
+		font-size: smaller;
+		margin: 1rem;
+
+		svg {
+			display: inline-block;
+			fill: currentColor;
+			vertical-align: sub;
+		}
+	}
 }
