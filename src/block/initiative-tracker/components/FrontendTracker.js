@@ -130,8 +130,8 @@ const FrontendTracker = ( props ) => {
      * @return {ReactElement} Edit/save Character link.
      */
     const displayEditLink = () => {
-    	const icon = 'edit',
-    		label = __( 'Edit Initiative', 'initiative-tracker' );
+    	const icon = isEditing ? 'yes' : 'edit',
+    		label = isEditing ? __( 'Save Initiative', 'initiative-tracker' ) : __( 'Edit Initiative', 'initiative-tracker' );
 
     	return (
     		<a
@@ -139,7 +139,7 @@ const FrontendTracker = ( props ) => {
                 className="fe-edit-character"
                 onClick={ ( event ) => {
                 	event.preventDefault();
-                	setIsEditing( true );
+                	setIsEditing( ! isEditing );
                 } }
             >
                 <Dashicon icon={ icon } /> { label }
