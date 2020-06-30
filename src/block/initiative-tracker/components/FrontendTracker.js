@@ -61,6 +61,7 @@ const FrontendTracker = ( props ) => {
 		} );
 	}, [] );
 
+	// Sort characters: alphabetical if editing, by initiative otherwise.
 	const characters = isEditing ? [
 		...sortCharacters( players ),
 		...sortCharacters( npcs ),
