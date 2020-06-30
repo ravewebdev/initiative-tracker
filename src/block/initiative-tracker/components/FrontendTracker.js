@@ -122,7 +122,6 @@ const FrontendTracker = ( props ) => {
 	            type="number"
 	            value={ character.initiative }
 	            onChange={ ( initiative ) => {
-	            	console.log( 'initiative', initiative );
 	            	editCharacter( {
 	            		...character,
 	            		initiative,
