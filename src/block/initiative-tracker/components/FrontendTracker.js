@@ -122,28 +122,54 @@ const FrontendTracker = ( props ) => {
     };
 
     /**
-     * Display edit/save Character link.
+     * Display edit/save Character links.
      *
      * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
      * @since  2.0.0
      *
-     * @return {ReactElement} Edit/save Character link.
+     * @return {ReactElement} Character link JSX.
      */
-    const displayEditLink = () => {
-    	const icon = isEditing ? 'yes' : 'edit',
-    		label = isEditing ? __( 'Save Initiative', 'initiative-tracker' ) : __( 'Edit Initiative', 'initiative-tracker' );
+    const displayEditLinks = () => {
+    	const linkClass = 'char-link';
+
+    	if ( ! isEditing ) {
+    		return (
+    			<a
+	        		href="#"
+	                className={ linkClass }
+	                onClick={ ( event ) => {
+	                	event.preventDefault();
+	                	setIsEditing( true );
+	                } }
+	            >
+	                <Dashicon icon="edit" /> { __( 'Edit Initiative', 'initiative-tracker' ) }
+	            </a>
+    		);
+    	}
 
     	return (
-    		<a
-        		href=""
-                className="fe-edit-character"
-                onClick={ ( event ) => {
-                	event.preventDefault();
-                	setIsEditing( ! isEditing );
-                } }
-            >
-                <Dashicon icon={ icon } /> { label }
-            </a>
+    		<>
+    			<a
+	        		href="#"
+	                className={ linkClass }
+	                onClick={ ( event ) => {
+	                	event.preventDefault();
+	                	setIsEditing( false );
+	                } }
+	            >
+	                <Dashicon icon="no" /> { __( 'Cancel', 'initiative-tracker' ) }
+	            </a>
+    			<a
+	        		href="#"
+	                className={ linkClass }
+	                onClick={ ( event ) => {
+	                	event.preventDefault();
+	                	setIsEditing( false );
+	                } }
+	            >
+	                <Dashicon icon="yes" /> { __( 'Save Initiative', 'initiative-tracker' ) }
+	            </a>
+    		</>
     	);
     };
 
@@ -158,7 +184,9 @@ const FrontendTracker = ( props ) => {
 		            active={ active }
 		            activeIndex={ activeIndex }
 		        >
-		        	{ displayEditLink() }
+		        	<div className="fe-edit-character-buttons">
+		        		{ displayEditLinks() }
+		        	</div>
 		        </CharacterList>
 
 		        <button
