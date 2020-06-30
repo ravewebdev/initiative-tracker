@@ -130,6 +130,9 @@ const FrontendTracker = ( props ) => {
      * @return {ReactElement} Edit/save Character link.
      */
     const displayEditLink = () => {
+    	const icon = 'edit',
+    		label = __( 'Edit Initiative', 'initiative-tracker' );
+
     	return (
     		<a
         		href=""
@@ -139,7 +142,7 @@ const FrontendTracker = ( props ) => {
                 	setIsEditing( true );
                 } }
             >
-                <Dashicon icon="edit" /> { __( 'Edit Initiative', 'initiative-tracker' ) }
+                <Dashicon icon={ icon } /> { label }
             </a>
     	);
     };
