@@ -121,6 +121,29 @@ const FrontendTracker = ( props ) => {
 		);
     };
 
+    /**
+     * Display edit/save Character link.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     *
+     * @return {ReactElement} Edit/save Character link.
+     */
+    const displayEditLink = () => {
+    	return (
+    		<a
+        		href=""
+                className="fe-edit-character"
+                onClick={ ( event ) => {
+                	event.preventDefault();
+                	setIsEditing( true );
+                } }
+            >
+                <Dashicon icon="edit" /> { __( 'Edit Initiative', 'initiative-tracker' ) }
+            </a>
+    	);
+    };
+
 	return (
 		<div className={ className }>
             <div className="characters">
@@ -132,16 +155,7 @@ const FrontendTracker = ( props ) => {
 		            active={ active }
 		            activeIndex={ activeIndex }
 		        >
-		        	<a
-	            		href=""
-	                    className="fe-edit-character"
-	                    onClick={ ( event ) => {
-	                    	event.preventDefault();
-	                    	setIsEditing( true );
-	                    } }
-	                >
-	                    <Dashicon icon="edit" /> { __( 'Edit Initiative', 'initiative-tracker' ) }
-	                </a>
+		        	{ displayEditLink() }
 		        </CharacterList>
 
 		        <button
