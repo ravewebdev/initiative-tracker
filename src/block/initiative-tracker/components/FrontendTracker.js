@@ -127,6 +127,17 @@ const FrontendTracker = ( props ) => {
 	            		initiative,
 	            	}, character );
 	            } }
+	            onBlur={ () => {
+	            	const initiative = parseInt( character.initiative, 10 );
+
+	            	// Reset initiative to 0 if not a number or less than 0.
+	            	if ( isNaN( initiative ) || 0 > initiative ) {
+	            		editCharacter( {
+		            		...character,
+		            		initiative: 0,
+		            	}, character );
+	            	}
+	            } }
 	            min="0"
 	        />
 		);
