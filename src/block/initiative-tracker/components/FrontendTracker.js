@@ -9,6 +9,9 @@ const {
 	i18n: {
         __,
     },
+    components: {
+        Dashicon,
+    },
     element: {
     	useEffect,
     	useState,
@@ -92,7 +95,18 @@ const FrontendTracker = ( props ) => {
 		            setActive={ setActive }
 		            active={ active }
 		            activeIndex={ activeIndex }
-		        />
+		        >
+		        	<a
+	            		href=""
+	                    className="fe-edit-character"
+	                    onClick={ ( event ) => {
+	                    	event.preventDefault();
+	                    } }
+	                >
+	                    <Dashicon icon="edit" /> { __( 'Edit Initiative', 'initiative-tracker' ) }
+	                </a>
+		        </CharacterList>
+
 		        <button
 		        	type="button"
 		        	className="next-character"

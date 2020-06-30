@@ -30,6 +30,7 @@ const CharacterList = ( props ) => {
 		editCharacter = null,
 		activeIndex = null,
 		setActive = null,
+		children = null,
 	} = props;
 
 	const [ isAdding, setIsAdding ] = useState( false );
@@ -61,6 +62,8 @@ const CharacterList = ( props ) => {
 	return (
 		<div className={ `character-list${ null === type ? '' : `--${type}` }` }>
 			<h2>{ title }</h2>
+
+			{ null !== children && children }
 
 			{ characters.length > 0 && (
 				<ul>
