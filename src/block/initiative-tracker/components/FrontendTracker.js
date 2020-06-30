@@ -56,10 +56,20 @@ const FrontendTracker = ( props ) => {
 
 	// Set initial attribute values from props.
 	useEffect( () => {
+		resetAttributes();
+	}, [] );
+
+	/**
+	 * Reset state attributes to original dataAttributes.
+	 *
+	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @since  2.0.0
+	 */
+	const resetAttributes = () => {
 		setAttributes( {
 			...dataAttributes,
 		} );
-	}, [] );
+	}
 
 	// Sort characters: alphabetical if editing, by initiative otherwise.
 	const characters = isEditing ? [
