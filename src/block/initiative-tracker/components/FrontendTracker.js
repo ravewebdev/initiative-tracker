@@ -175,6 +175,11 @@ const FrontendTracker = ( props ) => {
 	                className={ linkClass }
 	                onClick={ ( event ) => {
 	                	event.preventDefault();
+
+	                	// Update dataAttributes to reflect changes.
+	                	dataAttributes.players = [ ...players ];
+	                	dataAttributes.npcs = [ ...npcs ];
+
 	                	setIsEditing( false );
 	                } }
 	            >
