@@ -123,10 +123,10 @@ const FrontendTracker = ( props ) => {
 	            value={ character.initiative }
 	            onChange={ ( initiative ) => {
 	            	console.log( 'initiative', initiative );
-	            	/*editCharacter( {
-	            		...props.character,
+	            	editCharacter( {
+	            		...character,
 	            		initiative,
-	            	}, props.character );*/
+	            	}, character );
 	            } }
 	        />
 		);
