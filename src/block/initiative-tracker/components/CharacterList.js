@@ -14,7 +14,7 @@ const {
 /**
  * Character List.
  *
- * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+ * @author R A Van Epps <rave@ravanepps.com>
  * @since  1.0.0
  * @since  2.0.0 Converted to functional component.
  *
@@ -38,7 +38,7 @@ const CharacterList = ( props ) => {
 	/**
 	 * Toggle adding state.
 	 *
-	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  1.0.0
 	 */
 	const toggleAdd = () => {
@@ -48,7 +48,7 @@ const CharacterList = ( props ) => {
 	/**
 	 * Display AddEditCharacterForm if in admin.
 	 *
-	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  2.0.0
 	 *
 	 * @return {ReactElement} JSX to add Character if in admin.

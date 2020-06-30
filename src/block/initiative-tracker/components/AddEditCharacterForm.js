@@ -19,7 +19,7 @@ const {
 /**
  * Add/Edit Character form.
  *
- * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+ * @author R A Van Epps <rave@ravanepps.com>
  * @since  1.0.0
  * @since  2.0.0 Converted to functional component.
  *
@@ -62,7 +62,7 @@ const AddEditCharacterForm = ( props ) => {
     /**
      * Submit form to add/update Character.
      *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @author R A Van Epps <rave@ravanepps.com>
      * @since  2.0.0
      */
     const submitForm = () => {
@@ -86,7 +86,7 @@ const AddEditCharacterForm = ( props ) => {
     /**
      * Handle potentially submitting form on enter.
      *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @author R A Van Epps <rave@ravanepps.com>
      * @since  2.0.0
      *
      * @param  {Object} event Key press event.

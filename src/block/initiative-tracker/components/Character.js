@@ -17,7 +17,7 @@ const {
 /**
  * Single Character.
  *
- * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+ * @author R A Van Epps <rave@ravanepps.com>
  * @since  1.0.0
  * @since  2.0.0 Converted to functional component.
  *
@@ -46,7 +46,7 @@ const Character = ( props ) => {
 	/**
 	 * Toggle editing state.
 	 *
-	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  1.0.0
 	 */
 	const toggleEdit = () => {
@@ -56,7 +56,7 @@ const Character = ( props ) => {
 	/**
 	 * Display AddEditCharacterForm if in admin.
 	 *
-	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  2.0.0
 	 *
 	 * @return {ReactElement} JSX to edit Character if in admin.

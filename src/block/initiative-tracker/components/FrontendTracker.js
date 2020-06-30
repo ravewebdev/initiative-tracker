@@ -21,7 +21,7 @@ const {
 /**
  * Frontend Initiative Tracker.
  *
- * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+ * @author R A Van Epps <rave@ravanepps.com>
  * @since  1.0.0
  *
  * @param  {Object} props Component props.

@@ -107,7 +107,7 @@ const Edit = ( props ) => {
     /**
      * Display AddEditCharacterForm component.
      *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @author R A Van Epps <rave@ravanepps.com>
      * @since  2.0.0
      *
      * @param  {Object} fnProps Props to pass to componenent.
@@ -174,7 +174,7 @@ const Edit = ( props ) => {
     /**
      * Display Add version of AddEditCharacterForm.
      *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @author R A Van Epps <rave@ravanepps.com>
      * @since  2.0.0
      *
      * @param  {string}   type     Type of Character list being displayed.
@@ -194,7 +194,7 @@ const Edit = ( props ) => {
     /**
      * Display Edit version of AddEditCharacterForm.
      *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @author R A Van Epps <rave@ravanepps.com>
      * @since  2.0.0
      *
      * @param  {string}   type      Type of Character list being displayed.

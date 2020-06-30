@@ -19,7 +19,7 @@ const {
 /**
  * Delete Character modal.
  *
- * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+ * @author R A Van Epps <rave@ravanepps.com>
  * @since  1.0.0
  *
  * @param  {Object} props Component props.
@@ -38,7 +38,7 @@ const DeleteCharacterModal = ( props ) => {
 	/**
 	 * Toggle display of modal.
 	 *
-	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  1.0.0
 	 */
 	const toggle = () => {
