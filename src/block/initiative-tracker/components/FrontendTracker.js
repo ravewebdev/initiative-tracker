@@ -54,9 +54,6 @@ const FrontendTracker = ( props ) => {
 	// Whether actively editing initiative.
 	const [ isEditing, setIsEditing ] = useState( false );
 
-	// Whether actively editing a character.
-	const [ active, setActive ] = useState( false );
-
 	// Set initial attribute values from props.
 	useEffect( () => {
 		setAttributes( {
@@ -183,7 +180,6 @@ const FrontendTracker = ( props ) => {
 		            title={ __( 'Characters', 'initiative-tracker' ) }
 		            characters={ characters }
 		            editCharacter={ displayEditForm }
-		            setActive={ setActive }
 		            active={ active }
 		            activeIndex={ activeIndex }
 		        >

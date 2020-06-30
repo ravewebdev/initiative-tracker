@@ -35,7 +35,6 @@ const Character = ( props ) => {
 		index,
 		editCharacter,
 		activeIndex,
-		setActive,
 		onFrontend = false,
 	} = props;
 

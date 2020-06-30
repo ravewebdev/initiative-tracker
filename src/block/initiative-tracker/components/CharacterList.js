@@ -29,7 +29,6 @@ const CharacterList = ( props ) => {
 		addCharacter = null,
 		editCharacter = null,
 		activeIndex = null,
-		setActive = null,
 		children = null,
 	} = props;
 
@@ -75,7 +74,6 @@ const CharacterList = ( props ) => {
 							index={ index }
 							editCharacter={ editCharacter }
 							activeIndex={ activeIndex }
-							setActive={ setActive }
 							onFrontend={ onFrontend }
 						/>
 					) ) }
