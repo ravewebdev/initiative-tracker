@@ -42,13 +42,13 @@ const FrontendTracker = ( props ) => {
 		npcs: [],
 	} );
 
-	// Currently active character by index.
-	const [ activeIndex, setActiveIndex ] = useState( 0 );
-
 	const {
 		players,
 		npcs,
 	} = attributes;
+
+	// Currently active character by index.
+	const [ activeIndex, setActiveIndex ] = useState( 0 );
 
 	// Whether actively editing a character.
 	const [ active, setActive ] = useState( false );
