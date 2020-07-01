@@ -237,8 +237,8 @@ const FrontendTracker = ( props ) => {
     	dataAttributes.players = [ ...players ];
     	dataAttributes.npcs = [ ...npcs ];
 
-		setIsEditing( false );
 		setLoading( false );
+		setIsEditing( false );
     };
 
 	return (
