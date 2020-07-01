@@ -109,7 +109,7 @@ class Routes {
 	public function localize_routes() {
 
 		// Return nulled array if user doesn't have permission to access REST API.
-		$has_access = $this->current_user_can_access_rest();
+		$has_access = $this->current_user_can_access_rest( get_the_ID() ?? 0 );
 
 		$vars = [
 			'nonce' => $has_access ? wp_create_nonce( 'wp_rest' ) : null,
@@ -132,7 +132,7 @@ class Routes {
 	 * @return bool                     Whether current user has proper permissions.
 	 */
 	public function check_initiative_permissions( WP_REST_Request $request ) : bool {
-		return $this->current_user_can_access_rest();
+		return $this->current_user_can_access_rest( $request->get_param( 'id' ) ?? 0 );
 	}
 
 	/**
@@ -182,9 +182,10 @@ class Routes {
 	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
 	 * @since  2.0.0
 	 *
-	 * @return bool Whether current user can access REST API.
+	 * @param  int $post_id Post ID.
+	 * @return bool         Whether current user can access REST API.
 	 */
-	private function current_user_can_access_rest() {
+	private function current_user_can_access_rest( int $post_id = 0 ) {
 		if ( ! is_user_logged_in() ) {
 			return false;
 		}
@@ -193,7 +194,13 @@ class Routes {
 			return true;
 		}
 
-		return is_singular() && is_author( get_current_user_id() );
+		$post = get_post( $post_id );
+
+		if ( null === $post ) {
+			return false;
+		}
+
+		return get_current_user_id() === $post->post_author;
 	}
 }
 
