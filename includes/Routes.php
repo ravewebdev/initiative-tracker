@@ -115,6 +115,10 @@ class Routes {
 			'nonce' => $has_access ? wp_create_nonce( 'wp_rest' ) : null,
 		];
 
+		foreach ( array_keys( $this->routes ) as $route ) {
+			$vars[ $route ] = $has_access ? implode( $this->get_route_pieces( $route ) ) : null;
+		}
+
 		wp_localize_script( 'initiative-tracker-frontend-script', 'initTracker', $vars );
 	}
 
