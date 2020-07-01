@@ -9,7 +9,10 @@
 
 namespace Rave\InitiativeTracker;
 
+use \WP_Block_Parser_Block;
+use \WP_Error;
 use \WP_REST_Request;
+use \WP_REST_Response;
 use \WP_REST_SERVER;
 
 /**
@@ -133,6 +136,44 @@ class Routes {
 	 */
 	public function check_initiative_permissions( WP_REST_Request $request ) : bool {
 		return $this->current_user_can_access_rest( $request->get_param( 'id' ) ?? 0 );
+	}
+
+	/**
+	 * Update initiative.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  2.0.0
+	 *
+	 * @param  WP_REST_Request $request  WP_REST_Request object.
+	 * @return WP_Error|WP_REST_Response WP_REST_Response if data update successful, WP_Error otherwise.
+	 */
+	public function update_initiative( WP_REST_Request $request ) {
+		$block_id     = $request->get_param( 'block_id' );
+		$post_id      = $request->get_param( 'post_id' );
+		$players      = $request->get_param( 'players' );
+		$npcs         = $request->get_param( 'npcs' );
+		$post_content = get_post_field( 'post_content', $post_id );
+		$post_blocks  = parse_blocks( $post_content );
+
+		// Update usage count for target block.
+		$post_blocks = array_map( function( $block ) use ( $block_id, $players, $npcs ) {
+			if ( 'rave/initiative-tracker' !== ( $block['blockName'] ?? '' ) || ( $block['attrs']['id'] ?? 0 ) !== $block_id ) {
+				return $block;
+			}
+
+			$block['attrs']['players'] = $players;
+			$block['attrs']['npcs']    = $npcs;
+
+			return $block;
+		}, $post_blocks );
+
+		// Update post content.
+		wp_update_post( [
+			'ID'           => $post_id,
+			'post_content' => serialize_blocks( $post_blocks ),
+		] );
+
+		return new WP_REST_Response( __( 'Initiative updated.', 'resource-tracker' ), 200 );
 	}
 
 	/**
