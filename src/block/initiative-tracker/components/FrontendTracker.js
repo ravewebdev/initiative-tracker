@@ -55,6 +55,9 @@ const FrontendTracker = ( props ) => {
 	// Whether actively editing initiative.
 	const [ isEditing, setIsEditing ] = useState( false );
 
+	// Handle loading state.
+	const [ isLoading, setLoading ] = useState( false );
+
 	// Set initial attribute values from props.
 	useEffect( () => {
 		resetAttributes();
@@ -212,6 +215,8 @@ const FrontendTracker = ( props ) => {
     		return;
     	}
 
+		setLoading( true );
+
     	const response = await apiFetch( {
     		path: `${path}/${ dataAttributes.post_id }`,
     		method: 'POST',
@@ -227,6 +232,7 @@ const FrontendTracker = ( props ) => {
     	dataAttributes.npcs = [ ...npcs ];
 
 		setIsEditing( false );
+		setLoading( false );
     };
 
 	return (
