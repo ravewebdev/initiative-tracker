@@ -86,7 +86,18 @@ class Routes {
 	 * @since  2.0.0
 	 */
 	private function register_hooks() {
+		add_action( 'rest_api_init', [ $this, 'register_routes' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'localize_routes' ], 20 );
+	}
+
+	/**
+	 * Register routes.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  2.0.0
+	 */
+	public function register_routes() {
+		array_map( [ $this, 'register_route' ], array_keys( $this->routes ) );
 	}
 
 	/**
@@ -118,6 +129,47 @@ class Routes {
 	 */
 	public function check_initiative_permissions( WP_REST_Request $request ) : bool {
 		return $this->current_user_can_access_rest();
+	}
+
+	/**
+	 * Register individual route.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  2.0.0
+	 *
+	 * @param string $route Route base.
+	 */
+	private function register_route( string $route ) {
+		$route_pieces = $this->get_route_pieces( $route, false );
+		$args         = $this->routes[ $route ]['args'] ?? [];
+
+		register_rest_route( $route_pieces['namespace'], $route_pieces['route'], $args );
+	}
+
+	/**
+	 * Get route pieces: versioned namespace and full route.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  2.0.0
+	 *
+	 * @param  string $route Route base.
+	 * @param  bool   $plain Whether returned route should be plain, i.e., skip route arg handling.
+	 * @return void|array    Route pieces if route exists.
+	 */
+	private function get_route_pieces( string $route, bool $plain = true ) {
+		if ( ! array_key_exists( $route, $this->routes ) ) {
+			return;
+		}
+
+		$options   = $this->routes[ $route ];
+		$version   = $options['version'] ?? 1;
+		$namespace = "{$this->namespace}/v{$version}";
+		$route    .= ! $plain && $options['uses_id'] ? '/(?P<id>[\d]+)' : '';
+
+		return [
+			'namespace' => $namespace,
+			'route'     => "/{$route}",
+		];
 	}
 
 	/**
