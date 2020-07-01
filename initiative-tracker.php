@@ -82,7 +82,9 @@ function register_block() {
 		wp_enqueue_script(
 			'initiative-tracker-frontend-script',
 			plugins_url( $frontend_script, __FILE__ ),
-			$asset_file['dependencies'],
+			array_merge( $asset_file['dependencies'], [
+				'wp-api-fetch',
+			] ),
 			$asset_file['version'],
 			true
 		);
