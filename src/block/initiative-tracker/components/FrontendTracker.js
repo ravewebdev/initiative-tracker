@@ -156,7 +156,7 @@ const FrontendTracker = ( props ) => {
      * @return {ReactElement} Character link JSX.
      */
     const displayEditLinks = () => {
-    	const linkClass = 'char-link';
+    	const linkClass = `char-link ${ isLoading ? 'disabled' : '' }`;
 
     	if ( ! isEditing ) {
     		return displayEditLink( linkClass, 'edit', __( 'Edit Initiative', 'initiative-tracker' ), () => setIsEditing( true ) );
@@ -192,6 +192,12 @@ const FrontendTracker = ( props ) => {
                 className={ linkClass }
                 onClick={ ( event ) => {
                 	event.preventDefault();
+
+                	// Stop here if currently in loading state.
+                	if ( isLoading ) {
+                		return false;
+                	}
+
                 	clickFn();
                 } }
             >
@@ -257,6 +263,7 @@ const FrontendTracker = ( props ) => {
 
 		        		setActiveIndex( newIndex >= characters.length ? 0 : newIndex );
 		        	} }
+					disabled={ isLoading }
 		        >
 					&raquo; { __( 'Next Character', 'initiative-tracker' ) }
 				</button>
