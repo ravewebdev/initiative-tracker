@@ -242,7 +242,7 @@ const FrontendTracker = ( props ) => {
     };
 
 	return (
-		<div className={ className }>
+		<div className={ `${ className } ${ isLoading ? 'is-loading' : '' }` }>
             <div className="characters">
 				<CharacterList
 		            title={ __( 'Characters', 'initiative-tracker' ) }
