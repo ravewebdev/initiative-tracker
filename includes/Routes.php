@@ -9,6 +9,8 @@
 
 namespace Rave\InitiativeTracker;
 
+use \WP_REST_SERVER;
+
 /**
  * Class Routes.
  *
@@ -61,6 +63,18 @@ class Routes {
 	 * @since  2.0.0
 	 */
 	private function __construct() {
+		$this->routes = [
+			'initiative' => [
+				'uses_id' => true,
+				'version' => 1,
+				'args'    => [
+					'methods'             => WP_REST_SERVER::EDITABLE,
+					'callback'            => [ $this, 'update_initiative' ],
+					'permission_callback' => [ $this, 'check_initiative_permissions' ],
+					'args'                => [],
+				],
+			],
+		];
 		$this->register_hooks();
 	}
 
