@@ -9,6 +9,7 @@
 
 namespace Rave\InitiativeTracker;
 
+use \WP_REST_Request;
 use \WP_REST_SERVER;
 
 /**
@@ -104,6 +105,19 @@ class Routes {
 		];
 
 		wp_localize_script( 'initiative-tracker-frontend-script', 'initTracker', $vars );
+	}
+
+	/**
+	 * Check if current user has proper permissions to access initiative update route.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  2.0.0
+	 *
+	 * @param  WP_REST_Request $request WP_REST_Request object.
+	 * @return bool                     Whether current user has proper permissions.
+	 */
+	public function check_initiative_permissions( WP_REST_Request $request ) : bool {
+		return $this->current_user_can_access_rest();
 	}
 
 	/**
