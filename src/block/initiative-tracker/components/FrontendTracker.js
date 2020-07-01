@@ -8,6 +8,7 @@ import CharacterList from './CharacterList';
 import { sortCharacters } from '../util';
 
 const {
+	apiFetch,
 	i18n: {
         __,
     },
@@ -187,18 +188,45 @@ const FrontendTracker = ( props ) => {
 	                className={ linkClass }
 	                onClick={ ( event ) => {
 	                	event.preventDefault();
-
-	                	// Update dataAttributes to reflect changes.
-	                	dataAttributes.players = [ ...players ];
-	                	dataAttributes.npcs = [ ...npcs ];
-
-	                	setIsEditing( false );
+	                	saveCharacterUpdates();
 	                } }
 	            >
 	                <Dashicon icon="yes" /> { __( 'Save Initiative', 'initiative-tracker' ) }
 	            </a>
     		</>
     	);
+    };
+
+    /**
+     * Update block attributes.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     *
+     * @return {void}
+     */
+    const saveCharacterUpdates = async () => {
+    	const path = initTracker.initiative;
+
+    	if ( null === path ) {
+    		return;
+    	}
+
+    	const response = await apiFetch( {
+    		path: `${path}/${ dataAttributes.post_id }`,
+    		method: 'POST',
+    		data: {
+    			...attributes,
+    		},
+    	} )
+    		.then( ( success ) => success )
+			.catch( ( error ) => error );
+
+		// Update dataAttributes to reflect changes.
+    	dataAttributes.players = [ ...players ];
+    	dataAttributes.npcs = [ ...npcs ];
+
+		setIsEditing( false );
     };
 
 	return (
