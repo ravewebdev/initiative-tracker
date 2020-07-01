@@ -26,6 +26,7 @@ trackers.forEach( ( tracker ) => {
 		block_id: tracker.dataset.id,
 		players: JSON.parse( tracker.dataset.players ),
 		npcs: JSON.parse( tracker.dataset.npcs ),
+		post_id: parseInt( tracker.dataset.post_id, 10 ),
 	};
 
 	render(

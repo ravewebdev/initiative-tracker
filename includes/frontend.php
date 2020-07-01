@@ -44,6 +44,7 @@ function render_block( array $attributes ) : string {
 		data-id="<?php echo esc_attr( $id ); ?>"
 		data-players="<?php echo esc_attr( wp_json_encode( $players ) ); ?>"
 		data-npcs="<?php echo esc_attr( wp_json_encode( $npcs ) ); ?>"
+		data-post_id="<?php echo esc_attr( get_the_ID() ); ?>"
 	>
 		<?php if ( count( $characters ) > 0 ) : ?>
 			<div class="characters">
