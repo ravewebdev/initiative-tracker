@@ -1,6 +1,10 @@
 .wp-block-rave-initiative-tracker {
 	margin: 1rem 0;
 
+	&.is-loading {
+		opacity: 0.75;
+	}
+
 	h2 {
 		margin-bottom: 0;
 	}
@@ -44,6 +48,10 @@
 
 	.next-character {
 		margin: 0.5rem 0;
+
+		&:disabled {
+			cursor: not-allowed;
+		}
 	}
 
 	.fe-edit-character-buttons {
@@ -52,6 +60,10 @@
 			display: inline-block;
 			font-size: smaller;
 			margin: 1rem 2rem 1rem 0;
+
+			&.disabled {
+				cursor: not-allowed;
+			}
 		}
 
 		svg {
