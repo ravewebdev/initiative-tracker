@@ -156,44 +156,44 @@ const FrontendTracker = ( props ) => {
     	const linkClass = 'char-link';
 
     	if ( ! isEditing ) {
-    		return (
-    			<a
-	        		href="#"
-	                className={ linkClass }
-	                onClick={ ( event ) => {
-	                	event.preventDefault();
-	                	setIsEditing( true );
-	                } }
-	            >
-	                <Dashicon icon="edit" /> { __( 'Edit Initiative', 'initiative-tracker' ) }
-	            </a>
-    		);
+    		return displayEditLink( linkClass, 'edit', __( 'Edit Initiative', 'initiative-tracker' ), () => setIsEditing( true ) );
     	}
 
     	return (
     		<>
-    			<a
-	        		href="#"
-	                className={ linkClass }
-	                onClick={ ( event ) => {
-	                	event.preventDefault();
-	                	resetAttributes();
-	                	setIsEditing( false );
-	                } }
-	            >
-	                <Dashicon icon="no" /> { __( 'Cancel', 'initiative-tracker' ) }
-	            </a>
-    			<a
-	        		href="#"
-	                className={ linkClass }
-	                onClick={ ( event ) => {
-	                	event.preventDefault();
-	                	saveCharacterUpdates();
-	                } }
-	            >
-	                <Dashicon icon="yes" /> { __( 'Save Initiative', 'initiative-tracker' ) }
-	            </a>
+    			{ displayEditLink( linkClass, 'no', __( 'Cancel', 'initiative-tracker' ), () => {
+	                resetAttributes();
+    				setIsEditing( false );
+    			} ) }
+    			{ displayEditLink( linkClass, 'yes', __( 'Save Initiative', 'initiative-tracker' ), () => saveCharacterUpdates() ) }
     		</>
+    	);
+    };
+
+    /**
+     * Display edit/save link.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     *
+     * @param  {string}   linkClass Link class(es).
+     * @param  {string}   icon      Dashicon icon.
+     * @param  {string}   label     Link label text.
+     * @param  {function} clickFn   Functionality to call on link click.
+     * @return {ReactElement}       Link JSX.
+     */
+    const displayEditLink = ( linkClass, icon, label, clickFn ) => {
+    	return (
+    		<a
+        		href="#"
+                className={ linkClass }
+                onClick={ ( event ) => {
+                	event.preventDefault();
+                	clickFn();
+                } }
+            >
+                <Dashicon icon={ icon } /> { label }
+            </a>
     	);
     };
 
