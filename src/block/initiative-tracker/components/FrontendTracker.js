@@ -58,9 +58,19 @@ const FrontendTracker = ( props ) => {
 	// Handle loading state.
 	const [ isLoading, setLoading ] = useState( false );
 
+	// Handle update status messaging.
+	const [ notice, setNotice ] = useState( null );
+
 	// Set initial attribute values from props.
 	useEffect( () => {
 		resetAttributes();
+
+		// Clear notice after delay.
+		const timer = setTimeout( () => {
+			setNotice( null );
+		}, 600001000 );
+
+		return () => clearTimeout( timer );
 	}, [] );
 
 	/**
@@ -243,12 +253,19 @@ const FrontendTracker = ( props ) => {
 		    	dataAttributes.players = [ ...players ];
 		    	dataAttributes.npcs = [ ...npcs ];
 
-		    	return success;
+		    	return {
+		    		type: 'success',
+		    		message: success,
+		    	};
     		} )
 			.catch( ( error ) => {
-				return error.message;
+				return {
+					type: 'error',
+					message: error.message,
+				};
 			} );
 
+		setNotice( response );
 		setLoading( false );
 		setIsEditing( false );
     };
@@ -264,6 +281,11 @@ const FrontendTracker = ( props ) => {
 		        >
 		        	<div className="fe-edit-character-buttons">
 		        		{ displayEditLinks() }
+		        		{ null !== notice && (
+		        			<span className={ `notice ${notice.type}` } role={ 'error' === notice.type ? 'alert' : 'status' }>
+		        				{ notice.message }
+		        			</span>
+		        		) }
 		        	</div>
 		        </CharacterList>
 
