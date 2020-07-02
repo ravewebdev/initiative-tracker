@@ -15,6 +15,9 @@ const {
         Button,
         Dashicon,
     },
+    element: {
+        useEffect,
+    },
 } = wp;
 
 /**
@@ -39,12 +42,15 @@ const Edit = ( props ) => {
         isSelected,
     } = props;
 
-    // Update id attr when clientId changes.
-    if ( clientId !== id ) {
-        setAttributes( {
-            id: clientId
-        } );
-    }
+    useEffect( () => {
+
+        // If id is not set (initial block creation), set id to clientId value.
+        if ( 0 === id.length ) {
+            setAttributes( {
+                id: clientId,
+            } );
+        }
+    }, [] );
 
     /**
      * Add new character, sort alphabetically.
