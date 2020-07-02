@@ -156,6 +156,13 @@ const FrontendTracker = ( props ) => {
      * @return {ReactElement} Character link JSX.
      */
     const displayEditLinks = () => {
+    	const path = initTracker.initiative,
+    		nonce = initTracker.nonce;
+
+    	if ( null === path || null === nonce ) {
+    		return;
+    	}
+
     	const linkClass = `char-link ${ isLoading ? 'disabled' : '' }`;
 
     	if ( ! isEditing ) {
