@@ -238,12 +238,16 @@ const FrontendTracker = ( props ) => {
     			...attributes,
     		},
     	} )
-    		.then( ( success ) => success )
-			.catch( ( error ) => error );
+    		.then( ( success ) => {
+    			// Update dataAttributes to reflect changes.
+		    	dataAttributes.players = [ ...players ];
+		    	dataAttributes.npcs = [ ...npcs ];
 
-		// Update dataAttributes to reflect changes.
-    	dataAttributes.players = [ ...players ];
-    	dataAttributes.npcs = [ ...npcs ];
+		    	return success;
+    		} )
+			.catch( ( error ) => {
+				return error.message;
+			} );
 
 		setLoading( false );
 		setIsEditing( false );
