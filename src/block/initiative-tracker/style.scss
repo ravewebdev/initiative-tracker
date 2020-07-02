@@ -1,3 +1,6 @@
+$color-error: #a40000;
+$color-status: #00a400;
+
 .wp-block-rave-initiative-tracker {
 	margin: 1rem 0;
 
@@ -70,6 +73,19 @@
 			display: inline-block;
 			fill: currentColor;
 			vertical-align: sub;
+		}
+	}
+
+	.notice {
+		font-size: smaller;
+		font-style: italic;
+
+		&.success {
+			color: $color-status;
+		}
+
+		&.error {
+			color: $color-error;
 		}
 	}
 }
