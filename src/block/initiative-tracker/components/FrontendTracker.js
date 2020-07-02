@@ -85,6 +85,19 @@ const FrontendTracker = ( props ) => {
 		} );
 	}
 
+    /**
+     * Helper function to update isEditing status and clear notice.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     *
+     * @param  {boolean} status New isEditing status.
+     */
+    const onSetIsEditing = ( status ) => {
+        setIsEditing( status );
+        setNotice( null );
+    };
+
 	// Sort characters: alphabetical if editing, by initiative otherwise.
 	const characters = isEditing ? [
 		...sortCharacters( players ),
@@ -268,19 +281,6 @@ const FrontendTracker = ( props ) => {
 		setLoading( false );
 		onSetIsEditing( false );
         setNotice( response );
-    };
-
-    /**
-     * Helper function to update isEditing status and clear notice.
-     *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
-     * @since  2.0.0
-     *
-     * @param  {boolean} status New isEditing status.
-     */
-    const onSetIsEditing = ( status ) => {
-        setIsEditing( status );
-        setNotice( null );
     };
 
 	return (
