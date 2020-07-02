@@ -176,14 +176,14 @@ const FrontendTracker = ( props ) => {
     	const linkClass = `char-link ${ isLoading ? 'disabled' : '' }`;
 
     	if ( ! isEditing ) {
-    		return displayEditLink( linkClass, 'edit', __( 'Edit Initiative', 'initiative-tracker' ), () => setIsEditing( true ) );
+    		return displayEditLink( linkClass, 'edit', __( 'Edit Initiative', 'initiative-tracker' ), () => onSetIsEditing( true ) );
     	}
 
     	return (
     		<>
     			{ displayEditLink( linkClass, 'no', __( 'Cancel', 'initiative-tracker' ), () => {
 	                resetAttributes();
-    				setIsEditing( false );
+    				onSetIsEditing( false );
     			} ) }
     			{ displayEditLink( linkClass, 'yes', __( 'Save Initiative', 'initiative-tracker' ), () => saveCharacterUpdates() ) }
     		</>
@@ -265,9 +265,22 @@ const FrontendTracker = ( props ) => {
 				};
 			} );
 
-		setNotice( response );
 		setLoading( false );
-		setIsEditing( false );
+		onSetIsEditing( false );
+        setNotice( response );
+    };
+
+    /**
+     * Helper function to update isEditing status and clear notice.
+     *
+     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @since  2.0.0
+     *
+     * @param  {boolean} status New isEditing status.
+     */
+    const onSetIsEditing = ( status ) => {
+        setIsEditing( status );
+        setNotice( null );
     };
 
 	return (
