@@ -19,7 +19,7 @@ const {
     element: {
     	useEffect,
     	useState,
-    }
+    },
 } = wp;
 
 /**
