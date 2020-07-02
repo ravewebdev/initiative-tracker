@@ -215,9 +215,10 @@ const FrontendTracker = ( props ) => {
      * @return {void}
      */
     const saveCharacterUpdates = async () => {
-    	const path = initTracker.initiative;
+    	const path = initTracker.initiative,
+    		nonce = initTracker.nonce;
 
-    	if ( null === path ) {
+    	if ( null === path || null === nonce ) {
     		return;
     	}
 
