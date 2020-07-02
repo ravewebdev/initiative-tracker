@@ -68,7 +68,7 @@ const FrontendTracker = ( props ) => {
 		// Clear notice after delay.
 		const timer = setTimeout( () => {
 			setNotice( null );
-		}, 600001000 );
+		}, 60000 );
 
 		return () => clearTimeout( timer );
 	}, [] );
