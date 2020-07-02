@@ -18,7 +18,7 @@ const sortCharacters = ( characters, alpha = true ) => {
         return ( parseInt( char1.initiative ) > parseInt( char2.initiative ) ? -1 : 1 );
     } );
     return characters;
-}
+};
 
 export {
 	sortCharacters,
