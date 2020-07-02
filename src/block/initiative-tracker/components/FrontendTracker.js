@@ -266,6 +266,8 @@ const FrontendTracker = ( props ) => {
 		    	dataAttributes.players = [ ...players ];
 		    	dataAttributes.npcs = [ ...npcs ];
 
+                onSetIsEditing( false );
+
 		    	return {
 		    		type: 'success',
 		    		message: success,
@@ -279,7 +281,6 @@ const FrontendTracker = ( props ) => {
 			} );
 
 		setLoading( false );
-		onSetIsEditing( false );
         setNotice( response );
     };
 
