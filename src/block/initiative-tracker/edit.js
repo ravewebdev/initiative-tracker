@@ -29,7 +29,7 @@ const {
  * @param  {Object} props Block props.
  * @return {ReactElement} Block edit JSX.
  */
-const Edit = ( props ) => {
+const edit = ( props ) => {
     const {
         attributes: {
             id,
@@ -256,4 +256,4 @@ const Edit = ( props ) => {
     );
 };
 
-export default Edit;
+export default edit;

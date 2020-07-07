@@ -11,8 +11,8 @@
  * @param  {Object} props  Block props.
  * @return {?ReactElement} Block save JSX.
  */
-const Save = ( props ) => {
+const save = ( props ) => {
     return null;
 };
 
-export default Save;
+export default save;
