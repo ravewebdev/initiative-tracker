@@ -76,7 +76,7 @@ const FrontendTracker = ( props ) => {
 	/**
 	 * Reset state attributes to original dataAttributes.
 	 *
-	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  2.0.0
 	 */
 	const resetAttributes = () => {
@@ -88,7 +88,7 @@ const FrontendTracker = ( props ) => {
     /**
      * Helper function to update isEditing status and clear notice.
      *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @author R A Van Epps <rave@ravanepps.com>
      * @since  2.0.0
      *
      * @param  {boolean} status New isEditing status.
@@ -132,7 +132,7 @@ const FrontendTracker = ( props ) => {
     /**
      * Display input to edit Initiative.
      *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @author R A Van Epps <rave@ravanepps.com>
      * @since  2.0.0
      *
      * @param  {Object} character Character object.
@@ -173,7 +173,7 @@ const FrontendTracker = ( props ) => {
     /**
      * Display edit/save Character links.
      *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @author R A Van Epps <rave@ravanepps.com>
      * @since  2.0.0
      *
      * @return {ReactElement} Character link JSX.
@@ -206,7 +206,7 @@ const FrontendTracker = ( props ) => {
     /**
      * Display edit/save link.
      *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @author R A Van Epps <rave@ravanepps.com>
      * @since  2.0.0
      *
      * @param  {string}   linkClass Link class(es).
@@ -239,7 +239,7 @@ const FrontendTracker = ( props ) => {
     /**
      * Update block attributes.
      *
-     * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+     * @author R A Van Epps <rave@ravanepps.com>
      * @since  2.0.0
      *
      * @return {void}

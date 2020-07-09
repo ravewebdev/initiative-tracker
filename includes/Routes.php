@@ -226,7 +226,7 @@ class Routes {
 	/**
 	 * Determine if current user has permissions to access REST API.
 	 *
-	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  2.0.0
 	 *
 	 * @param  int $post_id Post ID.

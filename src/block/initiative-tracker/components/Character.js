@@ -71,7 +71,7 @@ const Character = ( props ) => {
 	/**
 	 * Display Initiative inputs if editing on frontend.
 	 *
-	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  2.0.0
 	 *
 	 * @return {ReactElement} JSX for read-only or editable initiative score.
