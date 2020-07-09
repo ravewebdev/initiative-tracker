@@ -1,56 +1,87 @@
 /**
- * WP dependencies
+ * EDIT: Initiative Tracker Block
  */
+
+import AddEditCharacterForm from './components/AddEditCharacterForm';
+import CharacterList from './components/CharacterList';
+import DeleteCharacterModal from './components/DeleteCharacterModal';
+import { sortCharacters } from './util';
+
 const {
     i18n: {
         __,
     },
-    blockEditor: {
-        RichText,
-    }
+    components: {
+        Button,
+        Dashicon,
+    },
+    element: {
+        useEffect,
+    },
 } = wp;
 
 /**
- * Components
+ * Handle edit functionality in the admin.
+ *
+ * @author R A Van Epps <rave@ravanepps.com>
+ * @since  1.0.0
+ *
+ * @param  {Object} props Block props.
+ * @return {ReactElement} Block edit JSX.
  */
-import CharacterList from './components/CharacterList';
-
-const Edit = ( props ) => {
+const edit = ( props ) => {
     const {
         attributes: {
-            notes,
+            id,
             players,
             npcs,
         },
+        clientId,
         className,
         setAttributes,
-        isSelected
+        isSelected,
     } = props;
 
-    // Add combat notes.
-    const onChangeNotes = ( notes ) => {
-        setAttributes( {
-            notes
-        } );
-    };
+    useEffect( () => {
 
-    const sortCharacters = ( characters ) => {
-        characters.sort( function( char1, char2 ) {
-            return char1.name.localeCompare( char2.name );
-        } );
-        return characters;
-    }
+        // If id is not set (initial block creation), set id to clientId value.
+        if ( 0 === id.length ) {
+            setAttributes( {
+                id: clientId,
+            } );
+        }
+    }, [] );
 
-    // Add new character, sort alphabetically.
+    /**
+     * Add new character, sort alphabetically.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  1.0.0
+     *
+     * @param  {string} type      Type of character.
+     * @param  {Object} character New character object.
+     */
     const addCharacter = ( type, character ) => {
         type = `${type}s`;
+        character.key = Date.now();
+
         const characters = [ ...props.attributes[ type ], character ];
+
         setAttributes( {
             [ type ]: sortCharacters( characters )
         } );
     };
 
-    // Edit character.
+    /**
+     * Edit character attributes.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  1.0.0
+     *
+     * @param  {string}  type      Type of character.
+     * @param  {integer} index     Character index.
+     * @param  {Object}  character Character object.
+     */
     const editCharacter = ( type, index, character ) => {
         type = `${type}s`;
         const characters = [ ...props.attributes[ type ] ];
@@ -60,7 +91,15 @@ const Edit = ( props ) => {
         } );
     }
 
-    // Delete character.
+    /**
+     * Delete character.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  1.0.0
+     *
+     * @param  {string}  type  Type of character.
+     * @param  {integer} index Character index.
+     */
     const deleteCharacter = ( type, index ) => {
         type = `${type}s`;
         const characters = [ ...props.attributes[ type ] ].filter( function( character, charIndex ) {
@@ -71,53 +110,145 @@ const Edit = ( props ) => {
         } );
     };
 
+    /**
+     * Display AddEditCharacterForm component.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  2.0.0
+     *
+     * @param  {Object} fnProps Props to pass to componenent.
+     * @param  {string} action  Version of form to display.
+     * @return {ReactElement}   JSX to display.
+     */
+    const displayAddEditForm = ( fnProps, action = 'add' ) => {
+        const {
+            type,
+            characterFn,
+            toggleFn,
+            isActive,
+            character = null,
+            index = null,
+        } = fnProps;
+
+        const formProps = {
+            type,
+            characterFn,
+            toggle: () => toggleFn( type ),
+        };
+
+        if ( 'edit' === action ) {
+            formProps.character = character;
+            formProps.index = index;
+        }
+
+        if ( isActive ) {
+            return (
+                <AddEditCharacterForm { ...formProps }/>
+            );
+        } else {
+            return (
+                <div className="edit-character-buttons">
+                    { 'add' === action ? (
+                        <Button
+                            isPrimary
+                            onClick={ () => toggleFn( type ) }
+                        >
+                            { __( 'Add Player', 'initiative-tracker' ) }
+                        </Button>
+                    ) : (
+                        <>
+                            <Button
+                                className="edit-character"
+                                isTertiary
+                                onClick={ () => toggleFn( type ) }
+                            >
+                                <Dashicon icon="edit" /> { __( 'Edit', 'initiative-tracker' ) }
+                            </Button>
+                            <DeleteCharacterModal
+                                index={ index }
+                                deleteCharacter={ deleteCharacter }
+                                name={ character.name }
+                                type={ type }
+                            />
+                        </>
+                    ) }
+                </div>
+            );
+        }
+    };
+
+    /**
+     * Display Add version of AddEditCharacterForm.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  2.0.0
+     *
+     * @param  {string}   type     Type of Character list being displayed.
+     * @param  {boolean}  isAdding Whether currently in editing mode.
+     * @param  {function} toggleFn Toggle function.
+     * @return {ReactElement}      JSX to display.
+     */
+    const displayAddForm = ( type, isAdding, toggleFn ) => (
+        displayAddEditForm( {
+            type,
+            characterFn: addCharacter,
+            toggleFn: toggleFn,
+            isActive: isAdding,
+        } )
+    );
+
+    /**
+     * Display Edit version of AddEditCharacterForm.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  2.0.0
+     *
+     * @param  {string}   type      Type of Character list being displayed.
+     * @param  {boolean}  isEditing Whether currently in editing mode.
+     * @param  {function} toggleFn  Toggle function.
+     * @param  {Object}   character Character object.
+     * @param  {integer}  index     Character index.
+     * @return {ReactElement}       JSX to display.
+     */
+    const displayEditForm = ( type, isEditing, toggleFn, character, index ) => (
+        displayAddEditForm( {
+            type,
+            characterFn: editCharacter,
+            toggleFn,
+            isActive: isEditing,
+            character,
+            index,
+        }, 'edit' )
+    );
+
     return (
         <div className={ className }>
-            <h2>{ __( 'Combat Notes', 'initiative-tracker' ) }</h2>
-            <RichText
-                tagName="div"
-                multiline="p"
-                className="notes"
-                placeholder={ __( 'Enter notes about this combat here...', 'initiative-tracker' ) }
-                keepPlaceholderOnFocus={ true }
-                onChange={ onChangeNotes }
-                value={ notes }
-            />
             <div className="characters">
                 { isSelected && (
                     <>
                         <CharacterList
                             title={ __( 'Players', 'initiative-tracker' ) }
                             characters={ players }
-                            addCharacter={ addCharacter }
-                            editCharacter={ editCharacter }
-                            deleteCharacter={ deleteCharacter }
+                            addCharacter={ displayAddForm }
+                            editCharacter={ displayEditForm }
                             type="player"
-                            addText={ __( 'Add Player', 'initiative-tracker' ) }
-                            editText={ __( 'Edit Player', 'initiative-tracker' ) }
-                            active={ isSelected }
                         />
                         <CharacterList
                             title={ __( 'NPCs', 'initiative-tracker' ) }
                             characters={ npcs }
-                            addCharacter={ addCharacter }
-                            editCharacter={ editCharacter }
-                            deleteCharacter={ deleteCharacter }
+                            addCharacter={ displayAddForm }
+                            editCharacter={ displayEditForm }
                             type="npc"
-                            addText={ __( 'Add NPC', 'initiative-tracker' ) }
-                            editText={ __( 'Edit NPC', 'initiative-tracker' ) }
-                            active={ isSelected }
                         />
                     </>
                 ) }
                 { ! isSelected && (
                     <CharacterList
                         title={ __( 'Characters', 'initiative-tracker' ) }
-                        characters={ [
+                        characters={ sortCharacters( [
                             ...players,
                             ...npcs,
-                        ] }
-                        active={ isSelected }
+                        ], false ) }
                     />
                 ) }
             </div>
@@ -125,4 +256,4 @@ const Edit = ( props ) => {
     );
 };
 
-export default Edit;
+export default edit;

@@ -1,105 +1,88 @@
 /**
- * WP dependencies
+ * Character List.
  */
+
+import Character from './Character';
+import AddEditCharacterForm from './AddEditCharacterForm';
+
 const {
-    components: {
-        Button,
-    },
     element: {
-        Component,
+        useState,
     },
 } = wp;
 
 /**
- * Components
+ * Character List.
+ *
+ * @author R A Van Epps <rave@ravanepps.com>
+ * @since  1.0.0
+ * @since  2.0.0 Converted to functional component.
+ *
+ * @param  {Object} props Component props.
+ * @return {ReactElement} Component render JSX.
  */
-import Character from './Character';
-import AddEditCharacterForm from './AddEditCharacterForm';
+const CharacterList = ( props ) => {
+	const {
+		title,
+		characters,
+		type = null,
+		addCharacter = null,
+		editCharacter = null,
+		activeIndex = null,
+		children = null,
+	} = props;
 
-export default class CharacterList extends Component {
-	constructor( props ) {
-		super( props );
-	
-		this.state = {
-			adding: false,
-		};
+	const [ isAdding, setIsAdding ] = useState( false );
+
+	/**
+	 * Toggle adding state.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  1.0.0
+	 */
+	const toggleAdd = () => {
+		setIsAdding( ! isAdding );
 	};
 
-	render() {
-		const {
-			adding,
-		} = this.state;
-		const {
-			title,
-			characters,
-			type,
-			addCharacter,
-			editCharacter,
-			deleteCharacter,
-			addText,
-			editText,
-			active,
-		} = this.props;
+	/**
+	 * Display AddEditCharacterForm if in admin.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  2.0.0
+	 *
+	 * @return {ReactElement} JSX to add Character if in admin.
+	 */
+	const maybeAddCharacter = () => (
+		null !== addCharacter ? addCharacter( type, isAdding, toggleAdd ) : null
+	);
 
-		const toggleAdd = () => {
-			this.setState( {
-				adding: ! adding
-			} );
-		};
+	const onFrontend = null !== activeIndex;
 
-		// Sort characters by initiative if combined list is displayed.
-		if ( ! active ) {
-			characters.sort( function( char1, char2 ) {
-				return ( parseInt( char1.initiative ) > parseInt( char2.initiative ) ? -1 : 1 );
-			} );
-		}
-		
-		return (
-			<div className={ `character-list${ typeof type === 'undefined' ? '' : `--${type}` }` }>
-				<h2>{ title }</h2>
+	return (
+		<div className={ `character-list${ null === type ? '' : `--${type}` }` }>
+			<h2>{ title }</h2>
 
-				{ characters.length > 0 && (
-					<ul>
-						{ characters.map( ( character, index ) => (
-							active ?
-								<Character
-									character={ character }
-									type={ type }
-									index={ index }
-									editCharacter={ editCharacter }
-									deleteCharacter={ deleteCharacter }
-									editText={ editText }
-									active={ active }
-								/> :
-								<Character
-									character={ character }
-									active={ active }
-								/>
-						) ) }
-					</ul>
-				) }
+			{ null !== children && children }
 
-				{ active && (
-					adding ?
-						<AddEditCharacterForm
-							type={ type}
-							characterFn={ addCharacter }
-							toggle={ toggleAdd }
-						/> :
-						<div className="edit-character-buttons">
-							<Button
-					            isPrimary
-					            onClick={ () => {
-					            	this.setState( {
-					            		adding: true
-					            	} );
-					            } }
-							>
-								{ addText }
-							</Button>
-						</div>
-				) }
-			</div>
-		);
-	};
-}
+			{ characters.length > 0 && (
+				<ul>
+					{ characters.map( ( character, index ) => (
+						<Character
+							key={ character.key }
+							character={ character }
+							type={ type }
+							index={ index }
+							editCharacter={ editCharacter }
+							activeIndex={ activeIndex }
+							onFrontend={ onFrontend }
+						/>
+					) ) }
+				</ul>
+			) }
+
+			{ maybeAddCharacter() }
+		</div>
+	);
+};
+
+export default CharacterList;

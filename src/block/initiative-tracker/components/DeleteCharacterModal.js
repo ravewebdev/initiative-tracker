@@ -1,20 +1,30 @@
 /**
- * WP dependencies
+ * Delete Character modal.
  */
+
 const {
     i18n: {
         __,
     },
+    components: {
+        Button,
+		Dashicon,
+        Modal,
+	},
     element: {
     	useState,
     },
-    components: {
-		Dashicon,
-        Button,
-        Modal,
-	},
 } = wp;
 
+/**
+ * Delete Character modal.
+ *
+ * @author R A Van Epps <rave@ravanepps.com>
+ * @since  1.0.0
+ *
+ * @param  {Object} props Component props.
+ * @return {ReactElement} Component render JSX.
+ */
 const DeleteCharacterModal = ( props ) => {
 	const {
 		name,
@@ -22,7 +32,15 @@ const DeleteCharacterModal = ( props ) => {
 		type,
 		deleteCharacter,
 	} = props;
+
 	const [ isOpen, setOpen ] = useState( false );
+
+	/**
+	 * Toggle display of modal.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  1.0.0
+	 */
 	const toggle = () => {
 		setOpen( isOpen ? false : true );
 	};
@@ -34,7 +52,7 @@ const DeleteCharacterModal = ( props ) => {
 	            onClick={ toggle }
 	            isDestructive
 			>
-				<Dashicon icon="trash" />
+				<Dashicon icon="trash" /> { __( 'Delete', 'initiative-tracker' ) }
 			</Button>
 			{ isOpen && (
 				<Modal

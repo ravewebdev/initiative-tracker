@@ -1,99 +1,109 @@
 /**
- * WP dependencies
+ * Character.
  */
+
 const {
-    element: {
-        Component,
+	i18n: {
+        __,
     },
     components: {
-		Dashicon,
-        Button,
+        TextControl,
 	},
+    element: {
+        useState,
+    },
 } = wp;
 
 /**
- * Components
+ * Single Character.
+ *
+ * @author R A Van Epps <rave@ravanepps.com>
+ * @since  1.0.0
+ * @since  2.0.0 Converted to functional component.
+ *
+ * @param  {Object} props Component props.
+ * @return {ReactElement} Component render JSX.
  */
-import DeleteCharacterModal from './DeleteCharacterModal';
-import AddEditCharacterForm from './AddEditCharacterForm';
+const Character = ( props ) => {
+	const {
+		character: {
+			name,
+			player,
+			initiative,
+		},
+		type,
+		index,
+		editCharacter,
+		activeIndex,
+		onFrontend = false,
+	} = props;
 
-export default class Character extends Component {
-	constructor( props ) {
-		super( props );
-	
-		this.state = {
-			editing: false,
-		}
+	const [ isEditing, setIsEditing ] = useState( false );
+
+	const isCurrent = ! onFrontend ? false : ( activeIndex === index );
+
+	/**
+	 * Toggle editing state.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  1.0.0
+	 */
+	const toggleEdit = () => {
+		setIsEditing( ! isEditing );
 	};
 
-	render() {
-		const {
-			editing,
-		} = this.state;
-		const {
-			character: {
-				name,
-				player,
-				initiative,
-			},
-			type,
-			index,
-			editCharacter,
-			deleteCharacter,
-			editText,
-			active,
-		} = this.props;
+	/**
+	 * Display AddEditCharacterForm if in admin.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  2.0.0
+	 *
+	 * @return {ReactElement} JSX to edit Character if in admin.
+	 */
+	const maybeEditCharacter = () => (
+		( ! onFrontend && null !== editCharacter ) ? editCharacter( type, isEditing, toggleEdit, props.character, index ) : null
+	);
 
-		const toggleEdit = () => {
-			this.setState( {
-				editing: ! editing
-			} );
-		};
+	if ( isEditing ) {
+		return maybeEditCharacter();
+	}
 
-		if ( editing ) {
-			return (
-				<AddEditCharacterForm
-			 		type={ type}
-			 		characterFn={ editCharacter }
-			 		toggle={ toggleEdit }
-			 		character={ {
-			 			name,
-			 			player,
-			 			initiative,
-			 			index,
-			 		} }
-			 	/>
-			);
+	/**
+	 * Display Initiative inputs if editing on frontend.
+	 *
+	 * @author Rebekah Van Epps <rebekah.vanepps@webdevstudios.com>
+	 * @since  2.0.0
+	 *
+	 * @return {ReactElement} JSX for read-only or editable initiative score.
+	 */
+	const displayInitiative = () => {
+		let initiativeDisplay = null;
+
+		if ( onFrontend && null !== editCharacter ) {
+			initiativeDisplay = editCharacter( props.character );
 		}
 
-		return (
-			<li className="character">
-				<span className="name">{ name }</span>
-
-				{ ! active && (
-					<span className="player">{ ` ( ${ '' === player ? 'NPC' : player } ) `}</span>
-				) }
-
-				<span className="initiative">{ ` - ${ initiative || 0 }` }</span>
-
-				{ active && (
-					<>
-						<Button
-							className="edit-character"
-							isTertiary
-							onClick={ toggleEdit }
-						>
-							<Dashicon icon="edit" />
-						</Button>
-						<DeleteCharacterModal
-							index={ index }
-							deleteCharacter={ deleteCharacter }
-							name={ name }
-							type={ type }
-						/>
-					</>
-				) }
-			</li>
-		);
+		return initiativeDisplay || <span className="initiative">{ initiative || 0 }</span>;
 	};
-}
+
+	return (
+		<li className={ `character ${ isCurrent ? 'current' : '' }` }>
+			<span className="name">{ name }</span>
+
+			{ '' !== player && (
+				<>
+					&nbsp;
+					<span className="player">{ `( ${ player } )`}</span>
+				</>
+			) }
+
+			&nbsp;&mdash;&nbsp;
+
+			{ displayInitiative() }
+
+			{ maybeEditCharacter() }
+		</li>
+	);
+};
+
+export default Character;

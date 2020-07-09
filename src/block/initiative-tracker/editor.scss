@@ -34,9 +34,14 @@ $color-border: #999;
 			}
 		}
 	}
+
+	.edit-character-buttons {
+		display: flex;
+		justify-content: space-evenly;
+	}
+
+	.character .edit-character-buttons {
+		justify-content: center;
+	}
 }
 
-.edit-character-buttons {
-	display: flex;
-	justify-content: space-evenly;
-}

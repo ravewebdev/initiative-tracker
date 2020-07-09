@@ -1,145 +1,179 @@
 /**
- * WP dependencies
+ * Add/Edit Character Form.
  */
+
 const {
     i18n: {
         __,
     },
     components: {
-        TextControl,
         Button,
+        TextControl,
     },
     element: {
-        Component,
+        useEffect,
+        useState,
     },
 } = wp;
 
-export default class AddEditCharacterForm extends Component {
-    constructor( props ) {
-        super( props )
-    
-        this.state = {
-            name: null,
-            player: null,
-            initiative: 0,
-            nameIsEmpty: true,
-            playerIsEmpty: true,
-            editing: false,
-            index: null,
-        };
-    };
+/**
+ * Add/Edit Character form.
+ *
+ * @author R A Van Epps <rave@ravanepps.com>
+ * @since  1.0.0
+ * @since  2.0.0 Converted to functional component.
+ *
+ * @param  {Object} props Component props.
+ * @return {ReactElement} Component render JSX.
+ */
+const AddEditCharacterForm = ( props ) => {
+    const {
+        type,
+        characterFn,
+        toggle,
+        character = null,
+        index = null,
+    } = props;
 
-    componentDidMount() {
-        // Populate existing character values when in edit mode.
-        if ( this.props.hasOwnProperty( 'character' ) ) {
-            const {
-                character: {
-                    name,
-                    player,
-                    initiative,
-                    index,
-                },
-                type,
-            } = this.props;
+    const [ state, setState ] = useState( {
+        name: null,
+        player: null,
+        initiative: 0,
+        nameIsEmpty: true,
+        playerIsEmpty: true,
+        editing: false,
+    } );
 
-            this.setState( {
-                nameIsEmpty: false,
-                playerIsEmpty: false,
-                editing: true,
-                name,
-                player,
-                index,
-                initiative
-            } );
+    // Set initial state values.
+    useEffect( () => {
+        if ( null === character ) {
+            return;
         }
+
+        setState( {
+            ...state,
+            ...character,
+            nameIsEmpty: false,
+            playerIsEmpty: false,
+            editing: true,
+        } );
+    }, [] );
+
+    /**
+     * Submit form to add/update Character.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  2.0.0
+     */
+    const submitForm = () => {
+        const regexDigits = /^[\d]+$/;
+        const tmpCharacter = {
+            ...character,
+            name: name.trim(),
+            player: ( isPlayer ? player.trim() : '' ),
+            initiative: regexDigits.test( initiative ) ? initiative : 0,
+        };
+
+        if ( editing ) {
+            characterFn( type, index, tmpCharacter );
+        } else {
+            characterFn( type, tmpCharacter );
+        }
+
+        toggle( type );
     };
 
-    render() {
-        const {
-            name,
-            player,
-            initiative,
-            nameIsEmpty,
-            playerIsEmpty,
-            editing,
-            index,
-        } = this.state;
-        const {
-            type,
-            characterFn,
-            toggle,
-        } = this.props;
-        const errorClass = 'input-error';
-        const isPlayer = 'player' === type;
-        const disableSave = ( isPlayer && playerIsEmpty ) || nameIsEmpty;
+    /**
+     * Handle potentially submitting form on enter.
+     *
+     * @author R A Van Epps <rave@ravanepps.com>
+     * @since  2.0.0
+     *
+     * @param  {Object} event Key press event.
+     * @return {void}
+     */
+    const maybeSubmitForm = ( event ) => {
+        if ( 'Enter' !== event.key ) {
+            return;
+        }
 
-        return (
-            <div className="edit-character-form">
+        submitForm();
+    };
+
+    const {
+        name,
+        player,
+        initiative,
+        nameIsEmpty,
+        playerIsEmpty,
+        editing,
+    } = state;
+
+    const errorClass = 'input-error',
+        isPlayer = 'player' === type,
+        disableSave = ( isPlayer && playerIsEmpty ) || nameIsEmpty;
+
+    return (
+        <div className="edit-character-form">
+            <TextControl
+                label={ __( 'Character Name *', 'initiative-tracker' ) }
+                value={ nameIsEmpty ? '' : name }
+                onChange={ ( name ) => {
+                    setState( {
+                        ...state,
+                        name,
+                        nameIsEmpty: ( "" === name.trim() ),
+                    } );
+                } }
+                className={ null !== name && nameIsEmpty ? errorClass : '' }
+                autoFocus={ true }
+                onKeyPress={ maybeSubmitForm }
+            />
+            { isPlayer && (
                 <TextControl
-                    label={ __( 'Character Name *', 'initiative-tracker' ) }
-                    value={ name }
-                    onChange={ ( name ) => {
-                        this.setState( {
-                            name,
-                            nameIsEmpty: ( "" === name.trim() )
+                    label={ __( 'Player Name *', 'initiative-tracker' ) }
+                    value={ playerIsEmpty ? '' : player }
+                    onChange={ ( player ) => {
+                        setState( {
+                            ...state,
+                            player,
+                            playerIsEmpty: ( "" === player.trim() ),
                         } );
                     } }
-                    className={ null !== name && nameIsEmpty ? errorClass : '' }
+                    className={ null !== player && playerIsEmpty ? errorClass : '' }
+                    onKeyPress={ maybeSubmitForm }
                 />
-                { isPlayer && (
-                    <TextControl
-                        label={ __( 'Player Name *', 'initiative-tracker' ) }
-                        value={ player }
-                        onChange={ ( player ) => {
-                            this.setState( {
-                                player,
-                                playerIsEmpty: ( "" === player.trim() )
-                            } );
-                        } }
-                        className={ null !== player && playerIsEmpty ? errorClass : '' }
-                    />
-                ) }
-                <TextControl
-                    label={ __( 'Initiative', 'initiative-tracker' ) }
-                    type="number"
-                    value={ initiative }
-                    onChange={ ( initiative ) => {
-                        this.setState( {
-                            initiative
-                        } )
-                    } }
-                />
-                <div className="edit-character-buttons">
-                    <Button
-                        isSecondary
-                        onClick={ toggle }
-                    >
-                        { __( 'Cancel', 'initiative-tracker' ) }
-                    </Button>
-                    <Button
-                        isPrimary
-                        disabled={ disableSave }
-                        onClick={ () => {
-                            if ( editing ) {
-                                characterFn( type, index, {
-                                    name: name.trim(),
-                                    player: ( isPlayer ? player.trim() : '' ),
-                                    initiative,
-                                } );
-                            } else {
-                                characterFn( type, {
-                                    name: name.trim(),
-                                    player: ( isPlayer ? player.trim() : '' ),
-                                    initiative,
-                                } );
-                            }
-                            toggle();
-                        } }
-                    >
-                        { __( 'Save', 'initiative-tracker' ) }
-                    </Button>
-                </div>
+            ) }
+            <TextControl
+                label={ __( 'Initiative', 'initiative-tracker' ) }
+                type="number"
+                value={ initiative }
+                onChange={ ( initiative ) => {
+                    setState( {
+                        ...state,
+                        initiative: initiative,
+                    } );
+                } }
+                onKeyPress={ maybeSubmitForm }
+                min="0"
+            />
+            <div className="edit-character-buttons">
+                <Button
+                    isSecondary
+                    onClick={ () => toggle( type ) }
+                >
+                    { __( 'Cancel', 'initiative-tracker' ) }
+                </Button>
+                <Button
+                    isPrimary
+                    disabled={ disableSave }
+                    onClick={ submitForm }
+                >
+                    { __( 'Save', 'initiative-tracker' ) }
+                </Button>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
+
+export default AddEditCharacterForm;

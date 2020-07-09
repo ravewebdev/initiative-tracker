@@ -3,12 +3,10 @@
 *
 * Register Initiative Tracker
 */
+
 import edit from './edit';
 import save from './save';
 
-/**
-* WordPress dependencies.
-*/
 const {
     i18n: {
         __,
@@ -18,6 +16,9 @@ const {
     },
 } = wp;
 
+/**
+ * Register Initiative Tracker block.
+ */
 registerBlockType( 'rave/initiative-tracker', {
     title: __( 'Initiative Tracker', 'initiative-tracker' ),
     description: __( 'This block helps track and organize character initiative scores.', 'initiative-tracker' ),
@@ -30,8 +31,9 @@ registerBlockType( 'rave/initiative-tracker', {
         html: false,
     },
     attributes: {
-        notes: {
+        id: {
             type: 'string',
+            default: '',
         },
         players: {
             type: 'array',
