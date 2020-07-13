@@ -154,8 +154,8 @@ class Routes {
 			return new WP_Error( 'invalid-nonce', __( 'Invalid nonce.', 'initiative-tracker' ) );
 		}
 
+		$post_id      = $request->get_param( 'id' );
 		$block_id     = $request->get_param( 'block_id' );
-		$post_id      = $request->get_param( 'post_id' );
 		$players      = $request->get_param( 'players' );
 		$npcs         = $request->get_param( 'npcs' );
 		$post_content = get_post_field( 'post_content', $post_id );
