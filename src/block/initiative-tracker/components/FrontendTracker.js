@@ -263,6 +263,7 @@ const FrontendTracker = ( props ) => {
     	}
 
 		setLoading( true );
+        setNotice( null );
 
     	const response = await apiFetch( {
     		path: `${path}/${ dataAttributes.post_id }`,
