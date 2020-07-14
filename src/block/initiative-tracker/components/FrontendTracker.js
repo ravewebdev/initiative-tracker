@@ -307,7 +307,7 @@ const FrontendTracker = ( props ) => {
 		        	<div className="fe-edit-character-buttons">
 		        		{ displayEditLinks() }
 		        		{ null !== notice && (
-		        			<span className={ `notice ${notice.type}` } role={ 'error' === notice.type ? 'alert' : 'status' }>
+		        			<span className={ `notice ${ notice.type }` } role={ 'error' === notice.type ? 'alert' : 'status' }>
 		        				{ notice.message }
 		        			</span>
 		        		) }
