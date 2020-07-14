@@ -251,6 +251,10 @@ const FrontendTracker = ( props ) => {
      * @return {void}
      */
     const saveCharacterUpdates = async () => {
+        if ( 'object' !== typeof initTracker || ! initTracker.hasOwnProperty( 'initiative' ) || ! initTracker.hasOwnProperty( 'nonce' ) ) {
+            return;
+        }
+
     	const path = initTracker.initiative,
     		nonce = initTracker.nonce;
 
