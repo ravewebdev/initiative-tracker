@@ -64,14 +64,20 @@ const FrontendTracker = ( props ) => {
 	// Set initial attribute values from props.
 	useEffect( () => {
 		resetAttributes();
-
-		// Clear notice after delay.
-		const timer = setTimeout( () => {
-			setNotice( null );
-		}, 60000 );
-
-		return () => clearTimeout( timer );
 	}, [] );
+
+    // Clear notice after delay if not null.
+    useEffect( () => {
+        if ( null === notice ) {
+            return;
+        }
+
+        const timer = setTimeout( () => {
+            setNotice( null );
+        }, 60000 );
+
+        return () => clearTimeout( timer );
+    }, [ notice ] );
 
 	/**
 	 * Reset state attributes to original dataAttributes.
