@@ -185,10 +185,9 @@ const FrontendTracker = ( props ) => {
      * @return {ReactElement} Character link JSX.
      */
     const displayEditLinks = () => {
-    	const path = initTracker.initiative,
-    		nonce = initTracker.nonce;
+    	const path = initTracker.initiative;
 
-    	if ( null === path || null === nonce ) {
+    	if ( null === path ) {
     		return;
     	}
 
@@ -251,14 +250,13 @@ const FrontendTracker = ( props ) => {
      * @return {void}
      */
     const saveCharacterUpdates = async () => {
-        if ( 'object' !== typeof initTracker || ! initTracker.hasOwnProperty( 'initiative' ) || ! initTracker.hasOwnProperty( 'nonce' ) ) {
+        if ( 'object' !== typeof initTracker || ! initTracker.hasOwnProperty( 'initiative' ) ) {
             return;
         }
 
-    	const path = initTracker.initiative,
-    		nonce = initTracker.nonce;
+    	const path = initTracker.initiative;
 
-    	if ( null === path || null === nonce ) {
+    	if ( null === path ) {
     		return;
     	}
 

@@ -114,9 +114,7 @@ class Routes {
 		// Return nulled array if user doesn't have permission to access REST API.
 		$has_access = $this->current_user_can_access_rest( get_the_ID() ?? 0 );
 
-		$vars = [
-			'nonce' => $has_access ? wp_create_nonce( 'wp_rest' ) : null,
-		];
+		$vars = [];
 
 		foreach ( array_keys( $this->routes ) as $route ) {
 			$vars[ $route ] = $has_access ? implode( $this->get_route_pieces( $route ) ) : null;
