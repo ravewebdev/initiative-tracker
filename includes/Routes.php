@@ -146,12 +146,6 @@ class Routes {
 	 * @return WP_Error|WP_REST_Response WP_REST_Response if data update successful, WP_Error otherwise.
 	 */
 	public function update_initiative( WP_REST_Request $request ) {
-		$nonce = $request->get_header( 'x_wp_nonce' );
-
-		if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
-			return new WP_Error( 'invalid-nonce', __( 'Invalid nonce.', 'initiative-tracker' ) );
-		}
-
 		$post_id      = $request->get_param( 'id' );
 		$block_id     = $request->get_param( 'block_id' );
 		$players      = $request->get_param( 'players' );
