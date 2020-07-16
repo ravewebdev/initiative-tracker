@@ -143,9 +143,9 @@ class Routes {
 	 * @since  2.0.0
 	 *
 	 * @param  WP_REST_Request $request  WP_REST_Request object.
-	 * @return WP_Error|WP_REST_Response WP_REST_Response if data update successful, WP_Error otherwise.
+	 * @return WP_REST_Response          WP_REST_Response string on successful data update.
 	 */
-	public function update_initiative( WP_REST_Request $request ) {
+	public function update_initiative( WP_REST_Request $request ) : WP_REST_Response {
 		$post_id      = $request->get_param( 'id' );
 		$block_id     = $request->get_param( 'block_id' );
 		$players      = $request->get_param( 'players' );
