@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Initiative Tracker
  * Description:     A block plugin for tracking character initiative scores in Table-Top Role-Playing Games.
- * Version:         1.0.2
+ * Version:         2.0.2
  * Author:          R A Van Epps
  * Author URI:      https://ravanepps.com
  * License:         GPL-2.0-or-later
