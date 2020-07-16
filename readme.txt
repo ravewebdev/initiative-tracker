@@ -39,6 +39,9 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 
 == Changelog ==
 
+= 2.0.2 =
+* Fixed: Updated doc blocks and plugin version.
+
 = 2.0.1 =
 * Updated: Cleaned up route handling code for clarity.
 
