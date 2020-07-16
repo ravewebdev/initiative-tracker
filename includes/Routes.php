@@ -229,14 +229,14 @@ class Routes {
 			return false;
 		}
 
-		if ( current_user_can( 'edit_published_posts' ) ) {
-			return true;
-		}
-
 		$post = get_post( $post_id );
 
 		if ( null === $post ) {
 			return false;
+		}
+
+		if ( current_user_can( 'edit_published_posts' ) ) {
+			return true;
 		}
 
 		return get_current_user_id() === $post->post_author;
