@@ -37,6 +37,9 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 
 ## Changelog ##
 
+### 2.0.1 ###
+* Updated: Cleaned up route handling code for clarity.
+
 ### 2.0.0 ###
 * Added: Implemented frontend editing of character initiative scores.
 * Added: Created WP REST API route for editing initiative tracker blocks.
