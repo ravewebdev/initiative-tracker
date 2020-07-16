@@ -26,14 +26,14 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 
 ## Screenshots ##
 
-### Admin Demo 1: Insert Initiative Tracker block ###
-![Admin Demo 1: Insert Initiative Tracker block](assets/screenshot-1.gif)
+### Admin Demo: Insert Initiative Tracker Block and Add Characters ###
+![Admin Demo: Insert Initiative Tracker Block and Add Characters](assets/screenshot-1.gif)
 
-### Admin Demo 2: Add Combat Notes and Characters ###
-![Admin Demo 2: Add Combat Notes and Characters](assets/screenshot-2.gif)
+### Frontend Demo 1: Edit Character Initiative ###
+![Frontend Demo 1: Edit Character Initiative](assets/screenshot-2.gif)
 
-### Frontend Demo: Cycle through active characters ###
-![Frontend Demo: Cycle through active characters](assets/screenshot-3.gif)
+### Frontend Demo 2: Cycle Active Character ###
+![Frontend Demo: Cycle Active Character](assets/screenshot-3.gif)
 
 ## Changelog ##
 
