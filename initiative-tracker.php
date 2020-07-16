@@ -10,7 +10,7 @@
  * Text Domain:     initiative-tracker
  *
  * @package Rave\InitiativeTracker
- * @since 0.0.1
+ * @since   1.0.0
  */
 
 namespace Rave\InitiativeTracker;
@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  * Register the block with WordPress.
  *
  * @author Rave
- * @since 0.1.0
+ * @since  1.0.0
  */
 function register_block() {
 
