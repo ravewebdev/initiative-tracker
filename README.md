@@ -42,6 +42,7 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 * Added: Created WP REST API route for editing initiative tracker blocks.
 * Updated: Converted class components to function components.
 * Updated: Simplified frontend character name and player name display.
+* Removed: Removed notes field.
 
 ### 1.0.2 ###
 * Fixed: Updated "current" character pointer to work across browsers.
