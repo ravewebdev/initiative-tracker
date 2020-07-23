@@ -4,15 +4,15 @@ $color-status: #00a400;
 .wp-block-rave-initiative-tracker {
 	margin: 1rem 0;
 
-	&.is-loading {
-		opacity: 0.75;
-	}
-
 	h2 {
 		margin-bottom: 0;
 	}
 
 	.characters {
+
+		&.is-loading {
+			opacity: 0.75;
+		}
 
 		ul {
 			list-style-type: circle;
