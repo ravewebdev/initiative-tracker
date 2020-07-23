@@ -10,8 +10,8 @@ const {
 	},
 } = wp;
 
-const trackerClass = 'wp-block-rave-initiative-tracker';
-const trackers     = document.querySelectorAll( `.${trackerClass}` );
+const trackerClass = '.wp-block-rave-initiative-tracker',
+	trackers = document.querySelectorAll( trackerClass );
 
 /**
  * Retrieve and re-render initiative tracker blocks.
@@ -30,10 +30,7 @@ trackers.forEach( ( tracker ) => {
 	};
 
 	render(
-		<FrontendTracker
-			dataAttributes={ attributes }
-			className={ trackerClass }
-		/>,
+		<FrontendTracker dataAttributes={ attributes } />,
         tracker
 	);
 } );

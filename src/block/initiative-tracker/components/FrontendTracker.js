@@ -34,7 +34,6 @@ const {
 const FrontendTracker = ( props ) => {
 	const {
 		dataAttributes,
-		className,
 	} = props;
 
 	// Block attributes.
@@ -294,37 +293,35 @@ const FrontendTracker = ( props ) => {
     };
 
 	return (
-		<div className={ `${ className } ${ isLoading ? 'is-loading' : '' }` }>
-            <div className="characters">
-				<CharacterList
-		            title={ __( 'Characters', 'initiative-tracker' ) }
-		            characters={ characters }
-		            editCharacter={ displayEditForm }
-		            activeIndex={ activeIndex }
-		        >
-		        	<div className="fe-edit-character-buttons">
-		        		{ displayEditLinks() }
-		        		{ null !== notice && (
-		        			<span className={ `notice ${ notice.type }` } role={ 'error' === notice.type ? 'alert' : 'status' }>
-		        				{ notice.message }
-		        			</span>
-		        		) }
-		        	</div>
-		        </CharacterList>
+        <div className={ `characters ${ isLoading ? 'is-loading' : '' }` }>
+			<CharacterList
+	            title={ __( 'Characters', 'initiative-tracker' ) }
+	            characters={ characters }
+	            editCharacter={ displayEditForm }
+	            activeIndex={ activeIndex }
+	        >
+	        	<div className="fe-edit-character-buttons">
+	        		{ displayEditLinks() }
+	        		{ null !== notice && (
+	        			<span className={ `notice ${ notice.type }` } role={ 'error' === notice.type ? 'alert' : 'status' }>
+	        				{ notice.message }
+	        			</span>
+	        		) }
+	        	</div>
+	        </CharacterList>
 
-		        <button
-		        	type="button"
-		        	className="next-character"
-		        	onClick={ () => {
-		        		const newIndex = activeIndex + 1;
+	        <button
+	        	type="button"
+	        	className="next-character"
+	        	onClick={ () => {
+	        		const newIndex = activeIndex + 1;
 
-		        		setActiveIndex( newIndex >= characters.length ? 0 : newIndex );
-		        	} }
-					disabled={ isLoading }
-		        >
-					&raquo; { __( 'Next Character', 'initiative-tracker' ) }
-				</button>
-            </div>
+	        		setActiveIndex( newIndex >= characters.length ? 0 : newIndex );
+	        	} }
+				disabled={ isLoading }
+	        >
+				&raquo; { __( 'Next Character', 'initiative-tracker' ) }
+			</button>
         </div>
 	);
 };
