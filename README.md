@@ -37,6 +37,9 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 
 ## Changelog ##
 
+### 2.0.3 ###
+* Fixed: Removed duplicate block wrapper `div` on frontend display.
+
 ### 2.0.2 ###
 * Fixed: Updated doc blocks and plugin version.
 
