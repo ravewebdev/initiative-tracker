@@ -7,6 +7,8 @@
 import edit from './edit';
 import save from './save';
 
+import './style.scss';
+
 const {
     i18n: {
         __,

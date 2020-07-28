@@ -7,6 +7,8 @@ import CharacterList from './components/CharacterList';
 import DeleteCharacterModal from './components/DeleteCharacterModal';
 import { sortCharacters } from './util';
 
+import './editor.scss';
+
 const {
     i18n: {
         __,
