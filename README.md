@@ -37,6 +37,10 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 
 ## Changelog ##
 
+### 2.0.4 ###
+* Fixed: Updated webpack config and js setup to work with wp-scripts v12.
+* Updated: Brought npm packages up to latest versions.
+
 ### 2.0.3 ###
 * Fixed: Removed duplicate block wrapper `div` on frontend display.
 
