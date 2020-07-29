@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, rpg, role-playing game, combat tracker
 Requires at least: 5.2.
 Tested up to: 5.4.0
 Requires PHP: 7.0.0
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -38,6 +38,9 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 3. Frontend Demo 2: Cycle Active Character.
 
 == Changelog ==
+
+= 2.0.5 =
+* Updated: Aligned character initiative scores to right and changed separatrr character.
 
 = 2.0.4 =
 * Fixed: Updated webpack config and js setup to work with wp-scripts v12.

@@ -37,6 +37,9 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 
 ## Changelog ##
 
+### 2.0.5 ###
+* Updated: Aligned character initiative scores to right and changed separatrr character.
+
 ### 2.0.4 ###
 * Fixed: Updated webpack config and js setup to work with wp-scripts v12.
 * Updated: Brought npm packages up to latest versions.
