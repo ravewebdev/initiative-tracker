@@ -88,4 +88,15 @@ $color-status: #00a400;
 			color: $color-error;
 		}
 	}
+
+	.character-list {
+
+		ul {
+			width: max-content;
+		}
+
+		.initiative {
+			float: right;
+		}
+	}
 }
