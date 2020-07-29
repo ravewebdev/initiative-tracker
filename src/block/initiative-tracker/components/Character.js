@@ -97,7 +97,7 @@ const Character = ( props ) => {
 				</>
 			) }
 
-			&nbsp;&mdash;&nbsp;
+			&nbsp;:&nbsp;
 
 			{ displayInitiative() }
 
