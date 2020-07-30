@@ -88,7 +88,7 @@ const FrontendTracker = ( props ) => {
 		setAttributes( {
 			...dataAttributes,
 		} );
-	}
+	};
 
 	/**
 	 * Helper function to update isEditing status and clear notice.
@@ -125,14 +125,14 @@ const FrontendTracker = ( props ) => {
 		const type = 0 === character.player.trim().length ? 'npcs' : 'players',
 			newCharacters = [ ...attributes[ type ] ],
 			index = newCharacters.indexOf( character );
-		
+
 		newCharacters[ index ] = newCharacter;
 
 		setAttributes( {
 			...attributes,
 			[ type ]: newCharacters,
 		} );
-	}
+	};
 
 	/**
 	 * Display input to edit Initiative.
@@ -263,13 +263,14 @@ const FrontendTracker = ( props ) => {
 		setNotice( null );
 
 		const response = await apiFetch( {
-			path: `${path}/${ dataAttributes.post_id }`,
+			path: `${ path }/${ dataAttributes.post_id }`,
 			method: 'POST',
 			data: {
 				...attributes,
 			},
 		} )
 			.then( ( success ) => {
+
 				// Update dataAttributes to reflect changes.
 				dataAttributes.players = [ ...players ];
 				dataAttributes.npcs = [ ...npcs ];

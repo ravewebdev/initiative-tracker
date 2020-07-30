@@ -3,12 +3,11 @@
  */
 
 import Character from './Character';
-import AddEditCharacterForm from './AddEditCharacterForm';
 
 const {
-    element: {
-        useState,
-    },
+	element: {
+		useState,
+	},
 } = wp;
 
 /**
@@ -59,12 +58,12 @@ const CharacterList = ( props ) => {
 	const onFrontend = null !== activeIndex;
 
 	return (
-		<div className={ `character-list${ null === type ? '' : `--${type}` }` }>
+		<div className={ `character-list${ null === type ? '' : `--${ type }` }` }>
 			<h2>{ title }</h2>
 
 			{ null !== children && children }
 
-			{ characters.length > 0 && (
+			{ 0 < characters.length && (
 				<ul>
 					{ characters.map( ( character, index ) => (
 						<Character

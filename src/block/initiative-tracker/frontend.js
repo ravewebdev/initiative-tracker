@@ -5,7 +5,7 @@
 import FrontendTracker from './components/FrontendTracker';
 
 const {
-    element: {
+	element: {
 		render,
 	},
 } = wp;
@@ -31,6 +31,6 @@ trackers.forEach( ( tracker ) => {
 
 	render(
 		<FrontendTracker dataAttributes={ attributes } />,
-        tracker
+		tracker
 	);
 } );

@@ -3,15 +3,9 @@
  */
 
 const {
-	i18n: {
-        __,
-    },
-    components: {
-        TextControl,
+	element: {
+		useState,
 	},
-    element: {
-        useState,
-    },
 } = wp;
 
 /**
@@ -93,7 +87,7 @@ const Character = ( props ) => {
 			{ '' !== player && (
 				<>
 					&nbsp;
-					<span className="player">{ `( ${ player } )`}</span>
+					<span className="player">{ `( ${ player } )` }</span>
 				</>
 			) }
 

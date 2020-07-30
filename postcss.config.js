@@ -8,23 +8,23 @@ const production = 'production' === process.env.NODE_ENV ? true : false;
 
 // Assign plugins.
 const plugins = [
-    require( 'postcss-safe-parser' ),
-    require( 'autoprefixer' ),
-    mqpacker( {
-        sort: true,
-    } ),
+	require( 'postcss-safe-parser' ),
+	require( 'autoprefixer' ),
+	mqpacker( {
+		sort: true,
+	} ),
 ];
 
 // Minify production.
 if ( production ) {
-    plugins.push(
-        require( 'cssnano' )( {
-            preset: 'default',
-        } ),
-    );
+	plugins.push(
+		require( 'cssnano' )( {
+			preset: 'default',
+		} ),
+	);
 }
 
 // Module Export
 module.exports = {
-    plugins,
+	plugins,
 };

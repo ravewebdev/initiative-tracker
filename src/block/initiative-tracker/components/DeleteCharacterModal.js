@@ -3,17 +3,17 @@
  */
 
 const {
-    i18n: {
-        __,
-    },
-    components: {
-        Button,
-		Dashicon,
-        Modal,
+	i18n: {
+		__,
 	},
-    element: {
-    	useState,
-    },
+	components: {
+		Button,
+		Dashicon,
+		Modal,
+	},
+	element: {
+		useState,
+	},
 } = wp;
 
 /**
@@ -49,8 +49,8 @@ const DeleteCharacterModal = ( props ) => {
 		<>
 			<Button
 				className="delete-character button-link-delete"
-	            onClick={ toggle }
-	            isDestructive
+				onClick={ toggle }
+				isDestructive
 			>
 				<Dashicon icon="trash" /> { __( 'Delete', 'initiative-tracker' ) }
 			</Button>
@@ -63,26 +63,26 @@ const DeleteCharacterModal = ( props ) => {
 					<div className="edit-character-buttons">
 						<Button
 							className="is-button"
-		                    isSecondary
-		                    onClick={ toggle }
-		                >
-		                    { __( 'Cancel', 'initiative-tracker' ) }
-		                </Button>
-		                <Button
-		                    className="button-link-delete"
-		                    isDestructive
-		                    onClick={ () => {
-		                        deleteCharacter( type, index );
-		                        toggle();
-		                    } }
-		                >
-		                    { __( 'Delete Character', 'initiative-tracker' ) }
-		                </Button>
-	                </div>
+							isSecondary
+							onClick={ toggle }
+						>
+							{ __( 'Cancel', 'initiative-tracker' ) }
+						</Button>
+						<Button
+							className="button-link-delete"
+							isDestructive
+							onClick={ () => {
+								deleteCharacter( type, index );
+								toggle();
+							} }
+						>
+							{ __( 'Delete Character', 'initiative-tracker' ) }
+						</Button>
+					</div>
 				</Modal>
 			) }
 		</>
 	);
-}
+};
 
 export default DeleteCharacterModal;

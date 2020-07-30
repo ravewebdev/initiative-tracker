@@ -8,11 +8,10 @@
  * @author R A Van Epps <rave@ravanepps.com>
  * @since  1.0.0
  *
- * @param  {Object} props  Block props.
  * @return {?ReactElement} Block save JSX.
  */
-const save = ( props ) => {
-    return null;
+const save = () => {
+	return null;
 };
 
 export default save;
