@@ -221,8 +221,7 @@ const FrontendTracker = ( props ) => {
 	 */
 	const displayEditLink = ( linkClass, icon, label, clickFn ) => {
 		return (
-			<a
-				href="#"
+			<button
 				className={ linkClass }
 				onClick={ ( event ) => {
 					event.preventDefault();
@@ -236,7 +235,7 @@ const FrontendTracker = ( props ) => {
 				} }
 			>
 				<Dashicon icon={ icon } /> { label }
-			</a>
+			</button>
 		);
 	};
 

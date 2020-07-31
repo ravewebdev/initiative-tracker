@@ -39,6 +39,9 @@ Feel free to create an issue or PR in the [Github repo here](https://github.com/
 
 == Changelog ==
 
+= NEXT =
+* Fixed: Changed character edit `<a>` tags to `<button>` tags for a11y purposes.
+
 = 2.0.5 =
 * Updated: Aligned character initiative scores to right and changed separatrr character.
 
