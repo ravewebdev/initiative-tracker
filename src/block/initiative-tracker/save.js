@@ -10,8 +10,8 @@
  *
  * @return {?ReactElement} Block save JSX.
  */
-const save = () => {
+const Save = () => {
 	return null;
 };
 
-export default save;
+export default Save;

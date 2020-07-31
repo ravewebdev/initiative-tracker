@@ -31,7 +31,7 @@ const {
  * @param  {Object} props Block props.
  * @return {ReactElement} Block edit JSX.
  */
-const edit = ( props ) => {
+const Edit = ( props ) => {
 	const {
 		attributes: {
 			id,
@@ -44,7 +44,6 @@ const edit = ( props ) => {
 		isSelected,
 	} = props;
 
-	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect( () => {
 
 		// If id is not set (initial block creation), set id to clientId value.
@@ -259,4 +258,4 @@ const edit = ( props ) => {
 	);
 };
 
-export default edit;
+export default Edit;

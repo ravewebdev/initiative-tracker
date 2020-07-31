@@ -4,8 +4,8 @@
 * Register Initiative Tracker
 */
 
-import edit from './edit';
-import save from './save';
+import Edit from './edit';
+import Save from './save';
 
 import './style.scss';
 
@@ -46,6 +46,6 @@ registerBlockType( 'rave/initiative-tracker', {
 			default: [],
 		},
 	},
-	edit,
-	save,
+	edit: Edit,
+	save: Save,
 } );
