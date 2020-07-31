@@ -44,6 +44,7 @@ const edit = ( props ) => {
 		isSelected,
 	} = props;
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect( () => {
 
 		// If id is not set (initial block creation), set id to clientId value.
