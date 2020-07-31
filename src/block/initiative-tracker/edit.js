@@ -4,6 +4,7 @@
 
 import AddEditCharacterForm from './components/AddEditCharacterForm';
 import CharacterList from './components/CharacterList';
+import Character from './components/Character';
 import DeleteCharacterModal from './components/DeleteCharacterModal';
 import { sortCharacters } from './util';
 
@@ -213,7 +214,7 @@ const Edit = ( props ) => {
 	 * @return {ReactElement}       JSX to display.
 	 */
 	const displayEditForm = ( type, isEditing, toggleFn, character, index ) => (
-		displayAddEditForm( {
+		isSelected && displayAddEditForm( {
 			type,
 			characterFn: editCharacter,
 			toggleFn,
@@ -223,6 +224,44 @@ const Edit = ( props ) => {
 		}, 'edit' )
 	);
 
+	/**
+	 * Render Characters within CharacterList.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  NEXT
+	 *
+	 * @param  {Object} args   Arguments to render Characters.
+	 * @return {?ReactElement} JSX to display.
+	 */
+	const renderCharacters = ( args ) => {
+		const {
+			type,
+			characters,
+			isAdding,
+			toggleAdd,
+		} = args;
+
+		return (
+			<>
+				{ 0 < characters.length && (
+					<ul>
+						{ characters.map( ( character, index ) => (
+							<Character
+								key={ character.key }
+								character={ character }
+								type={ type }
+								index={ index }
+								editCharacter={ displayEditForm }
+							/>
+						) ) }
+					</ul>
+				) }
+
+				{ isSelected && displayAddForm( type, isAdding, toggleAdd ) }
+			</>
+		);
+	};
+
 	return (
 		<div className={ className }>
 			<div className="characters">
@@ -231,16 +270,14 @@ const Edit = ( props ) => {
 						<CharacterList
 							title={ __( 'Players', 'initiative-tracker' ) }
 							characters={ players }
-							addCharacter={ displayAddForm }
-							editCharacter={ displayEditForm }
 							type="player"
+							renderCharacters={ renderCharacters }
 						/>
 						<CharacterList
 							title={ __( 'NPCs', 'initiative-tracker' ) }
 							characters={ npcs }
-							addCharacter={ displayAddForm }
-							editCharacter={ displayEditForm }
 							type="npc"
+							renderCharacters={ renderCharacters }
 						/>
 					</>
 				) }
@@ -251,6 +288,7 @@ const Edit = ( props ) => {
 							...players,
 							...npcs,
 						], false ) }
+						renderCharacters={ renderCharacters }
 					/>
 				) }
 			</div>

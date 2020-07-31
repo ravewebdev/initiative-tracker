@@ -2,8 +2,6 @@
  * Character List.
  */
 
-import Character from './Character';
-
 const {
 	element: {
 		useState,
@@ -24,9 +22,8 @@ const CharacterList = ( props ) => {
 	const {
 		title,
 		characters,
+		renderCharacters = null,
 		type = null,
-		addCharacter = null,
-		editCharacter = null,
 		activeIndex = null,
 		children = null,
 	} = props;
@@ -43,43 +40,18 @@ const CharacterList = ( props ) => {
 		setIsAdding( ! isAdding );
 	};
 
-	/**
-	 * Display AddEditCharacterForm if in admin.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  2.0.0
-	 *
-	 * @return {ReactElement} JSX to add Character if in admin.
-	 */
-	const maybeAddCharacter = () => (
-		null !== addCharacter ? addCharacter( type, isAdding, toggleAdd ) : null
-	);
-
-	const onFrontend = null !== activeIndex;
-
 	return (
 		<div className={ `character-list${ null === type ? '' : `--${ type }` }` }>
 			<h2>{ title }</h2>
 
 			{ null !== children && children }
 
-			{ 0 < characters.length && (
-				<ul>
-					{ characters.map( ( character, index ) => (
-						<Character
-							key={ character.key }
-							character={ character }
-							type={ type }
-							index={ index }
-							editCharacter={ editCharacter }
-							activeIndex={ activeIndex }
-							onFrontend={ onFrontend }
-						/>
-					) ) }
-				</ul>
-			) }
-
-			{ maybeAddCharacter() }
+			{ null !== renderCharacters && renderCharacters( {
+				type,
+				characters,
+				isAdding,
+				toggleAdd,
+			} ) }
 		</div>
 	);
 };
