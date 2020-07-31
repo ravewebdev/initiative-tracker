@@ -62,7 +62,8 @@ function render_block( array $attributes ) : string {
 								<?php if ( ! empty( $player ) ) : ?>
 									<span class="player"><?php echo esc_html( "( {$player} )" ); ?></span>
 								<?php endif; ?>
-								<span class="initiative"><?php echo esc_html( " &mdash; {$initiative}" ); ?></span>
+								:&nbsp;
+								<span class="initiative"><?php echo esc_html( $initiative ); ?></span>
 							</li>
 							<?php
 						}, $characters, array_keys( $characters ) );
