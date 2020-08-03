@@ -189,16 +189,16 @@ const Edit = ( props ) => {
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  2.0.0
 	 *
-	 * @param  {string}   type     Type of Character list being displayed.
-	 * @param  {boolean}  isAdding Whether currently in editing mode.
-	 * @param  {function} toggleFn Toggle function.
-	 * @return {ReactElement}      JSX to display.
+	 * @param  {string}   type      Type of Character list being displayed.
+	 * @param  {boolean}  isAdding  Whether currently in adding mode.
+	 * @param  {function} toggleAdd Toggle function.
+	 * @return {ReactElement}       JSX to display.
 	 */
-	const displayAddForm = ( type, isAdding, toggleFn ) => (
+	const displayAddForm = ( { type, isAdding, toggleAdd } ) => (
 		displayAddEditForm( {
 			type,
 			characterFn: addCharacter,
-			toggleFn,
+			toggleFn: toggleAdd,
 			isActive: isAdding,
 		} )
 	);
@@ -227,8 +227,12 @@ const Edit = ( props ) => {
 		}, 'edit' )
 	);
 
-	// Display Character add form.
-	addFilter( 'rave.initiativeTracker.afterCharacters', 'rave.initiativeTracker.renderAddCharacterForm', ( args ) => isSelected && displayAddForm( { ...args } ) );
+	if ( isSelected ) {
+
+		// Display Character add form.
+		addFilter( 'rave.initiativeTracker.afterCharacters', 'rave.initiativeTracker.renderAddCharacterForm', ( content, args ) => displayAddForm( args ) );
+
+	}
 
 	return (
 		<div className={ className }>
