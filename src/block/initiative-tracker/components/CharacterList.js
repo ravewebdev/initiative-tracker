@@ -60,7 +60,7 @@ const CharacterList = ( props ) => {
 	 * @param  {?ReactElement} JSX to display.
 	 * @param  {Object}        Filter args.
 	 */
-	const renderBeforeCharacters = applyFilters( 'rave.initiativeTracker.beforeCharacters', null, filterArgs );
+	const renderBeforeCharacterList = applyFilters( 'rave.initiativeTracker.beforeCharacterList', null, filterArgs );
 
 	/**
 	 * Render content after Characters.
@@ -70,7 +70,7 @@ const CharacterList = ( props ) => {
 	 * @param  {?ReactElement} JSX to display.
 	 * @param  {Object}        Filter args.
 	 */
-	const renderAfterCharacters = applyFilters( 'rave.initiativeTracker.afterCharacters', null, filterArgs );
+	const renderAfterCharacterList = applyFilters( 'rave.initiativeTracker.afterCharacterList', null, filterArgs );
 
 	return (
 		<div className={ `character-list${ null === type ? '' : `--${ type }` }` }>
@@ -78,7 +78,7 @@ const CharacterList = ( props ) => {
 
 			{ null !== children && children }
 
-			{ renderBeforeCharacters }
+			{ renderBeforeCharacterList }
 
 			{ 0 < characters.length && (
 				<ul>
@@ -94,7 +94,7 @@ const CharacterList = ( props ) => {
 				</ul>
 			) }
 
-			{ renderAfterCharacters }
+			{ renderAfterCharacterList }
 		</div>
 	);
 };
