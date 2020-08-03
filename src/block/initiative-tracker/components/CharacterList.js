@@ -6,6 +6,9 @@ const {
 	element: {
 		useState,
 	},
+	hooks: {
+		applyFilters,
+	},
 } = wp;
 
 /**
@@ -40,18 +43,48 @@ const CharacterList = ( props ) => {
 		setIsAdding( ! isAdding );
 	};
 
+	// Args to pass to content filters.
+	const filterArgs = {
+		characters,
+		type,
+		isAdding,
+		toggleAdd,
+	};
+
+	/**
+	 * Render content before Characters.
+	 *
+	 * @since  NEXT
+	 *
+	 * @param  {?ReactElement} JSX to display.
+	 * @param  {Object}        Filter args.
+	 */
+	const renderBeforeCharacters = applyFilters( 'rave.initiativeTracker.beforeCharacters', null, filterArgs );
+
+	/**
+	 * Render content after Characters.
+	 *
+	 * @since  NEXT
+	 *
+	 * @param  {?ReactElement} JSX to display.
+	 * @param  {Object}        Filter args.
+	 */
+	const renderAfterCharacters = applyFilters( 'rave.initiativeTracker.afterCharacters', null, filterArgs );
+
 	return (
 		<div className={ `character-list${ null === type ? '' : `--${ type }` }` }>
 			<h2>{ title }</h2>
 
 			{ null !== children && children }
 
+			{ renderBeforeCharacters }
+
 			{ null !== renderCharacters && renderCharacters( {
 				type,
 				characters,
-				isAdding,
-				toggleAdd,
 			} ) }
+
+			{ renderAfterCharacters }
 		</div>
 	);
 };

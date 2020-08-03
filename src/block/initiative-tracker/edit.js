@@ -21,6 +21,9 @@ const {
 	element: {
 		useEffect,
 	},
+	hooks: {
+		addFilter,
+	},
 } = wp;
 
 /**
@@ -237,8 +240,6 @@ const Edit = ( props ) => {
 		const {
 			type,
 			characters,
-			isAdding,
-			toggleAdd,
 		} = args;
 
 		return (
@@ -256,11 +257,12 @@ const Edit = ( props ) => {
 						) ) }
 					</ul>
 				) }
-
-				{ isSelected && displayAddForm( type, isAdding, toggleAdd ) }
 			</>
 		);
 	};
+
+	// Display Character add form.
+	addFilter( 'rave.initiativeTracker.afterCharacters', 'rave.initiativeTracker.renderAddCharacterForm', ( args ) => isSelected && displayAddForm( { ...args } ) );
 
 	return (
 		<div className={ className }>
