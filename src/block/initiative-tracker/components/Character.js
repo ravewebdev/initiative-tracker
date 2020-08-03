@@ -6,6 +6,9 @@ const {
 	element: {
 		useState,
 	},
+	hooks: {
+		applyFilters,
+	},
 } = wp;
 
 /**
@@ -80,8 +83,40 @@ const Character = ( props ) => {
 		return initiativeDisplay || <span className="initiative">{ initiative || 0 }</span>;
 	};
 
+	// Args to pass to content filters.
+	const filterArgs = {
+		type,
+		isEditing,
+		toggleEdit,
+		character: { ...props.character },
+		index,
+	};
+
+	/**
+	 * Render content before Character.
+	 *
+	 * @since  NEXT
+	 *
+	 * @param  {?ReactElement} JSX to display.
+	 * @param  {Object}        Filter args.
+	 */
+	const renderBeforeCharacter = applyFilters( 'rave.initiativeTracker.beforeCharacter', null, filterArgs );
+
+	/**
+	 * Render content after Character.
+	 *
+	 * @since  NEXT
+	 *
+	 * @param  {?ReactElement} JSX to display.
+	 * @param  {Object}        Filter args.
+	 */
+	const renderAfterCharacter = applyFilters( 'rave.initiativeTracker.afterCharacter', null, filterArgs );
+
 	return (
 		<li className={ `character ${ isCurrent ? 'current' : '' }` }>
+
+			{ renderBeforeCharacter }
+
 			<span className="name">{ name }</span>
 
 			{ '' !== player && (
@@ -95,7 +130,7 @@ const Character = ( props ) => {
 
 			{ displayInitiative() }
 
-			{ maybeEditCharacter() }
+			{ renderAfterCharacter }
 		</li>
 	);
 };

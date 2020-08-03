@@ -184,6 +184,39 @@ const Edit = ( props ) => {
 	};
 
 	/**
+	 * Display Character edit/delete buttons.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  NEXT
+	 *
+	 * @param  {string}   type      Type of Character list being displayed.
+	 * @param  {boolean}  isEditing  Whether currently in editing mode.
+	 * @param  {function} toggleEdit Toggle function.
+	 * @param  {Object}   character  Current character.
+	 * @param  {number}   index      Current character index.
+	 * @return {ReactElement}        JSX to display.
+	 */
+	const displayEditCharacterButtons = ( { type, isEditing, toggleEdit, character, index } ) => (
+		! isEditing && (
+			<div className="edit-character-buttons">
+				<Button
+					className="edit-character"
+					isTertiary
+					onClick={ () => toggleEdit( type ) }
+				>
+					<Dashicon icon="edit" /> { __( 'Edit', 'initiative-tracker' ) }
+				</Button>
+				<DeleteCharacterModal
+					index={ index }
+					deleteCharacter={ deleteCharacter }
+					name={ character.name }
+					type={ type }
+				/>
+			</div>
+		)
+	);
+
+	/**
 	 * Display Add version of AddEditCharacterForm.
 	 *
 	 * @author R A Van Epps <rave@ravanepps.com>
@@ -232,6 +265,8 @@ const Edit = ( props ) => {
 		// Display Character add form.
 		addFilter( 'rave.initiativeTracker.afterCharacters', 'rave.initiativeTracker.renderAddCharacterForm', ( content, args ) => displayAddForm( args ) );
 
+		// Display Character edit buttons.
+		addFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons', ( content, args ) => displayEditCharacterButtons( args ) );
 	}
 
 	return (
