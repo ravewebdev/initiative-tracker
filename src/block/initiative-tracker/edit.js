@@ -190,12 +190,13 @@ const Edit = ( props ) => {
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  NEXT
 	 *
-	 * @param  {string}   type      Type of Character list being displayed.
-	 * @param  {boolean}  isEditing  Whether currently in editing mode.
-	 * @param  {function} toggleEdit Toggle function.
-	 * @param  {Object}   character  Current character.
-	 * @param  {number}   index      Current character index.
-	 * @return {ReactElement}        JSX to display.
+	 * @param  {Object}   args           Function args.
+	 * @param  {string}   args.type      Type of Character list being displayed.
+	 * @param  {boolean}  args.isEditing  Whether currently in editing mode.
+	 * @param  {function} args.toggleEdit Toggle function.
+	 * @param  {Object}   args.character  Current character.
+	 * @param  {number}   args.index      Current character index.
+	 * @return {ReactElement}             JSX to display.
 	 */
 	const displayEditCharacterButtons = ( { type, isEditing, toggleEdit, character, index } ) => (
 		! isEditing && (
@@ -223,10 +224,11 @@ const Edit = ( props ) => {
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  2.0.0
 	 *
-	 * @param  {string}   type      Type of Character list being displayed.
-	 * @param  {boolean}  isAdding  Whether currently in adding mode.
-	 * @param  {function} toggleAdd Toggle function.
-	 * @return {ReactElement}       JSX to display.
+	 * @param  {Object}   args           Function arguments.
+	 * @param  {string}   args.type      Type of Character list being displayed.
+	 * @param  {boolean}  args.isAdding  Whether currently in adding mode.
+	 * @param  {function} args.toggleAdd Toggle function.
+	 * @return {ReactElement}            JSX to display.
 	 */
 	const displayAddForm = ( { type, isAdding, toggleAdd } ) => (
 		displayAddEditForm( {
