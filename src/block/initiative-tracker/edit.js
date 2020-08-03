@@ -227,40 +227,6 @@ const Edit = ( props ) => {
 		}, 'edit' )
 	);
 
-	/**
-	 * Render Characters within CharacterList.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  NEXT
-	 *
-	 * @param  {Object} args   Arguments to render Characters.
-	 * @return {?ReactElement} JSX to display.
-	 */
-	const renderCharacters = ( args ) => {
-		const {
-			type,
-			characters,
-		} = args;
-
-		return (
-			<>
-				{ 0 < characters.length && (
-					<ul>
-						{ characters.map( ( character, index ) => (
-							<Character
-								key={ character.key }
-								character={ character }
-								type={ type }
-								index={ index }
-								editCharacter={ displayEditForm }
-							/>
-						) ) }
-					</ul>
-				) }
-			</>
-		);
-	};
-
 	// Display Character add form.
 	addFilter( 'rave.initiativeTracker.afterCharacters', 'rave.initiativeTracker.renderAddCharacterForm', ( args ) => isSelected && displayAddForm( { ...args } ) );
 
@@ -273,13 +239,13 @@ const Edit = ( props ) => {
 							title={ __( 'Players', 'initiative-tracker' ) }
 							characters={ players }
 							type="player"
-							renderCharacters={ renderCharacters }
+							editCharacter={ () => null }
 						/>
 						<CharacterList
 							title={ __( 'NPCs', 'initiative-tracker' ) }
 							characters={ npcs }
 							type="npc"
-							renderCharacters={ renderCharacters }
+							editCharacter={ () => null }
 						/>
 					</>
 				) }
@@ -290,7 +256,6 @@ const Edit = ( props ) => {
 							...players,
 							...npcs,
 						], false ) }
-						renderCharacters={ renderCharacters }
 					/>
 				) }
 			</div>

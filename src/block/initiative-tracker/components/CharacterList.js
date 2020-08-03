@@ -2,6 +2,8 @@
  * Character List.
  */
 
+import Character from './Character';
+
 const {
 	element: {
 		useState,
@@ -25,9 +27,8 @@ const CharacterList = ( props ) => {
 	const {
 		title,
 		characters,
-		renderCharacters = null,
 		type = null,
-		activeIndex = null,
+		editCharacter = null,
 		children = null,
 	} = props;
 
@@ -79,10 +80,19 @@ const CharacterList = ( props ) => {
 
 			{ renderBeforeCharacters }
 
-			{ null !== renderCharacters && renderCharacters( {
-				type,
-				characters,
-			} ) }
+			{ 0 < characters.length && (
+				<ul>
+					{ characters.map( ( character, index ) => (
+						<Character
+							key={ character.key }
+							character={ character }
+							type={ type }
+							index={ index }
+							editCharacter={ editCharacter }
+						/>
+					) ) }
+				</ul>
+			) }
 
 			{ renderAfterCharacters }
 		</div>
