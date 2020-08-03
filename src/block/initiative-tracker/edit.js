@@ -23,6 +23,7 @@ const {
 	},
 	hooks: {
 		addFilter,
+		removeFilter,
 	},
 } = wp;
 
@@ -267,6 +268,9 @@ const Edit = ( props ) => {
 
 		// Display Character edit buttons.
 		addFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons', ( content, args ) => displayEditCharacterButtons( args ) );
+	} else {
+		removeFilter( 'rave.initiativeTracker.afterCharacters', 'rave.initiativeTracker.renderAddCharacterForm' );
+		removeFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons' );
 	}
 
 	return (
