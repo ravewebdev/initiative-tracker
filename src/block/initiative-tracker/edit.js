@@ -202,13 +202,13 @@ const Edit = ( props ) => {
 	const displayEditCharacterButtons = ( { type, isEditing, toggleEdit, character, index } ) => (
 		! isEditing && (
 			<div className="edit-character-buttons">
-				<Button
-					className="edit-character"
-					isTertiary
-					onClick={ () => toggleEdit( type ) }
-				>
-					<Dashicon icon="edit" /> { __( 'Edit', 'initiative-tracker' ) }
-				</Button>
+				<AddEditCharacterModal
+					type={ type }
+					buttonText={ __( 'Edit Character' ) }
+					characterFn={ editCharacter }
+					character={ character }
+					index={ index }
+				/>
 				<DeleteCharacterModal
 					index={ index }
 					deleteCharacter={ deleteCharacter }

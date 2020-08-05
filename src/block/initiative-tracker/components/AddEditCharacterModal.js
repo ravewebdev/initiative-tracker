@@ -28,6 +28,8 @@ const AddEditCharacterModal = ( props ) => {
 		type,
 		buttonText,
 		characterFn,
+		character = null,
+		index = null,
 	} = props;
 
 	const [ isOpen, setOpen ] = useState( false );
@@ -59,6 +61,8 @@ const AddEditCharacterModal = ( props ) => {
 						type={ type }
 						toggle={ toggleOpen }
 						characterFn={ characterFn }
+						character={ character }
+						index={ index }
 					/>
 				</Modal>
 			) }
