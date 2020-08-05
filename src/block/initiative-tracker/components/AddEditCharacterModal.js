@@ -47,7 +47,7 @@ const AddEditCharacterModal = ( props ) => {
 	return (
 		<>
 			<Button
-				isPrimary
+				isSecondary
 				onClick={ toggleOpen }
 			>
 				{ buttonText }
