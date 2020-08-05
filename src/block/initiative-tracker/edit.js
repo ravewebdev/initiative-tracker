@@ -119,73 +119,6 @@ const Edit = ( props ) => {
 	};
 
 	/**
-	 * Display AddEditCharacterForm component.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  2.0.0
-	 *
-	 * @param  {Object} fnProps Props to pass to componenent.
-	 * @param  {string} action  Version of form to display.
-	 * @return {ReactElement}   JSX to display.
-	 */
-	const displayAddEditForm = ( fnProps, action = 'add' ) => {
-		const {
-			type,
-			characterFn,
-			toggleFn,
-			isActive,
-			character = null,
-			index = null,
-		} = fnProps;
-
-		const formProps = {
-			type,
-			characterFn,
-			toggle: () => toggleFn( type ),
-		};
-
-		if ( 'edit' === action ) {
-			formProps.character = character;
-			formProps.index = index;
-		}
-
-		if ( isActive ) {
-			return (
-				<AddEditCharacterForm { ...formProps } />
-			);
-		}
-
-		return (
-			<div className="edit-character-buttons">
-				{ 'add' === action ? (
-					<Button
-						isPrimary
-						onClick={ () => toggleFn( type ) }
-					>
-						{ __( 'Add Player', 'initiative-tracker' ) }
-					</Button>
-				) : (
-					<>
-						<Button
-							className="edit-character"
-							isTertiary
-							onClick={ () => toggleFn( type ) }
-						>
-							<Dashicon icon="edit" /> { __( 'Edit', 'initiative-tracker' ) }
-						</Button>
-						<DeleteCharacterModal
-							index={ index }
-							deleteCharacter={ deleteCharacter }
-							name={ character.name }
-							type={ type }
-						/>
-					</>
-				) }
-			</div>
-		);
-	};
-
-	/**
 	 * Display Character edit/delete buttons.
 	 *
 	 * @author R A Van Epps <rave@ravanepps.com>
@@ -235,51 +168,6 @@ const Edit = ( props ) => {
 			buttonText={ __( 'Add Character' ) }
 			characterFn={ addCharacter }
 		/>
-	);
-
-	/**
-	 * Display Add version of AddEditCharacterForm.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  2.0.0
-	 *
-	 * @param  {Object}   args           Function arguments.
-	 * @param  {string}   args.type      Type of Character list being displayed.
-	 * @param  {boolean}  args.isAdding  Whether currently in adding mode.
-	 * @param  {function} args.toggleAdd Toggle function.
-	 * @return {ReactElement}            JSX to display.
-	 */
-	const displayAddForm = ( { type, isAdding, toggleAdd } ) => (
-		displayAddEditForm( {
-			type,
-			characterFn: addCharacter,
-			toggleFn: toggleAdd,
-			isActive: isAdding,
-		} )
-	);
-
-	/**
-	 * Display Edit version of AddEditCharacterForm.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  2.0.0
-	 *
-	 * @param  {string}   type      Type of Character list being displayed.
-	 * @param  {boolean}  isEditing Whether currently in editing mode.
-	 * @param  {function} toggleFn  Toggle function.
-	 * @param  {Object}   character Character object.
-	 * @param  {number}   index     Character index.
-	 * @return {ReactElement}       JSX to display.
-	 */
-	const displayEditForm = ( type, isEditing, toggleFn, character, index ) => (
-		isSelected && displayAddEditForm( {
-			type,
-			characterFn: editCharacter,
-			toggleFn,
-			isActive: isEditing,
-			character,
-			index,
-		}, 'edit' )
 	);
 
 	if ( isSelected ) {
