@@ -2,10 +2,8 @@
  * EDIT: Initiative Tracker Block
  */
 
-import AddEditCharacterForm from './components/AddEditCharacterForm';
 import AddEditCharacterModal from './components/AddEditCharacterModal';
 import CharacterList from './components/CharacterList';
-import Character from './components/Character';
 import DeleteCharacterModal from './components/DeleteCharacterModal';
 import { sortCharacters } from './util';
 
@@ -14,10 +12,6 @@ import './editor.scss';
 const {
 	i18n: {
 		__,
-	},
-	components: {
-		Button,
-		Dashicon,
 	},
 	element: {
 		useEffect,
