@@ -5,9 +5,6 @@
 import Character from './Character';
 
 const {
-	element: {
-		useState,
-	},
 	hooks: {
 		applyFilters,
 	},
@@ -31,18 +28,6 @@ const CharacterList = ( props ) => {
 		editCharacter = null,
 		children = null,
 	} = props;
-
-	const [ isAdding, setIsAdding ] = useState( false );
-
-	/**
-	 * Toggle adding state.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  1.0.0
-	 */
-	const toggleAdd = () => {
-		setIsAdding( ! isAdding );
-	};
 
 	// Args to pass to content filters.
 	const filterArgs = {
