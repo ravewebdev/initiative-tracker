@@ -86,8 +86,6 @@ const Character = ( props ) => {
 	// Args to pass to content filters.
 	const filterArgs = {
 		type,
-		isEditing,
-		toggleEdit,
 		character: { ...props.character },
 		index,
 	};

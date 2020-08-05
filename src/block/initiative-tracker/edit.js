@@ -126,30 +126,26 @@ const Edit = ( props ) => {
 	 *
 	 * @param  {Object}   args           Function args.
 	 * @param  {string}   args.type      Type of Character list being displayed.
-	 * @param  {boolean}  args.isEditing  Whether currently in editing mode.
-	 * @param  {function} args.toggleEdit Toggle function.
 	 * @param  {Object}   args.character  Current character.
 	 * @param  {number}   args.index      Current character index.
 	 * @return {ReactElement}             JSX to display.
 	 */
-	const displayEditCharacterButtons = ( { type, isEditing, toggleEdit, character, index } ) => (
-		! isEditing && (
-			<div className="edit-character-buttons">
-				<AddEditCharacterModal
-					type={ type }
-					buttonText={ __( 'Edit Character' ) }
-					characterFn={ editCharacter }
-					character={ character }
-					index={ index }
-				/>
-				<DeleteCharacterModal
-					index={ index }
-					deleteCharacter={ deleteCharacter }
-					name={ character.name }
-					type={ type }
-				/>
-			</div>
-		)
+	const displayEditCharacterButtons = ( { type, character, index } ) => (
+		<div className="edit-character-buttons">
+			<AddEditCharacterModal
+				type={ type }
+				buttonText={ __( 'Edit Character' ) }
+				characterFn={ editCharacter }
+				character={ character }
+				index={ index }
+			/>
+			<DeleteCharacterModal
+				index={ index }
+				deleteCharacter={ deleteCharacter }
+				name={ character.name }
+				type={ type }
+			/>
+		</div>
 	);
 
 	/**

@@ -48,8 +48,6 @@ const CharacterList = ( props ) => {
 	const filterArgs = {
 		characters,
 		type,
-		isAdding,
-		toggleAdd,
 	};
 
 	/**
