@@ -168,16 +168,12 @@ const Edit = ( props ) => {
 
 	if ( isSelected ) {
 
-		// Display Character add form.
-		// addFilter( 'rave.initiativeTracker.afterCharacterList', 'rave.initiativeTracker.renderAddCharacterForm', ( content, args ) => displayAddForm( args ) );
-
 		// Display Character add button.
 		addFilter( 'rave.initiativeTracker.afterCharacterList', 'rave.initiativeTracker.renderAddCharacterbutton', ( content, args ) => displayAddCharacterButton( args ) );
 
 		// Display Character edit buttons.
 		addFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons', ( content, args ) => displayEditCharacterButtons( args ) );
 	} else {
-		removeFilter( 'rave.initiativeTracker.afterCharacterList', 'rave.initiativeTracker.renderAddCharacterForm' );
 		removeFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons' );
 	}
 
