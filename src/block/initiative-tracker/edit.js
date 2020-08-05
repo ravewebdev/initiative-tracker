@@ -3,6 +3,7 @@
  */
 
 import AddEditCharacterForm from './components/AddEditCharacterForm';
+import AddEditCharacterModal from './components/AddEditCharacterModal';
 import CharacterList from './components/CharacterList';
 import Character from './components/Character';
 import DeleteCharacterModal from './components/DeleteCharacterModal';
@@ -219,6 +220,24 @@ const Edit = ( props ) => {
 	);
 
 	/**
+	 * Display Character edit/delete buttons.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  NEXT
+	 *
+	 * @param  {Object} args      Function args.
+	 * @param  {string} args.type Type of Character list being displayed.
+	 * @return {ReactElement}     JSX to display.
+	 */
+	const displayAddCharacterButton = ( { type } ) => (
+		<AddEditCharacterModal
+			type={ type }
+			buttonText={ __( 'Add Character' ) }
+			characterFn={ addCharacter }
+		/>
+	);
+
+	/**
 	 * Display Add version of AddEditCharacterForm.
 	 *
 	 * @author R A Van Epps <rave@ravanepps.com>
@@ -266,7 +285,10 @@ const Edit = ( props ) => {
 	if ( isSelected ) {
 
 		// Display Character add form.
-		addFilter( 'rave.initiativeTracker.afterCharacterList', 'rave.initiativeTracker.renderAddCharacterForm', ( content, args ) => displayAddForm( args ) );
+		// addFilter( 'rave.initiativeTracker.afterCharacterList', 'rave.initiativeTracker.renderAddCharacterForm', ( content, args ) => displayAddForm( args ) );
+
+		// Display Character add button.
+		addFilter( 'rave.initiativeTracker.afterCharacterList', 'rave.initiativeTracker.renderAddCharacterbutton', ( content, args ) => displayAddCharacterButton( args ) );
 
 		// Display Character edit buttons.
 		addFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons', ( content, args ) => displayEditCharacterButtons( args ) );
