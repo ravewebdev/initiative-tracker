@@ -64,7 +64,6 @@ const Edit = ( props ) => {
 	 * @param  {Object} character New character object.
 	 */
 	const addCharacter = ( type, character ) => {
-		type = `${ type }s`;
 		character.key = Date.now();
 
 		const characters = [ ...props.attributes[ type ], character ];
@@ -85,7 +84,6 @@ const Edit = ( props ) => {
 	 * @param  {Object} character Character object.
 	 */
 	const editCharacter = ( type, index, character ) => {
-		type = `${ type }s`;
 		const characters = [ ...props.attributes[ type ] ];
 		characters[ index ] = character;
 		setAttributes( {
@@ -103,7 +101,6 @@ const Edit = ( props ) => {
 	 * @param  {number} index Character index.
 	 */
 	const deleteCharacter = ( type, index ) => {
-		type = `${ type }s`;
 		const characters = [ ...props.attributes[ type ] ].filter( function( character, charIndex ) {
 			return charIndex !== index;
 		}, index );
@@ -180,13 +177,13 @@ const Edit = ( props ) => {
 						<CharacterList
 							title={ __( 'Players', 'initiative-tracker' ) }
 							characters={ players }
-							type="player"
+							type="players"
 							editCharacter={ () => null }
 						/>
 						<CharacterList
 							title={ __( 'NPCs', 'initiative-tracker' ) }
 							characters={ npcs }
-							type="npc"
+							type="npcs"
 							editCharacter={ () => null }
 						/>
 					</>

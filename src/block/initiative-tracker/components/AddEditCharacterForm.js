@@ -110,7 +110,7 @@ const AddEditCharacterForm = ( props ) => {
 	} = state;
 
 	const errorClass = 'input-error',
-		isPlayer = 'player' === type,
+		isPlayer = 'players' === type,
 		disableSave = ( isPlayer && playerIsEmpty ) || nameIsEmpty;
 
 	return (
