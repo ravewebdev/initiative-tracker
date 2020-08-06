@@ -1,5 +1,5 @@
 /**
- * Utility functions.
+ * Utility: Sort characters.
  */
 
 /**
@@ -22,6 +22,4 @@ const sortCharacters = ( characters, alpha = true ) => {
 	return characters;
 };
 
-export {
-	sortCharacters,
-};
+export default sortCharacters;

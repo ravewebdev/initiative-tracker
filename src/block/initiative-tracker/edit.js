@@ -5,7 +5,7 @@
 import AddEditCharacterModal from './components/AddEditCharacterModal';
 import CharacterList from './components/CharacterList';
 import DeleteCharacterModal from './components/DeleteCharacterModal';
-import { sortCharacters } from './util';
+import sortCharacters from '../utils/sortCharacters';
 
 import './editor.scss';
 
