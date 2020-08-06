@@ -5,6 +5,7 @@
 import AddEditCharacterModal from './components/AddEditCharacterModal';
 import CharacterList from './components/CharacterList';
 import DeleteCharacterModal from './components/DeleteCharacterModal';
+import addCharacter from '../utils/addCharacter';
 import sortCharacters from '../utils/sortCharacters';
 
 import './editor.scss';
@@ -55,22 +56,23 @@ const Edit = ( props ) => {
 	}, [] );
 
 	/**
-	 * Add new character, sort alphabetically.
+	 * Update Characters and save to attributes.
 	 *
 	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  1.0.0
+	 * @since  NEXT
 	 *
-	 * @param  {string} type      Type of character.
-	 * @param  {Object} character New character object.
+	 * @param  {function} wrappedFunction Wrapped function to call.
+	 * @param  {Array}    characters      Array of Characters to update.
+	 * @return {Array}                    Updated array of Characters.
 	 */
-	const addCharacter = ( type, character ) => {
-		character.key = Date.now();
-
-		const characters = [ ...props.attributes[ type ], character ];
+	const withUpdateCharacters = ( wrappedFunction, characters ) => ( type, ...args ) => {
+		characters = wrappedFunction( type, ...args, characters );
 
 		setAttributes( {
-			[ type ]: sortCharacters( characters ),
+			[ type ]: characters,
 		} );
+
+		return characters;
 	};
 
 	/**
@@ -153,7 +155,7 @@ const Edit = ( props ) => {
 		<AddEditCharacterModal
 			type={ type }
 			buttonText={ __( 'Add Character' ) }
-			characterFn={ addCharacter }
+			characterFn={ withUpdateCharacters( addCharacter, [ ...props.attributes[ type ] ] ) }
 		/>
 	);
 
