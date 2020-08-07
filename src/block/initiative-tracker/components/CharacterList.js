@@ -27,33 +27,15 @@ const CharacterList = ( props ) => {
 		type = null,
 		editCharacter = null,
 		children = null,
+		beforeList = null,
+		afterList = null,
 	} = props;
 
 	// Args to pass to content filters.
-	const filterArgs = {
+	const renderArgs = {
 		characters,
 		type,
 	};
-
-	/**
-	 * Render content before Characters.
-	 *
-	 * @since  NEXT
-	 *
-	 * @param  {?ReactElement} JSX to display.
-	 * @param  {Object}        Filter args.
-	 */
-	const renderBeforeCharacterList = applyFilters( 'rave.initiativeTracker.beforeCharacterList', null, filterArgs );
-
-	/**
-	 * Render content after Characters.
-	 *
-	 * @since  NEXT
-	 *
-	 * @param  {?ReactElement} JSX to display.
-	 * @param  {Object}        Filter args.
-	 */
-	const renderAfterCharacterList = applyFilters( 'rave.initiativeTracker.afterCharacterList', null, filterArgs );
 
 	return (
 		<div className={ `character-list${ null === type ? '' : `--${ type }` }` }>
@@ -61,7 +43,7 @@ const CharacterList = ( props ) => {
 
 			{ null !== children && children }
 
-			{ renderBeforeCharacterList }
+			{ null !== beforeList && beforeList( renderArgs ) }
 
 			{ 0 < characters.length && (
 				<ul>
@@ -77,7 +59,7 @@ const CharacterList = ( props ) => {
 				</ul>
 			) }
 
-			{ renderAfterCharacterList }
+			{ null !== afterList && afterList( renderArgs ) }
 		</div>
 	);
 };

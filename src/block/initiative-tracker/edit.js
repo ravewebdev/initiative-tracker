@@ -108,32 +108,29 @@ const Edit = ( props ) => {
 	);
 
 	/**
-	 * Display Character edit/delete buttons.
+	 * Display button to trigger add Character modal.
 	 *
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  NEXT
 	 *
-	 * @param  {Object} args      Function args.
-	 * @param  {string} args.type Type of Character list being displayed.
-	 * @return {ReactElement}     JSX to display.
+	 * @param  {Object} args            Function args.
+	 * @param  {string} args.type       Type of Character list being displayed.
+	 * @param  {Array}  args.characters Array of Characters.
+	 * @return {ReactElement}           JSX to display.
 	 */
-	const displayAddCharacterButton = ( { type } ) => (
+	const afterCharacterList = ( { type, characters } ) => (
 		<AddEditCharacterModal
 			type={ type }
 			buttonText={ __( 'Add Character' ) }
-			characterFn={ withCharacterUpdate( addCharacter, [ ...props.attributes[ type ] ] ) }
+			characterFn={ withCharacterUpdate( addCharacter, characters ) }
 		/>
 	);
 
 	if ( isSelected ) {
 
-		// Display Character add button.
-		addFilter( 'rave.initiativeTracker.afterCharacterList', 'rave.initiativeTracker.renderAddCharacterbutton', ( content, args ) => displayAddCharacterButton( args ) );
-
 		// Display Character edit buttons.
 		addFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons', ( content, args ) => displayEditCharacterButtons( args ) );
 	} else {
-		removeFilter( 'rave.initiativeTracker.afterCharacterList', 'rave.initiativeTracker.renderAddCharacterbutton' );
 		removeFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons' );
 	}
 
@@ -146,11 +143,13 @@ const Edit = ( props ) => {
 							title={ __( 'Players', 'initiative-tracker' ) }
 							characters={ players }
 							type="players"
+							afterList={ afterCharacterList }
 						/>
 						<CharacterList
 							title={ __( 'NPCs', 'initiative-tracker' ) }
 							characters={ npcs }
 							type="npcs"
+							afterList={ afterCharacterList }
 						/>
 					</>
 				) }
