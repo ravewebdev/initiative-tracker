@@ -80,14 +80,14 @@ const Character = ( props ) => {
 	const renderAfterCharacter = applyFilters( 'rave.initiativeTracker.afterCharacter', null, filterArgs );
 
 	const displayCharacter = <span className="name">{ name }</span>,
-		displayplayer = 0 < player.length ? <span className="player">{ ` ( ${ player } )` }</span> : null;
+		displayplayer = 0 < player.length ? <span className="player">{ `( ${ player } )` }</span> : null;
 
 	return (
 		<li className={ `character ${ isCurrent ? 'current' : '' }` }>
 
 			{ renderBeforeCharacter }
 
-			{ displayCharacter } { displayplayer } : { displayInitiative() }
+			{ displayCharacter } { displayplayer } :&nbsp;{ displayInitiative() }
 
 			{ renderAfterCharacter }
 		</li>
