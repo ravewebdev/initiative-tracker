@@ -146,13 +146,11 @@ const Edit = ( props ) => {
 							title={ __( 'Players', 'initiative-tracker' ) }
 							characters={ players }
 							type="players"
-							editCharacter={ () => null }
 						/>
 						<CharacterList
 							title={ __( 'NPCs', 'initiative-tracker' ) }
 							characters={ npcs }
 							type="npcs"
-							editCharacter={ () => null }
 						/>
 					</>
 				) }
