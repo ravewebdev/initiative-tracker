@@ -58,7 +58,7 @@ const Edit = ( props ) => {
 	}, [] );
 
 	/**
-	 * Update Characters and save to attributes.
+	 * HOF: Update Characters and save to attributes.
 	 *
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  NEXT
@@ -67,7 +67,7 @@ const Edit = ( props ) => {
 	 * @param  {Array}    characters      Array of Characters to update.
 	 * @return {Array}                    Updated array of Characters.
 	 */
-	const withUpdateCharacters = ( wrappedFunction, characters ) => ( type, ...args ) => {
+	const withCharacterUpdate = ( wrappedFunction, characters ) => ( type, ...args ) => {
 		const newCharacters = wrappedFunction( type, ...args, characters );
 
 		setAttributes( {
@@ -94,13 +94,13 @@ const Edit = ( props ) => {
 			<AddEditCharacterModal
 				type={ type }
 				buttonText={ __( 'Edit Character' ) }
-				characterFn={ withUpdateCharacters( editCharacter, [ ...props.attributes[ type ] ] ) }
+				characterFn={ withCharacterUpdate( editCharacter, [ ...props.attributes[ type ] ] ) }
 				character={ character }
 				index={ index }
 			/>
 			<DeleteCharacterModal
 				index={ index }
-				deleteCharacter={ withUpdateCharacters( deleteCharacter, [ ...props.attributes[ type ] ] ) }
+				deleteCharacter={ withCharacterUpdate( deleteCharacter, [ ...props.attributes[ type ] ] ) }
 				name={ character.name }
 				type={ type }
 			/>
@@ -121,7 +121,7 @@ const Edit = ( props ) => {
 		<AddEditCharacterModal
 			type={ type }
 			buttonText={ __( 'Add Character' ) }
-			characterFn={ withUpdateCharacters( addCharacter, [ ...props.attributes[ type ] ] ) }
+			characterFn={ withCharacterUpdate( addCharacter, [ ...props.attributes[ type ] ] ) }
 		/>
 	);
 
