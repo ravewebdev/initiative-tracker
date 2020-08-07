@@ -68,10 +68,10 @@ const Edit = ( props ) => {
 	 * @return {Array}                    Updated array of Characters.
 	 */
 	const withUpdateCharacters = ( wrappedFunction, characters ) => ( type, ...args ) => {
-		characters = wrappedFunction( type, ...args, characters );
+		const newCharacters = wrappedFunction( type, ...args, characters );
 
 		setAttributes( {
-			[ type ]: characters,
+			[ type ]: newCharacters,
 		} );
 
 		return characters;
