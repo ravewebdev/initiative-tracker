@@ -6,6 +6,7 @@ import AddEditCharacterModal from './components/AddEditCharacterModal';
 import CharacterList from './components/CharacterList';
 import DeleteCharacterModal from './components/DeleteCharacterModal';
 import addCharacter from '../utils/addCharacter';
+import deleteCharacter from '../utils/deleteCharacter';
 import editCharacter from '../utils/editCharacter';
 import sortCharacters from '../utils/sortCharacters';
 
@@ -77,24 +78,6 @@ const Edit = ( props ) => {
 	};
 
 	/**
-	 * Delete character.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  1.0.0
-	 *
-	 * @param  {string} type  Type of character.
-	 * @param  {number} index Character index.
-	 */
-	const deleteCharacter = ( type, index ) => {
-		const characters = [ ...props.attributes[ type ] ].filter( function( character, charIndex ) {
-			return charIndex !== index;
-		}, index );
-		setAttributes( {
-			[ type ]: characters,
-		} );
-	};
-
-	/**
 	 * Display Character edit/delete buttons.
 	 *
 	 * @author R A Van Epps <rave@ravanepps.com>
@@ -117,7 +100,7 @@ const Edit = ( props ) => {
 			/>
 			<DeleteCharacterModal
 				index={ index }
-				deleteCharacter={ deleteCharacter }
+				deleteCharacter={ withUpdateCharacters( deleteCharacter, [ ...props.attributes[ type ] ] ) }
 				name={ character.name }
 				type={ type }
 			/>
