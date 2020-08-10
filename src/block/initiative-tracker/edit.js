@@ -136,6 +136,7 @@ const Edit = ( props ) => {
 	}
 
 	// HOC: CharacterList with Character editing buttons.
+	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
 	const CharacterListWithButtons = withCharacterButtons( CharacterList, {
 		buttonFn: afterCharacterList,
 		position: 'after',
