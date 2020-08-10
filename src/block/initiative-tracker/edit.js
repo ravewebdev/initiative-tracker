@@ -5,6 +5,7 @@
 import AddEditCharacterModal from './components/AddEditCharacterModal';
 import CharacterList from './components/CharacterList';
 import DeleteCharacterModal from './components/DeleteCharacterModal';
+import withCharacterButtons from '../components/withCharacterButtons';
 import addCharacter from '../utils/addCharacter';
 import deleteCharacter from '../utils/deleteCharacter';
 import editCharacter from '../utils/editCharacter';
@@ -134,22 +135,27 @@ const Edit = ( props ) => {
 		removeFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons' );
 	}
 
+	// HOC: CharacterList with Character editing buttons.
+	const CharacterListWithButtons = withCharacterButtons( CharacterList, {
+		buttonFn: afterCharacterList,
+		position: 'after',
+		fnArgs: [ 'type', 'characters' ],
+	} );
+
 	return (
 		<div className={ className }>
 			<div className="characters">
 				{ isSelected && (
 					<>
-						<CharacterList
+						<CharacterListWithButtons
 							title={ __( 'Players', 'initiative-tracker' ) }
 							characters={ players }
 							type="players"
-							afterList={ afterCharacterList }
 						/>
-						<CharacterList
+						<CharacterListWithButtons
 							title={ __( 'NPCs', 'initiative-tracker' ) }
 							characters={ npcs }
 							type="npcs"
-							afterList={ afterCharacterList }
 						/>
 					</>
 				) }

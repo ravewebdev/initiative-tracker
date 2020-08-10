@@ -4,12 +4,6 @@
 
 import Character from './Character';
 
-const {
-	hooks: {
-		applyFilters,
-	},
-} = wp;
-
 /**
  * Character List.
  *
@@ -27,15 +21,9 @@ const CharacterList = ( props ) => {
 		type = null,
 		editCharacter = null,
 		children = null,
-		beforeList = null,
-		afterList = null,
+		before = null,
+		after = null,
 	} = props;
-
-	// Args to pass to content filters.
-	const renderArgs = {
-		characters,
-		type,
-	};
 
 	return (
 		<div className={ `character-list${ null === type ? '' : `--${ type }` }` }>
@@ -43,7 +31,7 @@ const CharacterList = ( props ) => {
 
 			{ null !== children && children }
 
-			{ null !== beforeList && beforeList( renderArgs ) }
+			{ null !== before && before }
 
 			{ 0 < characters.length && (
 				<ul>
@@ -59,7 +47,7 @@ const CharacterList = ( props ) => {
 				</ul>
 			) }
 
-			{ null !== afterList && afterList( renderArgs ) }
+			{ null !== after && after }
 		</div>
 	);
 };
