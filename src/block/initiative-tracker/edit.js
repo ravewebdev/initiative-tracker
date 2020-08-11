@@ -139,7 +139,7 @@ const Edit = ( props ) => {
 	const CharacterListWithButtons = withCharacterButtons( CharacterList, {
 		buttonFn: afterCharacterList,
 		position: 'after',
-		fnArgs: [ 'type', 'characters' ],
+		requiredProps: [ 'type', 'characters' ],
 	} );
 
 	return (
