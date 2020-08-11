@@ -304,23 +304,20 @@ const FrontendTracker = ( props ) => {
 		setNotice( response );
 	};
 
+	// HOC: CharacterList with Character editing buttons.
+	const CharacterListWithButtons = withCharacterButtons( CharacterList, {
+		buttonFn: displayEditLinks,
+		position: 'before',
+	} );
+
 	return (
 		<div className={ `characters ${ isLoading ? 'is-loading' : '' }` }>
-			<CharacterList
+			<CharacterListWithButtons
 				title={ __( 'Characters', 'initiative-tracker' ) }
 				characters={ characters }
 				editCharacter={ displayEditForm }
 				activeIndex={ activeIndex }
-			>
-				<div className="edit-character-buttons">
-					{ displayEditLinks() }
-					{ null !== notice && (
-						<span className={ `notice ${ notice.type }` } role={ 'error' === notice.type ? 'alert' : 'status' }>
-							{ notice.message }
-						</span>
-					) }
-				</div>
-			</CharacterList>
+			/>
 
 			<button
 				type="button"
