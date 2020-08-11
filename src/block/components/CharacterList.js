@@ -29,10 +29,9 @@ const CharacterList = ( props ) => {
 		<div className={ `character-list${ null === type ? '' : `--${ type }` }` }>
 			<h2>{ title }</h2>
 
-			{ null !== children && children }
+			{ before }
 
-			{ null !== before && before }
-
+			{ children }
 			{ 0 < characters.length && (
 				<ul>
 					{ characters.map( ( character, index ) => (
@@ -47,7 +46,7 @@ const CharacterList = ( props ) => {
 				</ul>
 			) }
 
-			{ null !== after && after }
+			{ after }
 		</div>
 	);
 };
