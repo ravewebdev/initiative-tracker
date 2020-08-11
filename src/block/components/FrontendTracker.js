@@ -191,10 +191,20 @@ const FrontendTracker = ( props ) => {
 			return;
 		}
 
-		const linkClass = `char-link ${ isLoading ? 'disabled' : '' }`;
+		const linkClass = `char-link ${ isLoading ? 'disabled' : '' }`,
+			message = null !== notice && (
+				<span className={ `notice ${ notice.type }` } role={ 'error' === notice.type ? 'alert' : 'status' }>
+					{ notice.message }
+				</span>
+			);
 
 		if ( ! isEditing ) {
-			return displayEditLink( linkClass, 'edit', __( 'Edit Initiative', 'initiative-tracker' ), () => onSetIsEditing( true ) );
+			return (
+				<>
+					{ displayEditLink( linkClass, 'edit', __( 'Edit Initiative', 'initiative-tracker' ), () => onSetIsEditing( true ) ) }
+					{ message }
+				</>
+			);
 		}
 
 		return (
@@ -204,6 +214,7 @@ const FrontendTracker = ( props ) => {
 					onSetIsEditing( false );
 				} ) }
 				{ displayEditLink( linkClass, 'yes', __( 'Save Initiative', 'initiative-tracker' ), () => saveCharacterUpdates() ) }
+				{ message }
 			</>
 		);
 	};
