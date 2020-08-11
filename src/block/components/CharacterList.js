@@ -63,7 +63,7 @@ const CharacterList = ( props ) => {
 
 			{ before }
 
-			{ renderCharacters }
+			{ renderCharacters() }
 
 			{ after }
 		</div>
