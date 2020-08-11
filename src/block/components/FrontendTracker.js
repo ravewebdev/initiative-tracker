@@ -301,7 +301,7 @@ const FrontendTracker = ( props ) => {
 				editCharacter={ displayEditForm }
 				activeIndex={ activeIndex }
 			>
-				<div className="fe-edit-character-buttons">
+				<div className="edit-character-buttons">
 					{ displayEditLinks() }
 					{ null !== notice && (
 						<span className={ `notice ${ notice.type }` } role={ 'error' === notice.type ? 'alert' : 'status' }>
