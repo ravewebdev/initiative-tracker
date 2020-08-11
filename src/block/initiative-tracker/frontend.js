@@ -2,7 +2,7 @@
  * FRONTEND: Initiative Tracker Block
  */
 
-import FrontendTracker from './components/FrontendTracker';
+import FrontendTracker from '../components/FrontendTracker';
 
 const {
 	element: {

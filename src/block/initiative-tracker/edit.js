@@ -2,9 +2,9 @@
  * EDIT: Initiative Tracker Block
  */
 
-import AddEditCharacterModal from './components/AddEditCharacterModal';
-import CharacterList from './components/CharacterList';
-import DeleteCharacterModal from './components/DeleteCharacterModal';
+import AddEditCharacterModal from '../components/AddEditCharacterModal';
+import CharacterList from '../components/CharacterList';
+import DeleteCharacterModal from '../components/DeleteCharacterModal';
 import withCharacterButtons from '../components/withCharacterButtons';
 import addCharacter from '../utils/addCharacter';
 import deleteCharacter from '../utils/deleteCharacter';

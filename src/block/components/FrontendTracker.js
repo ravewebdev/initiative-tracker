@@ -5,7 +5,8 @@
 /* global initTracker */
 
 import CharacterList from './CharacterList';
-import sortCharacters from '../../utils/sortCharacters';
+import withCharacterButtons from './withCharacterButtons';
+import sortCharacters from '../utils/sortCharacters';
 
 const {
 	apiFetch,
