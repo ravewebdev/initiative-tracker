@@ -25,26 +25,45 @@ const CharacterList = ( props ) => {
 		after = null,
 	} = props;
 
+	/**
+	 * Display characters via passed `children` prop or default list.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  NEXT
+	 *
+	 * @return {?ReactElement} JSX to display.
+	 */
+	const renderCharacters = () => {
+		if ( children ) {
+			return children;
+		}
+
+		if ( 0 === characters.length ) {
+			return null;
+		}
+
+		return (
+			<ul>
+				{ characters.map( ( character, index ) => (
+					<Character
+						key={ character.key }
+						character={ character }
+						type={ type }
+						index={ index }
+						editCharacter={ editCharacter }
+					/>
+				) ) }
+			</ul>
+		);
+	};
+
 	return (
 		<div className={ `character-list${ null === type ? '' : `--${ type }` }` }>
 			<h2>{ title }</h2>
 
 			{ before }
 
-			{ children }
-			{ 0 < characters.length && (
-				<ul>
-					{ characters.map( ( character, index ) => (
-						<Character
-							key={ character.key }
-							character={ character }
-							type={ type }
-							index={ index }
-							editCharacter={ editCharacter }
-						/>
-					) ) }
-				</ul>
-			) }
+			{ renderCharacters }
 
 			{ after }
 		</div>
