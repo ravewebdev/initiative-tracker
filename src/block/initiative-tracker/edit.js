@@ -134,23 +134,24 @@ const Edit = ( props ) => {
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  NEXT
 	 *
-	 * @param  {string} options.type      Type of Character list being displayed.
-	 * @param  {Object} options.character Current character.
-	 * @param  {number} options.index     Current character index.
-	 * @return {ReactElement}             JSX to display.
+	 * @param  {string} options.type       Type of Character list being displayed.
+	 * @param  {Object} options.character  Current character.
+	 * @param  {number} options.index      Current character index.
+	 * @param  {Array}  options.characters Array of Characters.
+	 * @return {ReactElement}              JSX to display.
 	 */
-	const displayEditCharacterButtons = ( { type, character, index } ) => (
+	const displayEditCharacterButtons = ( { type, character, index, characters } ) => (
 		<>
 			<AddEditCharacterModal
 				type={ type }
 				buttonText={ __( 'Edit Character' ) }
-				characterFn={ withCharacterUpdate( editCharacter, [ ...props.attributes[ type ] ] ) }
+				characterFn={ withCharacterUpdate( editCharacter, characters ) }
 				character={ character }
 				index={ index }
 			/>
 			<DeleteCharacterModal
 				index={ index }
-				deleteCharacter={ withCharacterUpdate( deleteCharacter, [ ...props.attributes[ type ] ] ) }
+				deleteCharacter={ withCharacterUpdate( deleteCharacter, characters ) }
 				name={ character.name }
 				type={ type }
 			/>
