@@ -8,10 +8,10 @@
  * @author R A Van Epps <rave@ravanepps.com>
  * @since  NEXT
  *
- * @param  {Object} options.buttonFn      Button function used to display buttons within wrapped component.
- * @param  {string} options.position      Placement of buttons (e.g., before, after).
- * @param  {Array}  options.requiredProps Props from wrapped component to pass through to buttonFn.
- * @return {Function}                     A function that accepts a single param, `WrappedComponent`, to display the HOC.
+ * @param  {Function} options.buttonFn      Button function used to display buttons within wrapped component.
+ * @param  {string}   options.position      Placement of buttons (e.g., before, after).
+ * @param  {Array}    options.requiredProps Props from wrapped component to pass through to buttonFn.
+ * @return {Function}                       A function that accepts a single param, `WrappedComponent`, to display the HOC.
  */
 const withCharacterButtons = ( { buttonFn = null, position = null, requiredProps = [] } ) => {
 
