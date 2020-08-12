@@ -67,7 +67,7 @@ const Edit = ( props ) => {
 	 *
 	 * @param  {Function} wrappedFunction Wrapped function to call.
 	 * @param  {Array}    characters      Array of Characters to update.
-	 * @return {Function}                 A functions that accepts one or more params to update the block's Character attributes.
+	 * @return {Function}                 A function that accepts one or more params to update the block's Character attributes.
 	 */
 	const withCharacterUpdate = ( wrappedFunction, characters ) => {
 
@@ -75,9 +75,9 @@ const Edit = ( props ) => {
 		 * @author R A Van Epps <rave@ravanepps.com>
 		 * @since  NEXT
 		 *
-		 * @param  {string}  type       Type of Characters to update.
-		 * @param  {?Object} args       Other args.
-		 * @return {Array}              Updated array of Characters.
+		 * @param  {string}    type Type of Characters to update.
+		 * @param  {...Object} args Other args.
+		 * @return {Array}          Updated array of Characters.
 		 */
 		return ( type, ...args ) => {
 			const newCharacters = wrappedFunction( type, ...args, characters );
