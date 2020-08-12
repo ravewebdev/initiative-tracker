@@ -122,7 +122,7 @@ const Edit = ( props ) => {
 	 * @param  {Array}  args.characters Array of Characters.
 	 * @return {ReactElement}           JSX to display.
 	 */
-	const afterCharacterList = ( { type, characters } ) => (
+	const displayAddCharacterButton = ( { type, characters } ) => (
 		<AddEditCharacterModal
 			type={ type }
 			buttonText={ __( 'Add Character' ) }
@@ -169,7 +169,7 @@ const Edit = ( props ) => {
 		// eslint-disable-next-line @wordpress/no-unused-vars-before-return
 		const CharacterListWithButtons = compose(
 			withCharacterButtons( {
-				buttonFn: afterCharacterList,
+				buttonFn: displayAddCharacterButton,
 				position: 'after',
 				requiredProps: [ 'type', 'characters' ],
 			} )
