@@ -11,9 +11,10 @@
  * @param  {Function} options.buttonFn      Button function used to display buttons within wrapped component.
  * @param  {string}   options.position      Placement of buttons (e.g., before, after).
  * @param  {Array}    options.requiredProps Props from wrapped component to pass through to buttonFn.
+ * @param  {Object}   options.extraArgs     Other arguments to pass through to buttonFn.
  * @return {Function}                       A function that accepts a single param, `WrappedComponent`, to display the HOC.
  */
-const withCharacterButtons = ( { buttonFn = null, position = null, requiredProps = [] } ) => {
+const withCharacterButtons = ( { buttonFn = null, position = null, requiredProps = [], extraArgs = {} } ) => {
 
 	/**
 	 * @author R A Van Epps <rave@ravanepps.com>
@@ -44,7 +45,7 @@ const withCharacterButtons = ( { buttonFn = null, position = null, requiredProps
 			if ( null !== buttonFn && null !== position ) {
 				newProps[ position ] = (
 					<div className="edit-character-buttons">
-						{ buttonFn( { ...args } ) }
+						{ buttonFn( { ...args, ...extraArgs } ) }
 					</div>
 				);
 			}
