@@ -25,10 +25,6 @@ const {
 	element: {
 		useEffect,
 	},
-	hooks: {
-		addFilter,
-		removeFilter,
-	},
 } = wp;
 
 /**
