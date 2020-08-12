@@ -186,6 +186,18 @@ const Edit = ( props ) => {
 	 * @return {ReactElement}              JSX to display.
 	 */
 	const displayCharacterListWithChildren = ( { type, characters } ) => {
+
+		// HOC: Character with Character editing buttons.
+		// eslint-disable-next-line @wordpress/no-unused-vars-before-return
+		const CharacterWithButtons = compose(
+			withCharacterButtons( {
+				buttonFn: displayEditCharacterButtons,
+				position: 'after',
+				requiredProps: [ 'type', 'character', 'index' ],
+				extraArgs: { characters },
+			} )
+		)( Character );
+
 		return (
 			<ul>
 				{ characters.map( ( character, index ) => (
@@ -199,16 +211,6 @@ const Edit = ( props ) => {
 			</ul>
 		);
 	};
-
-	// HOC: Character with Character editing buttons.
-	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
-	const CharacterWithButtons = compose(
-		withCharacterButtons( {
-			buttonFn: displayEditCharacterButtons,
-			position: 'after',
-			requiredProps: [ 'type', 'character', 'index' ],
-		} )
-	)( Character );
 
 	// HOC: CharacterList with Character editing buttons.
 	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
