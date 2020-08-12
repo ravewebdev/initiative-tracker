@@ -30,6 +30,8 @@ const Character = ( props ) => {
 		editCharacter,
 		activeIndex,
 		onFrontend = false,
+		before = null,
+		after = null,
 	} = props;
 
 	const isCurrent = ! onFrontend ? false : ( activeIndex === index );
@@ -52,44 +54,17 @@ const Character = ( props ) => {
 		return initiativeDisplay || <span className="initiative">{ initiative || 0 }</span>;
 	};
 
-	// Args to pass to content filters.
-	const filterArgs = {
-		type,
-		character: { ...props.character },
-		index,
-	};
-
-	/**
-	 * Render content before Character.
-	 *
-	 * @since  NEXT
-	 *
-	 * @param  {?ReactElement} JSX to display.
-	 * @param  {Object}        Filter args.
-	 */
-	const renderBeforeCharacter = applyFilters( 'rave.initiativeTracker.beforeCharacter', null, filterArgs );
-
-	/**
-	 * Render content after Character.
-	 *
-	 * @since  NEXT
-	 *
-	 * @param  {?ReactElement} JSX to display.
-	 * @param  {Object}        Filter args.
-	 */
-	const renderAfterCharacter = applyFilters( 'rave.initiativeTracker.afterCharacter', null, filterArgs );
-
 	const displayCharacter = <span className="name">{ name }</span>,
 		displayplayer = 0 < player.length ? <span className="player">{ `( ${ player } )` }</span> : null;
 
 	return (
 		<li className={ `character ${ isCurrent ? 'current' : '' }` }>
 
-			{ renderBeforeCharacter }
+			{ before }
 
 			{ displayCharacter } { displayplayer } :&nbsp;{ displayInitiative() }
 
-			{ renderAfterCharacter }
+			{ after }
 		</li>
 	);
 };
