@@ -17,6 +17,9 @@ const {
 	i18n: {
 		__,
 	},
+	compose: {
+		compose,
+	},
 	element: {
 		useEffect,
 	},
@@ -141,33 +144,57 @@ const Edit = ( props ) => {
 		position: 'after',
 		requiredProps: [ 'type', 'characters' ],
 	} );
+	/**
+	 * Display Character list(s) depending on current view.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  NEXT
+	 *
+	 * @return {ReactElement} Character list(s).
+	 */
+	const displayCharacterLists = () => {
+		if ( ! isSelected ) {
+			return (
+				<CharacterList
+					title={ __( 'Characters', 'initiative-tracker' ) }
+					characters={ sortCharacters( [
+						...players,
+						...npcs,
+					], false ) }
+				/>
+			);
+		}
+
+		// HOC: CharacterList with Character editing buttons.
+		// eslint-disable-next-line @wordpress/no-unused-vars-before-return
+		const CharacterListWithButtons = compose(
+			withCharacterButtons( {
+				buttonFn: afterCharacterList,
+				position: 'after',
+				requiredProps: [ 'type', 'characters' ],
+			} )
+		)( CharacterList );
+
+		return (
+			<>
+				<CharacterListWithButtons
+					title={ __( 'Players', 'initiative-tracker' ) }
+					characters={ players }
+					type="players"
+				/>
+				<CharacterListWithButtons
+					title={ __( 'NPCs', 'initiative-tracker' ) }
+					characters={ npcs }
+					type="npcs"
+				/>
+			</>
+		);
+	};
 
 	return (
 		<div className={ className }>
 			<div className="characters">
-				{ isSelected && (
-					<>
-						<CharacterListWithButtons
-							title={ __( 'Players', 'initiative-tracker' ) }
-							characters={ players }
-							type="players"
-						/>
-						<CharacterListWithButtons
-							title={ __( 'NPCs', 'initiative-tracker' ) }
-							characters={ npcs }
-							type="npcs"
-						/>
-					</>
-				) }
-				{ ! isSelected && (
-					<CharacterList
-						title={ __( 'Characters', 'initiative-tracker' ) }
-						characters={ sortCharacters( [
-							...players,
-							...npcs,
-						], false ) }
-					/>
-				) }
+				{ displayCharacterLists() }
 			</div>
 		</div>
 	);
