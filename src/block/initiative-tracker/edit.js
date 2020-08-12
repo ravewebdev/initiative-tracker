@@ -69,18 +69,30 @@ const Edit = ( props ) => {
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  NEXT
 	 *
-	 * @param  {function} wrappedFunction Wrapped function to call.
+	 * @param  {Function} wrappedFunction Wrapped function to call.
 	 * @param  {Array}    characters      Array of Characters to update.
-	 * @return {Array}                    Updated array of Characters.
+	 * @return {Function}                 A functions that accepts one or more params to update the block's Character attributes.
 	 */
-	const withCharacterUpdate = ( wrappedFunction, characters ) => ( type, ...args ) => {
-		const newCharacters = wrappedFunction( type, ...args, characters );
+	const withCharacterUpdate = ( wrappedFunction, characters ) => {
 
-		setAttributes( {
-			[ type ]: newCharacters,
-		} );
+		/**
+		 * @author R A Van Epps <rave@ravanepps.com>
+		 * @since  NEXT
+		 *
+		 * @param  {string}  type       Type of Characters to update.
+		 * @param  {?Object} args       Other args.
+		 * @param  {Array}   characters Array of Characters to update.
+		 * @return {Array}              Updated array of Characters.
+		 */
+		return ( type, ...args ) => {
+			const newCharacters = wrappedFunction( type, ...args, characters );
 
-		return characters;
+			setAttributes( {
+				[ type ]: newCharacters,
+			} );
+
+			return characters;
+		};
 	};
 
 	/**
@@ -132,7 +144,7 @@ const Edit = ( props ) => {
 	);
 
 	/**
-	 * Display CharacterList with children function.
+	 * Display CharacterList with children function to display individual Character edit buttons.
 	 *
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  NEXT
