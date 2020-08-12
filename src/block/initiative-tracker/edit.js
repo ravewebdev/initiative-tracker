@@ -117,10 +117,9 @@ const Edit = ( props ) => {
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  NEXT
 	 *
-	 * @param  {Object} args            Function args.
-	 * @param  {string} args.type       Type of Character list being displayed.
-	 * @param  {Array}  args.characters Array of Characters.
-	 * @return {ReactElement}           JSX to display.
+	 * @param  {string} options.type       Type of Character list being displayed.
+	 * @param  {Array}  options.characters Array of Characters.
+	 * @return {ReactElement}              JSX to display.
 	 */
 	const displayAddCharacterButton = ( { type, characters } ) => (
 		<AddEditCharacterModal
