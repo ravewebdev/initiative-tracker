@@ -134,10 +134,9 @@ const Edit = ( props ) => {
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  NEXT
 	 *
-	 * @param  {Object}   args           Function args.
-	 * @param  {string}   args.type      Type of Character list being displayed.
-	 * @param  {Object}   args.character  Current character.
-	 * @param  {number}   args.index      Current character index.
+	 * @param  {string} options.type      Type of Character list being displayed.
+	 * @param  {Object} options.character Current character.
+	 * @param  {number} options.index     Current character index.
 	 * @return {ReactElement}             JSX to display.
 	 */
 	const displayEditCharacterButtons = ( { type, character, index } ) => (
