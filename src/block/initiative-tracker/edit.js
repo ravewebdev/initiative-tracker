@@ -3,9 +3,11 @@
  */
 
 import AddEditCharacterModal from '../components/AddEditCharacterModal';
+import Character from '../components/Character';
 import CharacterList from '../components/CharacterList';
 import DeleteCharacterModal from '../components/DeleteCharacterModal';
 import withCharacterButtons from '../components/withCharacterButtons';
+import withChildren from '../components/withChildren';
 import addCharacter from '../utils/addCharacter';
 import deleteCharacter from '../utils/deleteCharacter';
 import editCharacter from '../utils/editCharacter';
@@ -129,13 +131,41 @@ const Edit = ( props ) => {
 		/>
 	);
 
-	if ( isSelected ) {
+	/**
+	 * Display CharacterList with children function.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  NEXT
+	 *
+	 * @param  {string} options.type       Type of Character list being displayed.
+	 * @param  {Array}  options.characters Array of Characters.
+	 * @return {ReactElement}              JSX to display.
+	 */
+	const displayCharacterListWithChildren = ( { type, characters } ) => {
 
-		// Display Character edit buttons.
-		addFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons', ( content, args ) => displayEditCharacterButtons( args ) );
-	} else {
-		removeFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons' );
-	}
+		// HOC: Character with Character editing buttons.
+		// eslint-disable-next-line @wordpress/no-unused-vars-before-return
+		const CharacterWithButtons = compose(
+			withCharacterButtons( {
+				buttonFn: displayEditCharacterButtons,
+				position: 'after',
+				requiredProps: [ 'type', 'character', 'index' ],
+			} )
+		)( Character );
+
+		return (
+			<ul>
+				{ characters.map( ( character, index ) => (
+					<CharacterWithButtons
+						key={ character.key }
+						character={ character }
+						type={ type }
+						index={ index }
+					/>
+				) ) }
+			</ul>
+		);
+	};
 
 	/**
 	 * Display Character list(s) depending on current view.
@@ -164,6 +194,10 @@ const Edit = ( props ) => {
 			withCharacterButtons( {
 				buttonFn: displayAddCharacterButton,
 				position: 'after',
+				requiredProps: [ 'type', 'characters' ],
+			} ),
+			withChildren( {
+				childrenFn: displayCharacterListWithChildren,
 				requiredProps: [ 'type', 'characters' ],
 			} )
 		)( CharacterList );
