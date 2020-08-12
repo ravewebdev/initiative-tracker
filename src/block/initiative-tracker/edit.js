@@ -77,7 +77,6 @@ const Edit = ( props ) => {
 		 *
 		 * @param  {string}  type       Type of Characters to update.
 		 * @param  {?Object} args       Other args.
-		 * @param  {Array}   characters Array of Characters to update.
 		 * @return {Array}              Updated array of Characters.
 		 */
 		return ( type, ...args ) => {
