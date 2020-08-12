@@ -141,7 +141,7 @@ const Edit = ( props ) => {
 	 * @return {ReactElement}             JSX to display.
 	 */
 	const displayEditCharacterButtons = ( { type, character, index } ) => (
-		<div className="edit-character-buttons">
+		<>
 			<AddEditCharacterModal
 				type={ type }
 				buttonText={ __( 'Edit Character' ) }
@@ -155,7 +155,7 @@ const Edit = ( props ) => {
 				name={ character.name }
 				type={ type }
 			/>
-		</div>
+		</>
 	);
 
 	/**

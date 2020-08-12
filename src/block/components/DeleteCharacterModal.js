@@ -58,6 +58,7 @@ const DeleteCharacterModal = ( props ) => {
 				<Modal
 					title={ __( 'Delete Character: ', 'initiative-tracker' ) + name }
 					onRequestClose={ toggle }
+					className="edit-character-modal"
 				>
 					<p> { __( 'Are you sure you want to delete this character?' ) } </p>
 					<div className="edit-character-buttons">

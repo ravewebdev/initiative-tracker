@@ -34,10 +34,13 @@ $color-border: #999;
 			}
 		}
 	}
+}
+
+.wp-block-rave-initiative-tracker,
+.edit-character-modal {
 
 	.edit-character-buttons {
 		display: flex;
 		justify-content: space-evenly;
 	}
 }
-
