@@ -138,12 +138,6 @@ const Edit = ( props ) => {
 		removeFilter( 'rave.initiativeTracker.afterCharacter', 'rave.initiativeTracker.renderEditCharacterButtons' );
 	}
 
-	// HOC: CharacterList with Character editing buttons.
-	const CharacterListWithButtons = withCharacterButtons( CharacterList, {
-		buttonFn: afterCharacterList,
-		position: 'after',
-		requiredProps: [ 'type', 'characters' ],
-	} );
 	/**
 	 * Display Character list(s) depending on current view.
 	 *
