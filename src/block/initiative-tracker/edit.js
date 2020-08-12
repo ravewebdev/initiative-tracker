@@ -96,6 +96,43 @@ const Edit = ( props ) => {
 	};
 
 	/**
+	 * Display Character list(s) depending on current view.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  NEXT
+	 *
+	 * @return {ReactElement} Character list(s).
+	 */
+	const displayCharacterLists = () => {
+		if ( ! isSelected ) {
+			return (
+				<CharacterList
+					title={ __( 'Characters', 'initiative-tracker' ) }
+					characters={ sortCharacters( [
+						...players,
+						...npcs,
+					], false ) }
+				/>
+			);
+		}
+
+		return (
+			<>
+				<CharacterListWithButtons
+					title={ __( 'Players', 'initiative-tracker' ) }
+					characters={ players }
+					type="players"
+				/>
+				<CharacterListWithButtons
+					title={ __( 'NPCs', 'initiative-tracker' ) }
+					characters={ npcs }
+					type="npcs"
+				/>
+			</>
+		);
+	};
+
+	/**
 	 * Display Character edit/delete buttons.
 	 *
 	 * @author R A Van Epps <rave@ravanepps.com>
@@ -154,17 +191,6 @@ const Edit = ( props ) => {
 	 * @return {ReactElement}              JSX to display.
 	 */
 	const displayCharacterListWithChildren = ( { type, characters } ) => {
-
-		// HOC: Character with Character editing buttons.
-		// eslint-disable-next-line @wordpress/no-unused-vars-before-return
-		const CharacterWithButtons = compose(
-			withCharacterButtons( {
-				buttonFn: displayEditCharacterButtons,
-				position: 'after',
-				requiredProps: [ 'type', 'character', 'index' ],
-			} )
-		)( Character );
-
 		return (
 			<ul>
 				{ characters.map( ( character, index ) => (
@@ -179,56 +205,29 @@ const Edit = ( props ) => {
 		);
 	};
 
-	/**
-	 * Display Character list(s) depending on current view.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  NEXT
-	 *
-	 * @return {ReactElement} Character list(s).
-	 */
-	const displayCharacterLists = () => {
-		if ( ! isSelected ) {
-			return (
-				<CharacterList
-					title={ __( 'Characters', 'initiative-tracker' ) }
-					characters={ sortCharacters( [
-						...players,
-						...npcs,
-					], false ) }
-				/>
-			);
-		}
+	// HOC: Character with Character editing buttons.
+	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
+	const CharacterWithButtons = compose(
+		withCharacterButtons( {
+			buttonFn: displayEditCharacterButtons,
+			position: 'after',
+			requiredProps: [ 'type', 'character', 'index' ],
+		} )
+	)( Character );
 
-		// HOC: CharacterList with Character editing buttons.
-		// eslint-disable-next-line @wordpress/no-unused-vars-before-return
-		const CharacterListWithButtons = compose(
-			withCharacterButtons( {
-				buttonFn: displayAddCharacterButton,
-				position: 'after',
-				requiredProps: [ 'type', 'characters' ],
-			} ),
-			withChildren( {
-				childrenFn: displayCharacterListWithChildren,
-				requiredProps: [ 'type', 'characters' ],
-			} )
-		)( CharacterList );
-
-		return (
-			<>
-				<CharacterListWithButtons
-					title={ __( 'Players', 'initiative-tracker' ) }
-					characters={ players }
-					type="players"
-				/>
-				<CharacterListWithButtons
-					title={ __( 'NPCs', 'initiative-tracker' ) }
-					characters={ npcs }
-					type="npcs"
-				/>
-			</>
-		);
-	};
+	// HOC: CharacterList with Character editing buttons.
+	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
+	const CharacterListWithButtons = compose(
+		withCharacterButtons( {
+			buttonFn: displayAddCharacterButton,
+			position: 'after',
+			requiredProps: [ 'type', 'characters' ],
+		} ),
+		withChildren( {
+			childrenFn: displayCharacterListWithChildren,
+			requiredProps: [ 'type', 'characters' ],
+		} )
+	)( CharacterList );
 
 	return (
 		<div className={ className }>
