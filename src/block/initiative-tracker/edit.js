@@ -2,10 +2,10 @@
  * EDIT: Initiative Tracker Block
  */
 
-import AddEditCharacterModal from '../components/AddEditCharacterModal';
+import AddCharacterButton from '../components/AddCharacterButton';
 import Character from '../components/Character';
 import CharacterList from '../components/CharacterList';
-import DeleteCharacterModal from '../components/DeleteCharacterModal';
+import EditCharacterButtons from '../components/EditCharacterButtons';
 import withCharacterButtons from '../components/withCharacterButtons';
 import withChildren from '../components/withChildren';
 import addCharacter from '../utils/addCharacter';
@@ -117,17 +117,29 @@ const Edit = ( props ) => {
 					title={ __( 'Players', 'initiative-tracker' ) }
 					characters={ players }
 					type="players"
+					buttons={ (
+						<AddCharacterButton
+							addFunction={ () => withCharacterUpdate( addCharacter, players ) }
+							type="players"
+						/>
+					) }
+					position="after"
 				/>
 				<CharacterListWithButtons
 					title={ __( 'NPCs', 'initiative-tracker' ) }
 					characters={ npcs }
 					type="npcs"
+					buttons={ (
+						<AddCharacterButton
+							addFunction={ () => withCharacterUpdate( addCharacter, npcs ) }
+							type="npcs"
+						/>
+					) }
+					position="after"
 				/>
 			</>
 		);
 	};
-
-	);
 
 	/**
 	 * Display CharacterList with children function to display individual Character edit buttons.
@@ -143,14 +155,12 @@ const Edit = ( props ) => {
 
 		// HOC: Character with Character editing buttons.
 		// eslint-disable-next-line @wordpress/no-unused-vars-before-return
-		const CharacterWithButtons = compose(
-			withCharacterButtons( {
-				buttonFn: displayEditCharacterButtons,
-				position: 'after',
-				requiredProps: [ 'type', 'character', 'index' ],
-				extraArgs: { characters },
-			} )
-		)( Character );
+		const CharacterWithButtons = withCharacterButtons( Character ),
+			buttonProps = {
+				editFunction: () => withCharacterUpdate( editCharacter, characters ),
+				deleteFunction: () => withCharacterUpdate( deleteCharacter, characters ),
+				type,
+			};
 
 		return (
 			<ul>
@@ -160,6 +170,14 @@ const Edit = ( props ) => {
 						character={ character }
 						type={ type }
 						index={ index }
+						buttons={ (
+							<EditCharacterButtons
+								{ ...buttonProps }
+								character={ character }
+								index={ index }
+							/>
+						) }
+						position="after"
 					/>
 				) ) }
 			</ul>
@@ -169,11 +187,7 @@ const Edit = ( props ) => {
 	// HOC: CharacterList with Character editing buttons.
 	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
 	const CharacterListWithButtons = compose(
-		withCharacterButtons( {
-			buttonFn: displayAddCharacterButton,
-			position: 'after',
-			requiredProps: [ 'type', 'characters' ],
-		} ),
+		withCharacterButtons,
 		withChildren( {
 			childrenFn: displayCharacterListWithChildren,
 			requiredProps: [ 'type', 'characters' ],
