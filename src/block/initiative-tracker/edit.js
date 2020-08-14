@@ -2,12 +2,8 @@
  * EDIT: Initiative Tracker Block
  */
 
-import AddCharacterButton from '../components/AddCharacterButton';
-import Character from '../components/Character';
+import AdminCharacterList from '../components/AdminCharacterList';
 import CharacterList from '../components/CharacterList';
-import EditCharacterButtons from '../components/EditCharacterButtons';
-import withCharacterButtons from '../components/withCharacterButtons';
-import withChildren from '../components/withChildren';
 import addCharacter from '../utils/addCharacter';
 import deleteCharacter from '../utils/deleteCharacter';
 import editCharacter from '../utils/editCharacter';
@@ -87,71 +83,26 @@ const Edit = ( props ) => {
 		};
 	};
 
-	const CharacterListChildren = ( { type, characters } ) => {
-		const buttonProps = {
-			editFunction: () => withCharacterUpdate( editCharacter, characters ),
-			deleteFunction: () => withCharacterUpdate( deleteCharacter, characters ),
-			type,
-		};
-
-		return (
-			<ul>
-				{ characters.map( ( character, index ) => (
-					<CharacterWithButtons
-						key={ character.key }
-						character={ character }
-						type={ type }
-						index={ index }
-						buttons={ (
-							<EditCharacterButtons
-								{ ...buttonProps }
-								character={ character }
-								index={ index }
-							/>
-						) }
-						position="after"
-					/>
-				) ) }
-			</ul>
-		);
-	};
-
-	// HOC: Character with Character editing buttons.
-	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
-	const CharacterWithButtons = withCharacterButtons( Character );
-
-	// HOC: CharacterList with Character editing buttons.
-	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
-	const CharacterListWithButtons = withCharacterButtons( CharacterList );
-
 	return (
 		<div className={ className }>
 			<div className="characters">
 				{ isSelected ? (
 					<>
-						<CharacterListWithButtons
+						<AdminCharacterList
 							title={ __( 'Players', 'initiative-tracker' ) }
 							characters={ players }
 							type="players"
-							buttons={ (
-								<AddCharacterButton
-									addFunction={ () => withCharacterUpdate( addCharacter, players ) }
-									type="players"
-								/>
-							) }
-							position="after"
+							addFunction={ () => withCharacterUpdate( addCharacter, players ) }
+							editFunction={ () => withCharacterUpdate( editCharacter, players ) }
+							deleteFunction={ () => withCharacterUpdate( deleteCharacter, players ) }
 						/>
-						<CharacterListWithButtons
+						<AdminCharacterList
 							title={ __( 'NPCs', 'initiative-tracker' ) }
 							characters={ npcs }
 							type="npcs"
-							buttons={ (
-								<AddCharacterButton
-									addFunction={ () => withCharacterUpdate( addCharacter, npcs ) }
-									type="npcs"
-								/>
-							) }
-							position="after"
+							addFunction={ () => withCharacterUpdate( addCharacter, npcs ) }
+							editFunction={ () => withCharacterUpdate( editCharacter, npcs ) }
+							deleteFunction={ () => withCharacterUpdate( deleteCharacter, npcs ) }
 						/>
 					</>
 				) : (
