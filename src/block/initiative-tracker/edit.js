@@ -91,57 +91,6 @@ const Edit = ( props ) => {
 	};
 
 	/**
-	 * Display Character list(s) depending on current view.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  NEXT
-	 *
-	 * @return {ReactElement} Character list(s).
-	 */
-	const displayCharacterLists = () => {
-		if ( ! isSelected ) {
-			return (
-				<CharacterList
-					title={ __( 'Characters', 'initiative-tracker' ) }
-					characters={ sortCharacters( [
-						...players,
-						...npcs,
-					], false ) }
-				/>
-			);
-		}
-
-		return (
-			<>
-				<CharacterListWithButtons
-					title={ __( 'Players', 'initiative-tracker' ) }
-					characters={ players }
-					type="players"
-					buttons={ (
-						<AddCharacterButton
-							addFunction={ () => withCharacterUpdate( addCharacter, players ) }
-							type="players"
-						/>
-					) }
-					position="after"
-				/>
-				<CharacterListWithButtons
-					title={ __( 'NPCs', 'initiative-tracker' ) }
-					characters={ npcs }
-					type="npcs"
-					buttons={ (
-						<AddCharacterButton
-							addFunction={ () => withCharacterUpdate( addCharacter, npcs ) }
-							type="npcs"
-						/>
-					) }
-					position="after"
-				/>
-			</>
-		);
-	};
-
-	/**
 	 * Display CharacterList with children function to display individual Character edit buttons.
 	 *
 	 * @author R A Van Epps <rave@ravanepps.com>
@@ -197,7 +146,42 @@ const Edit = ( props ) => {
 	return (
 		<div className={ className }>
 			<div className="characters">
-				{ displayCharacterLists() }
+				{ isSelected ? (
+					<>
+						<CharacterListWithButtons
+							title={ __( 'Players', 'initiative-tracker' ) }
+							characters={ players }
+							type="players"
+							buttons={ (
+								<AddCharacterButton
+									addFunction={ () => withCharacterUpdate( addCharacter, players ) }
+									type="players"
+								/>
+							) }
+							position="after"
+						/>
+						<CharacterListWithButtons
+							title={ __( 'NPCs', 'initiative-tracker' ) }
+							characters={ npcs }
+							type="npcs"
+							buttons={ (
+								<AddCharacterButton
+									addFunction={ () => withCharacterUpdate( addCharacter, npcs ) }
+									type="npcs"
+								/>
+							) }
+							position="after"
+						/>
+					</>
+				) : (
+					<CharacterList
+						title={ __( 'Characters', 'initiative-tracker' ) }
+						characters={ sortCharacters( [
+							...players,
+							...npcs,
+						], false ) }
+					/>
+				) }
 			</div>
 		</div>
 	);
