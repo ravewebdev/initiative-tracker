@@ -92,17 +92,17 @@ const Edit = ( props ) => {
 							title={ __( 'Players', 'initiative-tracker' ) }
 							characters={ players }
 							type="players"
-							addFunction={ () => withCharacterUpdate( addCharacter, players ) }
-							editFunction={ () => withCharacterUpdate( editCharacter, players ) }
-							deleteFunction={ () => withCharacterUpdate( deleteCharacter, players ) }
+							addFunction={ withCharacterUpdate( addCharacter, players ) }
+							editFunction={ withCharacterUpdate( editCharacter, players ) }
+							deleteFunction={ withCharacterUpdate( deleteCharacter, players ) }
 						/>
 						<AdminCharacterList
 							title={ __( 'NPCs', 'initiative-tracker' ) }
 							characters={ npcs }
 							type="npcs"
-							addFunction={ () => withCharacterUpdate( addCharacter, npcs ) }
-							editFunction={ () => withCharacterUpdate( editCharacter, npcs ) }
-							deleteFunction={ () => withCharacterUpdate( deleteCharacter, npcs ) }
+							addFunction={ withCharacterUpdate( addCharacter, npcs ) }
+							editFunction={ withCharacterUpdate( editCharacter, npcs ) }
+							deleteFunction={ withCharacterUpdate( deleteCharacter, npcs ) }
 						/>
 					</>
 				) : (
