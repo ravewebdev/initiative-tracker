@@ -127,22 +127,6 @@ const Edit = ( props ) => {
 		);
 	};
 
-	/**
-	 * Display button to trigger add Character modal.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  NEXT
-	 *
-	 * @param  {string} options.type       Type of Character list being displayed.
-	 * @param  {Array}  options.characters Array of Characters.
-	 * @return {ReactElement}              JSX to display.
-	 */
-	const displayAddCharacterButton = ( { type, characters } ) => (
-		<AddEditCharacterModal
-			type={ type }
-			buttonText={ __( 'Add Character' ) }
-			characterFn={ withCharacterUpdate( addCharacter, characters ) }
-		/>
 	);
 
 	/**
