@@ -3,55 +3,42 @@
  */
 
 /**
- * Display component with Character editing buttons.
+ * Component with Character editing buttons.
  *
  * @author R A Van Epps <rave@ravanepps.com>
  * @since  NEXT
+ * @author R A Van Epps <rave@ravanepps.com>
+ * @since  NEXT
  *
- * @param  {Function} options.buttonFn      Button function used to display buttons within wrapped component.
- * @param  {string}   options.position      Placement of buttons (e.g., before, after).
- * @param  {Array}    options.requiredProps Props from wrapped component to pass through to buttonFn.
- * @param  {Object}   options.extraArgs     Other arguments to pass through to buttonFn.
- * @return {Function}                       A function that accepts a single param, `WrappedComponent`, to display the HOC.
+ * @param  {ReactElement} WrappedComponent The wrapped component to display.
+ * @return {Function}                      A function that accepts a single param, `props`, to display the wrapped component.
  */
-const withCharacterButtons = ( { buttonFn = null, position = null, requiredProps = [], extraArgs = {} } ) => {
+const withCharacterButtons = ( WrappedComponent ) => {
 
 	/**
 	 * @author R A Van Epps <rave@ravanepps.com>
 	 * @since  NEXT
 	 *
-	 * @param  {ReactElement} WrappedComponent The wrapped component to display.
-	 * @return {Function}                      A function that accepts a single param, `props`, to display the wrapped component.
+	 * @param  {Object} props Props of the wrapped component.
+	 * @return {ReactElement} The wrapped component.
 	 */
-	return ( WrappedComponent ) => {
+	return ( props ) => {
+		const {
+			buttons = null,
+			position = null,
+			...passThruProps
+		} = props;
 
-		/**
-		 * @author R A Van Epps <rave@ravanepps.com>
-		 * @since  NEXT
-		 *
-		 * @param  {Object} props Props of the wrapped component.
-		 * @return {ReactElement} The wrapped component.
-		 */
-		return ( props ) => {
-			const newProps = { ...props };
+		// Add buttons to specified position, if provided.
+		if ( null !== buttons && null !== position ) {
+			passThruProps[ position ] = (
+				<div className="edit-character-buttons">
+					{ buttons }
+				</div>
+			);
+		}
 
-			// Retrieve prop values from wrapped component.
-			const args = requiredProps.reduce( ( tmpArgs, curArg ) => ( {
-				...tmpArgs,
-				[ curArg ]: newProps.hasOwnProperty( curArg ) ? newProps[ curArg ] : null,
-			} ), {} );
-
-			// Add buttons to specified position, if provided.
-			if ( null !== buttonFn && null !== position ) {
-				newProps[ position ] = (
-					<div className="edit-character-buttons">
-						{ buttonFn( { ...args, ...extraArgs } ) }
-					</div>
-				);
-			}
-
-			return <WrappedComponent { ...newProps } />;
-		};
+		return <WrappedComponent { ...passThruProps } />;
 	};
 };
 
