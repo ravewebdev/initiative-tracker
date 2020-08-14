@@ -25,7 +25,6 @@ const Character = ( props ) => {
 			player,
 			initiative,
 		},
-		type,
 		index,
 		editCharacter,
 		activeIndex,

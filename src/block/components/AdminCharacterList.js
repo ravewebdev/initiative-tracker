@@ -53,7 +53,6 @@ const AdminCharacterList = ( props ) => {
 					<CharacterWithButtons
 						key={ character.key }
 						character={ character }
-						type={ type }
 						index={ index }
 						buttons={ (
 							<EditCharacterButtons

@@ -48,7 +48,6 @@ const CharacterList = ( props ) => {
 					<Character
 						key={ character.key }
 						character={ character }
-						type={ type }
 						index={ index }
 						editCharacter={ editCharacter }
 					/>
