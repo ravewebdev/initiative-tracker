@@ -12,7 +12,7 @@ const {
 } = wp;
 
 /**
- * Add/Edit Character modal.
+ * Edit/delete Character buttons.
  *
  * @author R A Van Epps <rave@ravanepps.com>
  * @since  NEXT
