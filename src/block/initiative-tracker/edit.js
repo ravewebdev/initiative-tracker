@@ -83,26 +83,58 @@ const Edit = ( props ) => {
 		};
 	};
 
+	/**
+	 * HOC: Component with update functions.
+	 *
+	 * @author R A Van Epps <rave@ravanepps.com>
+	 * @since  NEXT
+	 *
+	 * @param  {ReactElement} WrappedComponent The wrapped component to display.
+	 * @return {Function}                      A function that accepts a single param, `wrappedProps`, to display the wrapped component.
+	 */
+	const withUpdateFunctions = ( WrappedComponent ) => {
+
+		/**
+		 * @author R A Van Epps <rave@ravanepps.com>
+		 * @since  NEXT
+		 *
+		 * @param  {Object} wrappedProps Props of the wrapped component.
+		 * @return {ReactElement}        The wrapped component.
+		 */
+		return ( wrappedProps ) => {
+			const {
+				characters,
+			} = wrappedProps;
+
+			return (
+				<WrappedComponent
+					{ ...wrappedProps }
+					addFunction={ withCharacterUpdate( addCharacter, characters ) }
+					editFunction={ withCharacterUpdate( editCharacter, characters ) }
+					deleteFunction={ withCharacterUpdate( deleteCharacter, characters ) }
+				/>
+			);
+		};
+	};
+
+	// HOC: CharacterList with Character update functions.
+	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
+	const CharacterListWithUpdateFunctions = withUpdateFunctions( AdminCharacterList );
+
 	return (
 		<div className={ className }>
 			<div className="characters">
 				{ isSelected ? (
 					<>
-						<AdminCharacterList
+						<CharacterListWithUpdateFunctions
 							title={ __( 'Players', 'initiative-tracker' ) }
 							characters={ players }
 							type="players"
-							addFunction={ withCharacterUpdate( addCharacter, players ) }
-							editFunction={ withCharacterUpdate( editCharacter, players ) }
-							deleteFunction={ withCharacterUpdate( deleteCharacter, players ) }
 						/>
-						<AdminCharacterList
+						<CharacterListWithUpdateFunctions
 							title={ __( 'NPCs', 'initiative-tracker' ) }
 							characters={ npcs }
 							type="npcs"
-							addFunction={ withCharacterUpdate( addCharacter, npcs ) }
-							editFunction={ withCharacterUpdate( editCharacter, npcs ) }
-							deleteFunction={ withCharacterUpdate( deleteCharacter, npcs ) }
 						/>
 					</>
 				) : (
