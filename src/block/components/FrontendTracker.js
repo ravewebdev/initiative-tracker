@@ -5,6 +5,7 @@
 /* global initTracker */
 
 import CharacterList from './CharacterList';
+import FrontendEditLink from './FrontendEditLink';
 import withCharacterButtons from './withCharacterButtons';
 import sortCharacters from '../utils/sortCharacters';
 
@@ -14,7 +15,6 @@ const {
 		__,
 	},
 	components: {
-		Dashicon,
 		TextControl,
 	},
 	element: {
@@ -201,7 +201,13 @@ const FrontendTracker = ( props ) => {
 		if ( ! isEditing ) {
 			return (
 				<>
-					{ displayEditLink( linkClass, 'edit', __( 'Edit Initiative', 'initiative-tracker' ), () => onSetIsEditing( true ) ) }
+					<FrontendEditLink
+						linkClass={ linkClass }
+						icon="edit"
+						label={ __( 'Edit Initiative', 'initiative-tracker' ) }
+						clickFunction={ () => onSetIsEditing( true ) }
+						isLoading={ isLoading }
+					/>
 					{ message }
 				</>
 			);
@@ -209,45 +215,25 @@ const FrontendTracker = ( props ) => {
 
 		return (
 			<>
-				{ displayEditLink( linkClass, 'no', __( 'Cancel', 'initiative-tracker' ), () => {
-					resetAttributes();
-					onSetIsEditing( false );
-				} ) }
-				{ displayEditLink( linkClass, 'yes', __( 'Save Initiative', 'initiative-tracker' ), () => saveCharacterUpdates() ) }
+				<FrontendEditLink
+					linkClass={ linkClass }
+					icon="no"
+					label={ __( 'Cancel', 'initiative-tracker' ) }
+					clickFunction={ () => {
+						resetAttributes();
+						onSetIsEditing( false );
+					} }
+					isLoading={ isLoading }
+				/>
+				<FrontendEditLink
+					linkClass={ linkClass }
+					icon="yes"
+					label={ __( 'Save Initiative', 'initiative-tracker' ) }
+					clickFunction={ () => saveCharacterUpdates() }
+					isLoading={ isLoading }
+				/>
 				{ message }
 			</>
-		);
-	};
-
-	/**
-	 * Display edit/save link.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  2.0.0
-	 *
-	 * @param  {string}   linkClass Link class(es).
-	 * @param  {string}   icon      Dashicon icon.
-	 * @param  {string}   label     Link label text.
-	 * @param  {function} clickFn   Functionality to call on link click.
-	 * @return {ReactElement}       Link JSX.
-	 */
-	const displayEditLink = ( linkClass, icon, label, clickFn ) => {
-		return (
-			<button
-				className={ linkClass }
-				onClick={ ( event ) => {
-					event.preventDefault();
-
-					// Stop here if currently in loading state.
-					if ( isLoading ) {
-						return false;
-					}
-
-					clickFn();
-				} }
-			>
-				<Dashicon icon={ icon } /> { label }
-			</button>
 		);
 	};
 
