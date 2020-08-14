@@ -101,15 +101,11 @@ const Edit = ( props ) => {
 	 * @return {ReactElement}              JSX to display.
 	 */
 	const displayCharacterListWithChildren = ( { type, characters } ) => {
-
-		// HOC: Character with Character editing buttons.
-		// eslint-disable-next-line @wordpress/no-unused-vars-before-return
-		const CharacterWithButtons = withCharacterButtons( Character ),
-			buttonProps = {
-				editFunction: () => withCharacterUpdate( editCharacter, characters ),
-				deleteFunction: () => withCharacterUpdate( deleteCharacter, characters ),
-				type,
-			};
+		const buttonProps = {
+			editFunction: () => withCharacterUpdate( editCharacter, characters ),
+			deleteFunction: () => withCharacterUpdate( deleteCharacter, characters ),
+			type,
+		};
 
 		return (
 			<ul>
@@ -132,6 +128,10 @@ const Edit = ( props ) => {
 			</ul>
 		);
 	};
+
+	// HOC: Character with Character editing buttons.
+	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
+	const CharacterWithButtons = withCharacterButtons( Character );
 
 	// HOC: CharacterList with Character editing buttons.
 	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
