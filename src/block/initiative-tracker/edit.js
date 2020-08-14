@@ -19,9 +19,6 @@ const {
 	i18n: {
 		__,
 	},
-	compose: {
-		compose,
-	},
 	element: {
 		useEffect,
 	},
@@ -90,17 +87,7 @@ const Edit = ( props ) => {
 		};
 	};
 
-	/**
-	 * Display CharacterList with children function to display individual Character edit buttons.
-	 *
-	 * @author R A Van Epps <rave@ravanepps.com>
-	 * @since  NEXT
-	 *
-	 * @param  {string} options.type       Type of Character list being displayed.
-	 * @param  {Array}  options.characters Array of Characters.
-	 * @return {ReactElement}              JSX to display.
-	 */
-	const displayCharacterListWithChildren = ( { type, characters } ) => {
+	const CharacterListChildren = ( { type, characters } ) => {
 		const buttonProps = {
 			editFunction: () => withCharacterUpdate( editCharacter, characters ),
 			deleteFunction: () => withCharacterUpdate( deleteCharacter, characters ),
@@ -135,13 +122,7 @@ const Edit = ( props ) => {
 
 	// HOC: CharacterList with Character editing buttons.
 	// eslint-disable-next-line @wordpress/no-unused-vars-before-return
-	const CharacterListWithButtons = compose(
-		withCharacterButtons,
-		withChildren( {
-			childrenFn: displayCharacterListWithChildren,
-			requiredProps: [ 'type', 'characters' ],
-		} )
-	)( CharacterList );
+	const CharacterListWithButtons = withCharacterButtons( CharacterList );
 
 	return (
 		<div className={ className }>
